@@ -2,93 +2,347 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CHALLENGE</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#0d0d0f;color:#fff;min-height:100vh}
-.container{max-width:850px;margin:auto;padding:25px}
-.card{background:#19191d;border-radius:20px;padding:25px;box-shadow:0 10px 35px #0008}
-h1{text-align:center;font-size:38px;margin:10px}
-.sub{text-align:center;color:#aaa;margin-bottom:30px}
-input{width:100%;padding:15px;border:0;border-radius:12px;background:#29292e;color:#fff;font-size:17px;margin-bottom:15px;text-align:center}
-button{border:0;border-radius:12px;padding:14px 22px;font-size:17px;font-weight:bold;cursor:pointer}
-button:disabled{cursor:not-allowed;opacity:.8}
-.primary{background:#fff;color:#111;width:100%}
-.stats{display:flex;gap:10px;margin-bottom:20px}
-.stat{flex:1;background:#242429;border-radius:12px;padding:12px;text-align:center}
-.question{font-size:28px;text-align:center;margin:35px 0}
-.answers{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.answer{background:#29292e;color:#fff;width:100%}
-.correct{background:#168044!important}
-.wrong{background:#9b2929!important}
-.message{text-align:center;min-height:30px;margin:18px}
-.hidden{display:none}
-.result{text-align:center}
-.big{font-size:45px;font-weight:bold}
-.save-status{color:#aaa;margin:15px 0;min-height:25px}
-@media(max-width:600px){
-.answers{grid-template-columns:1fr}
-.stats{flex-direction:column}
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#0b1020;
+    color:#fff;
+}
+.container{
+    width:min(100%,1100px);
+    margin:auto;
+    padding:20px;
+}
+.card{
+    background:#151d33;
+    border:1px solid #26314f;
+    border-radius:20px;
+    padding:25px;
+    margin-bottom:20px;
+}
+h1,h2,h3{margin-top:0}
+.logo{
+    text-align:center;
+    font-size:42px;
+    font-weight:900;
+    margin:20px 0 8px;
+}
+.subtitle{
+    text-align:center;
+    color:#aeb8d0;
+    margin-bottom:25px;
+}
+input{
+    width:100%;
+    padding:15px;
+    border-radius:12px;
+    border:1px solid #34415f;
+    background:#0e1528;
+    color:#fff;
+    font-size:16px;
+    margin-bottom:12px;
+}
+button{
+    width:100%;
+    padding:15px;
+    border:0;
+    border-radius:12px;
+    background:#fff;
+    color:#111827;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:8px;
+}
+button.secondary{
+    background:#27324d;
+    color:#fff;
+}
+button.danger{
+    background:#8b2635;
+    color:#fff;
+}
+.hidden{display:none!important}
+.message{
+    text-align:center;
+    margin-top:15px;
+    color:#aeb8d0;
+}
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+}
+.stat{
+    background:#0e1528;
+    padding:15px 8px;
+    border-radius:14px;
+    text-align:center;
+}
+.stat b{
+    display:block;
+    font-size:22px;
+    margin-top:5px;
+}
+.games{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+}
+.game{
+    background:#0e1528;
+    border:1px solid #293654;
+    border-radius:16px;
+    padding:22px 10px;
+    text-align:center;
+    cursor:pointer;
+    transition:.2s;
+}
+.game:hover{transform:translateY(-3px)}
+.icon{
+    font-size:35px;
+    display:block;
+    margin-bottom:8px;
+}
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    margin-bottom:20px;
+}
+.small{
+    color:#aeb8d0;
+    font-size:14px;
+}
+.question{
+    font-size:23px;
+    line-height:1.6;
+    text-align:center;
+    margin:25px 0;
+}
+.timer{
+    text-align:center;
+    font-size:32px;
+    font-weight:bold;
+}
+.answers{
+    display:grid;
+    gap:10px;
+}
+.answer{
+    background:#202b46;
+    color:#fff;
+}
+.result{
+    text-align:center;
+    font-size:22px;
+    padding:20px;
+}
+@media(max-width:650px){
+    .stats{grid-template-columns:repeat(2,1fr)}
+    .games{grid-template-columns:repeat(2,1fr)}
+    .logo{font-size:34px}
 }
 </style>
 </head>
 
 <body>
+
 <div class="container">
 
-<div id="home" class="card">
-<h1>🎮 CHALLENGE</h1>
-<div class="sub">اختبر سرعتك ومعرفتك واربح النقاط</div>
+<!-- LOGIN -->
+<section id="authScreen">
+    <div class="logo">⚡ CHALLENGE</div>
+    <div class="subtitle">اختبر نفسك... وتحدى العالم</div>
 
-<input id="playerName" type="text" maxlength="30" placeholder="اكتب اسمك">
+    <div class="card">
+        <h2 id="authTitle">تسجيل حساب جديد</h2>
 
-<button class="primary" onclick="startGame()">
-ابدأ التحدي
-</button>
+        <input id="username" type="text" placeholder="اسم اللاعب">
+
+        <input id="email" type="email" placeholder="البريد الإلكتروني">
+
+        <input id="password" type="password" placeholder="كلمة المرور">
+
+        <button onclick="signUp()">إنشاء حساب</button>
+        <button class="secondary" onclick="signIn()">لدي حساب بالفعل</button>
+
+        <div id="authMessage" class="message"></div>
+    </div>
+</section>
+
+
+<!-- HOME -->
+<section id="homeScreen" class="hidden">
+
+    <div class="topbar">
+        <div>
+            <h2 id="welcome">أهلاً بك 👋</h2>
+            <div class="small" id="playerEmail"></div>
+        </div>
+        <button class="danger" style="width:auto;padding:10px 15px" onclick="signOut()">
+            خروج
+        </button>
+    </div>
+
+    <div class="card">
+        <div class="stats">
+            <div class="stat">
+                المستوى
+                <b id="level">1</b>
+            </div>
+
+            <div class="stat">
+                XP
+                <b id="xp">0</b>
+            </div>
+
+            <div class="stat">
+                العملات
+                <b id="coins">0</b>
+            </div>
+
+            <div class="stat">
+                أفضل نتيجة
+                <b id="bestScore">0</b>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>🎯 اختر التحدي</h2>
+
+        <div class="games">
+
+            <div class="game" onclick="startGame('history')">
+                <span class="icon">🏛️</span>
+                التاريخ
+            </div>
+
+            <div class="game" onclick="startGame('sports')">
+                <span class="icon">⚽</span>
+                الرياضة
+            </div>
+
+            <div class="game" onclick="startGame('series')">
+                <span class="icon">📺</span>
+                المسلسلات
+            </div>
+
+            <div class="game" onclick="startGame('puzzles')">
+                <span class="icon">🧩</span>
+                الألغاز
+            </div>
+
+            <div class="game" onclick="startGame('proverbs')">
+                <span class="icon">💬</span>
+                الأمثال
+            </div>
+
+            <div class="game" onclick="startGame('rewrite')">
+                <span class="icon">✍️</span>
+                إعادة كتابة
+            </div>
+
+            <div class="game" onclick="startGame('spot-difference')">
+                <span class="icon">👀</span>
+                الفروق الخمسة
+            </div>
+
+            <div class="game" onclick="startGame('memory')">
+                <span class="icon">🧠</span>
+                الذاكرة
+            </div>
+
+            <div class="game" onclick="startGame('math')">
+                <span class="icon">🔢</span>
+                الرياضيات
+            </div>
+
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>⚔️ تحدى صديق</h2>
+        <p class="small">
+            تحدى صديقك وشوف من يحل التحدي أسرع.
+        </p>
+        <button onclick="friendChallenge()">دعوة صديق للمنافسة</button>
+    </div>
+
+    <div class="card">
+        <h2>👑 PRO</h2>
+        <p class="small">
+            التجربة المجانية متاحة لفترة محدودة. افتح جميع المستويات والتحديات مع PRO.
+        </p>
+        <button onclick="showPro()">10 ريال / شهر</button>
+    </div>
+
+</section>
+
+
+<!-- GAME -->
+<section id="gameScreen" class="hidden">
+
+    <div class="topbar">
+        <button class="secondary" style="width:auto" onclick="goHome()">← رجوع</button>
+        <div>
+            <b id="gameTitle">التحدي</b>
+        </div>
+    </div>
+
+    <div class="card">
+
+        <div class="timer" id="timer">15</div>
+
+        <div class="question" id="question">
+            جاري تحميل التحدي...
+        </div>
+
+        <div class="answers" id="answers"></div>
+
+        <div id="gameMessage" class="message"></div>
+
+    </div>
+
+</section>
+
+
+<!-- RESULT -->
+<section id="resultScreen" class="hidden">
+
+    <div class="card result">
+
+        <h1>🏆 انتهى التحدي</h1>
+
+        <p id="resultText"></p>
+
+        <button onclick="goHome()">العودة للرئيسية</button>
+
+        <button class="secondary" onclick="friendChallenge()">
+            ⚔️ تحدى صديق
+        </button>
+
+    </div>
+
+</section>
+
 </div>
 
-<div id="game" class="card hidden">
-
-<div class="stats">
-<div class="stat">السؤال<br><b id="number">1</b>/10</div>
-<div class="stat">النقاط<br><b id="score">0</b></div>
-<div class="stat">الوقت<br><b id="timer">15</b></div>
-</div>
-
-<div id="question" class="question"></div>
-<div id="answers" class="answers"></div>
-<div id="message" class="message"></div>
-
-</div>
-
-<div id="result" class="card result hidden">
-
-<h1>🏆 انتهى التحدي</h1>
-
-<p>اللاعب</p>
-<b id="finalName"></b>
-
-<p>نتيجتك</p>
-<div id="finalScore" class="big">0</div>
-
-<p>XP: <b id="xp">0</b></p>
-<p>Coins: 🪙 <b id="coins">0</b></p>
-
-<div id="saveStatus" class="save-status"></div>
-
-<button class="primary" onclick="startGame()">
-إعادة التحدي
-</button>
-
-</div>
-
-</div>
 
 <script>
+
+// ===============================
+// SUPABASE
+// ===============================
 
 const SUPABASE_URL =
 "https://avjawmakdpzbdswusqqz.supabase.co";
@@ -97,211 +351,669 @@ const SUPABASE_KEY =
 "sb_publishable_EmDD96CXmQb_S_xhtaS1Kw_YaIBApwt";
 
 const supabaseClient =
-window.supabase.createClient(
-SUPABASE_URL,
-SUPABASE_KEY
-);
+supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-const questions=[
 
-{q:"ما عاصمة المملكة العربية السعودية؟",a:["الرياض","جدة","الدمام","مكة"],c:0},
-{q:"كم عدد أيام الأسبوع؟",a:["5","6","7","8"],c:2},
-{q:"كم يساوي 9 × 9؟",a:["72","81","90","99"],c:1},
-{q:"ما أكبر كوكب في المجموعة الشمسية؟",a:["الأرض","المريخ","المشتري","زحل"],c:2},
-{q:"كم عدد أشهر السنة؟",a:["10","11","12","13"],c:2},
-{q:"ما الحيوان المعروف بسفينة الصحراء؟",a:["الحصان","الجمل","الأسد","الفيل"],c:1},
-{q:"كم يساوي 100 ÷ 10؟",a:["5","10","20","50"],c:1},
-{q:"ما لون الموز غالبًا عند النضج؟",a:["أحمر","أزرق","أصفر","أسود"],c:2},
-{q:"كم عدد حروف اللغة العربية؟",a:["26","28","30","32"],c:1},
-{q:"أي بحر يقع غرب المملكة العربية السعودية؟",a:["الخليج العربي","البحر الأحمر","بحر العرب","المتوسط"],c:1}
+// ===============================
+// VARIABLES
+// ===============================
 
-];
+let currentUser = null;
+let currentProfile = null;
 
-let current=0;
-let score=0;
-let time=15;
-let interval;
-let locked=false;
-let playerName="";
+let currentGame = null;
+let currentQuestions = [];
+let currentQuestion = 0;
 
-function startGame(){
+let score = 0;
+let correct = 0;
+let wrong = 0;
 
-const nameInput=document.getElementById("playerName");
+let timer = null;
+let timeLeft = 15;
 
-if(!document.getElementById("home").classList.contains("hidden")){
 
-playerName=nameInput.value.trim();
+// ===============================
+// START
+// ===============================
 
-if(!playerName){
-nameInput.focus();
-nameInput.placeholder="اكتب اسمك أولاً";
-return;
+window.addEventListener("load", async () => {
+
+    const {
+        data: { session }
+    } = await supabaseClient.auth.getSession();
+
+    if(session){
+        currentUser = session.user;
+        await loadProfile();
+    }else{
+        showScreen("authScreen");
+    }
+
+});
+
+
+// ===============================
+// AUTH
+// ===============================
+
+async function signUp(){
+
+    const username =
+        document.getElementById("username").value.trim();
+
+    const email =
+        document.getElementById("email").value.trim();
+
+    const password =
+        document.getElementById("password").value;
+
+    const message =
+        document.getElementById("authMessage");
+
+    if(!username || !email || !password){
+        message.textContent =
+        "اكتب اسم اللاعب والبريد وكلمة المرور.";
+        return;
+    }
+
+    if(password.length < 6){
+        message.textContent =
+        "كلمة المرور يجب أن تكون 6 أحرف على الأقل.";
+        return;
+    }
+
+    message.textContent = "جاري إنشاء الحساب...";
+
+    const {
+        data,
+        error
+    } = await supabaseClient.auth.signUp({
+        email,
+        password,
+        options:{
+            data:{
+                username:username
+            }
+        }
+    });
+
+    if(error){
+        message.textContent =
+        "❌ " + error.message;
+        return;
+    }
+
+    if(data.user){
+
+        currentUser = data.user;
+
+        // إذا كان الدخول فوري
+        if(data.session){
+
+            await createProfile(username);
+            await loadProfile();
+
+        }else{
+
+            message.textContent =
+            "✅ تم إنشاء الحساب. تحقق من بريدك الإلكتروني ثم سجل الدخول.";
+
+        }
+    }
+
 }
 
-localStorage.setItem("challenge_player_name",playerName);
+
+// ===============================
+// LOGIN
+// ===============================
+
+async function signIn(){
+
+    const email =
+        document.getElementById("email").value.trim();
+
+    const password =
+        document.getElementById("password").value;
+
+    const message =
+        document.getElementById("authMessage");
+
+    if(!email || !password){
+        message.textContent =
+        "اكتب البريد وكلمة المرور.";
+        return;
+    }
+
+    message.textContent = "جاري تسجيل الدخول...";
+
+    const {
+        data,
+        error
+    } = await supabaseClient.auth.signInWithPassword({
+        email,
+        password
+    });
+
+    if(error){
+        message.textContent =
+        "❌ " + error.message;
+        return;
+    }
+
+    currentUser = data.user;
+
+    await loadProfile();
 
 }
 
-current=0;
-score=0;
 
-document.getElementById("home").classList.add("hidden");
-document.getElementById("result").classList.add("hidden");
-document.getElementById("game").classList.remove("hidden");
+// ===============================
+// PROFILE
+// ===============================
 
-loadQuestion();
+async function createProfile(username){
+
+    const referralCode =
+        "CH-" +
+        Math.random()
+        .toString(36)
+        .substring(2,8)
+        .toUpperCase();
+
+    const {
+        error
+    } = await supabaseClient
+        .from("profiles")
+        .insert({
+            id: currentUser.id,
+            username: username,
+            level: 1,
+            xp: 0,
+            coins: 100,
+            total_score: 0,
+            best_score: 0,
+            games_played: 0,
+            login_days: 1,
+            is_pro: false,
+            trial_started_at: new Date().toISOString(),
+            referral_code: referralCode
+        });
+
+    if(error){
+
+        // الحساب قد يكون له Profile بالفعل
+        if(!error.message.includes("duplicate")){
+            console.log(error);
+        }
+
+    }
+
 }
+
+
+async function loadProfile(){
+
+    if(!currentUser) return;
+
+    let {
+        data: profile,
+        error
+    } = await supabaseClient
+        .from("profiles")
+        .select("*")
+        .eq("id", currentUser.id)
+        .maybeSingle();
+
+    if(error){
+        console.log(error);
+    }
+
+    // إذا الحساب موجود بدون Profile
+    if(!profile){
+
+        const username =
+            currentUser.user_metadata?.username ||
+            currentUser.email.split("@")[0];
+
+        await createProfile(username);
+
+        const result =
+            await supabaseClient
+            .from("profiles")
+            .select("*")
+            .eq("id", currentUser.id)
+            .maybeSingle();
+
+        profile = result.data;
+    }
+
+    currentProfile = profile;
+
+    updateHome();
+
+    showScreen("homeScreen");
+
+}
+
+
+// ===============================
+// HOME
+// ===============================
+
+function updateHome(){
+
+    if(!currentProfile) return;
+
+    document.getElementById("welcome").textContent =
+        "أهلاً " + currentProfile.username + " 👋";
+
+    document.getElementById("playerEmail").textContent =
+        currentUser.email;
+
+    document.getElementById("level").textContent =
+        currentProfile.level || 1;
+
+    document.getElementById("xp").textContent =
+        currentProfile.xp || 0;
+
+    document.getElementById("coins").textContent =
+        currentProfile.coins || 0;
+
+    document.getElementById("bestScore").textContent =
+        currentProfile.best_score || 0;
+
+}
+
+
+// ===============================
+// GAMES
+// ===============================
+
+const localQuestions = {
+
+history:[
+{
+q:"أي حضارة استخدمت الكتابة المسمارية بشكل واسع؟",
+a:["الحضارة السومرية","الحضارة الرومانية","الحضارة الفايكنغية","حضارة الأزتك"],
+c:0
+},
+{
+q:"في أي قارة قامت الإمبراطورية الرومانية أساساً؟",
+a:["أوروبا","أستراليا","أمريكا الجنوبية","القارة القطبية"],
+c:0
+}
+],
+
+sports:[
+{
+q:"كم عدد اللاعبين الأساسيين في فريق كرة القدم داخل الملعب؟",
+a:["9","10","11","12"],
+c:2
+},
+{
+q:"كم شوطاً في مباراة كرة القدم؟",
+a:["شوط واحد","شوطان","3 أشواط","4 أشواط"],
+c:1
+}
+],
+
+series:[
+{
+q:"أي نوع من الأعمال يعتمد غالباً على حلقات متتابعة؟",
+a:["مسلسل","قاموس","آلة حاسبة","خريطة"],
+c:0
+}
+],
+
+puzzles:[
+{
+q:"شيء كلما أخذت منه كبر، ما هو؟",
+a:["الحفرة","الكتاب","الماء","الباب"],
+c:0
+}
+],
+
+proverbs:[
+{
+q:"أكمل: من جد ...",
+a:["وجد","نام","تعب","هرب"],
+c:0
+}
+],
+
+rewrite:[
+{
+q:"ما أفضل إعادة صياغة للجملة: «الوقت ثمين ويجب استغلاله»؟",
+a:[
+"ينبغي الاستفادة من الوقت لأنه ذو قيمة.",
+"الوقت لا قيمة له.",
+"لا داعي لتنظيم الوقت.",
+"استغلال الوقت أمر غير مهم."
+],
+c:0
+}
+],
+
+"spot-difference":[
+{
+q:"👀 في هذا التحدي التجريبي، كم عدد الفروق المطلوبة عادة؟",
+a:["3","4","5","10"],
+c:2
+}
+],
+
+memory:[
+{
+q:"احفظ التسلسل: 7 - 2 - 9 - 4. ما الرقم الثالث؟",
+a:["2","9","4","7"],
+c:1
+}
+],
+
+math:[
+{
+q:"إذا كان 17 × 6 = ؟",
+a:["92","102","112","122"],
+c:1
+},
+{
+q:"إذا كان 144 ÷ 12 = ؟",
+a:["10","11","12","14"],
+c:2
+}
+]
+
+};
+
+
+async function startGame(mode){
+
+    currentGame = mode;
+
+    currentQuestions =
+        localQuestions[mode] || [];
+
+    currentQuestion = 0;
+    score = 0;
+    correct = 0;
+    wrong = 0;
+
+    document.getElementById("gameTitle").textContent =
+        getGameName(mode);
+
+    showScreen("gameScreen");
+
+    loadQuestion();
+
+}
+
+
+function getGameName(mode){
+
+    const names = {
+        history:"🏛️ التاريخ",
+        sports:"⚽ الرياضة",
+        series:"📺 المسلسلات",
+        puzzles:"🧩 الألغاز",
+        proverbs:"💬 الأمثال",
+        rewrite:"✍️ إعادة كتابة",
+        "spot-difference":"👀 الفروق الخمسة",
+        memory:"🧠 الذاكرة",
+        math:"🔢 الرياضيات"
+    };
+
+    return names[mode] || "التحدي";
+}
+
+
+// ===============================
+// QUESTION
+// ===============================
 
 function loadQuestion(){
 
-clearInterval(interval);
-locked=false;
+    clearInterval(timer);
 
-const q=questions[current];
+    if(currentQuestion >= currentQuestions.length){
+        finishGame();
+        return;
+    }
 
-document.getElementById("number").textContent=current+1;
-document.getElementById("score").textContent=score;
-document.getElementById("question").textContent=q.q;
-document.getElementById("message").textContent="";
+    const item =
+        currentQuestions[currentQuestion];
 
-const box=document.getElementById("answers");
-box.innerHTML="";
+    document.getElementById("question").textContent =
+        item.q;
 
-q.a.forEach((answer,index)=>{
+    const answers =
+        document.getElementById("answers");
 
-const btn=document.createElement("button");
+    answers.innerHTML = "";
 
-btn.className="answer";
-btn.textContent=answer;
+    item.a.forEach((answer,index)=>{
 
-btn.onclick=()=>{
-answerQuestion(index,btn);
-};
+        const button =
+            document.createElement("button");
 
-box.appendChild(btn);
+        button.className = "answer";
 
-});
+        button.textContent = answer;
 
-time=15;
-document.getElementById("timer").textContent=time;
+        button.onclick = () =>
+            answerQuestion(index);
 
-interval=setInterval(()=>{
+        answers.appendChild(button);
 
-time--;
+    });
 
-document.getElementById("timer").textContent=time;
+    timeLeft = 15;
 
-if(time<=0){
-answerQuestion(-1,null);
-}
+    document.getElementById("timer").textContent =
+        timeLeft;
 
-},1000);
+    timer =
+        setInterval(()=>{
 
-}
+            timeLeft--;
 
-function answerQuestion(choice,button){
+            document.getElementById("timer").textContent =
+                timeLeft;
 
-if(locked)return;
+            if(timeLeft <= 0){
 
-locked=true;
-clearInterval(interval);
+                clearInterval(timer);
 
-const q=questions[current];
-const buttons=document.querySelectorAll(".answer");
+                wrong++;
 
-buttons.forEach((b,i)=>{
+                currentQuestion++;
 
-b.disabled=true;
+                loadQuestion();
 
-if(i===q.c){
-b.classList.add("correct");
-}
+            }
 
-});
-
-if(choice===q.c){
-
-score+=100+(time*5);
-
-document.getElementById("message").textContent="✅ إجابة صحيحة";
-
-}else{
-
-if(button){
-button.classList.add("wrong");
-}
-
-document.getElementById("message").textContent="❌ إجابة خاطئة";
+        },1000);
 
 }
 
-document.getElementById("score").textContent=score;
 
-setTimeout(()=>{
+function answerQuestion(index){
 
-current++;
+    clearInterval(timer);
 
-if(current>=questions.length){
-finishGame();
-}else{
-loadQuestion();
-}
+    const item =
+        currentQuestions[currentQuestion];
 
-},700);
+    if(index === item.c){
 
-}
+        correct++;
 
-async function finishGame(){
+        score += 100 + (timeLeft * 5);
 
-document.getElementById("game").classList.add("hidden");
-document.getElementById("result").classList.remove("hidden");
+    }else{
 
-const xp=score;
-const coins=Math.floor(score/100);
+        wrong++;
 
-document.getElementById("finalName").textContent=playerName;
-document.getElementById("finalScore").textContent=score;
-document.getElementById("xp").textContent=xp;
-document.getElementById("coins").textContent=coins;
+    }
 
-document.getElementById("saveStatus").textContent="جاري حفظ النتيجة...";
+    currentQuestion++;
 
-const {error}=await supabaseClient
-.from("game_scores")
-.insert({
-player_name:playerName,
-score:score,
-xp:xp,
-coins:coins
-});
-
-if(error){
-
-console.error(error);
-
-document.getElementById("saveStatus").textContent=
-"⚠️ لم يتم حفظ النتيجة حالياً";
-
-}else{
-
-document.getElementById("saveStatus").textContent=
-"✅ تم حفظ نتيجتك بنجاح";
+    loadQuestion();
 
 }
 
+
+// ===============================
+// RESULT
+// ===============================
+
+function finishGame(){
+
+    clearInterval(timer);
+
+    const result =
+        document.getElementById("resultText");
+
+    result.innerHTML =
+        "نتيجتك: <strong>" + score +
+        "</strong><br><br>" +
+        "إجابات صحيحة: " + correct +
+        "<br>" +
+        "إجابات خاطئة: " + wrong;
+
+    showScreen("resultScreen");
+
 }
 
-window.addEventListener("DOMContentLoaded",()=>{
 
-const savedName=localStorage.getItem("challenge_player_name");
+// ===============================
+// FRIEND CHALLENGE
+// ===============================
 
-if(savedName){
+function friendChallenge(){
 
-document.getElementById("playerName").value=savedName;
+    const code =
+        Math.random()
+        .toString(36)
+        .substring(2,8)
+        .toUpperCase();
+
+    const link =
+        window.location.origin +
+        window.location.pathname +
+        "?challenge=" +
+        code;
+
+    const text =
+        "⚔️ أتحداك في CHALLENGE!\n" +
+        "من يحل أسرع؟\n\n" +
+        link;
+
+    if(navigator.share){
+
+        navigator.share({
+            title:"CHALLENGE",
+            text:text
+        });
+
+    }else{
+
+        navigator.clipboard
+            .writeText(text)
+            .then(()=>{
+                alert("✅ تم نسخ رابط التحدي. أرسله لصديقك.");
+            });
+
+    }
 
 }
 
-});
+
+// ===============================
+// PRO
+// ===============================
+
+function showPro(){
+
+    alert(
+        "🔥 PRO\n\n" +
+        "10 ريال شهرياً\n\n" +
+        "• جميع المستويات\n" +
+        "• جميع التحديات\n" +
+        "• تحديات الأصدقاء\n" +
+        "• المكافآت\n" +
+        "• المسابقات\n\n" +
+        "الدفع الإلكتروني سنضيفه في المرحلة القادمة."
+    );
+
+}
+
+
+// ===============================
+// LOGOUT
+// ===============================
+
+async function signOut(){
+
+    await supabaseClient.auth.signOut();
+
+    currentUser = null;
+    currentProfile = null;
+
+    showScreen("authScreen");
+
+}
+
+
+// ===============================
+// NAVIGATION
+// ===============================
+
+function goHome(){
+
+    clearInterval(timer);
+
+    showScreen("homeScreen");
+
+}
+
+
+function showScreen(id){
+
+    [
+        "authScreen",
+        "homeScreen",
+        "gameScreen",
+        "resultScreen"
+    ].forEach(screen=>{
+
+        document.getElementById(screen)
+            .classList.add("hidden");
+
+    });
+
+    document.getElementById(id)
+        .classList.remove("hidden");
+
+}
+
+
+// ===============================
+// AUTH STATE
+// ===============================
+
+supabaseClient.auth.onAuthStateChange(
+    async (event, session)=>{
+
+        if(session){
+
+            currentUser = session.user;
+
+        }
+
+    }
+);
 
 </script>
 

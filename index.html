@@ -9,147 +9,36 @@
 
 <style>
 *{box-sizing:border-box}
-body{
-    margin:0;
-    font-family:Arial,sans-serif;
-    background:#0b1020;
-    color:#fff;
-}
-.container{
-    width:min(100%,1100px);
-    margin:auto;
-    padding:20px;
-}
-.card{
-    background:#151d33;
-    border:1px solid #26314f;
-    border-radius:20px;
-    padding:25px;
-    margin-bottom:20px;
-}
+body{margin:0;font-family:Arial,sans-serif;background:#0b1020;color:#fff}
+.container{width:min(100%,1100px);margin:auto;padding:20px}
+.card{background:#151d33;border:1px solid #26314f;border-radius:20px;padding:25px;margin-bottom:20px}
 h1,h2,h3{margin-top:0}
-.logo{
-    text-align:center;
-    font-size:42px;
-    font-weight:900;
-    margin:20px 0 8px;
-}
-.subtitle{
-    text-align:center;
-    color:#aeb8d0;
-    margin-bottom:25px;
-}
-input{
-    width:100%;
-    padding:15px;
-    border-radius:12px;
-    border:1px solid #34415f;
-    background:#0e1528;
-    color:#fff;
-    font-size:16px;
-    margin-bottom:12px;
-}
-button{
-    width:100%;
-    padding:15px;
-    border:0;
-    border-radius:12px;
-    background:#fff;
-    color:#111827;
-    font-size:17px;
-    font-weight:bold;
-    cursor:pointer;
-    margin-top:8px;
-}
-button.secondary{
-    background:#27324d;
-    color:#fff;
-}
-button.danger{
-    background:#8b2635;
-    color:#fff;
-}
+.logo{text-align:center;font-size:42px;font-weight:900;margin:20px 0 8px}
+.subtitle{text-align:center;color:#aeb8d0;margin-bottom:25px}
+input{width:100%;padding:15px;border-radius:12px;border:1px solid #34415f;background:#0e1528;color:#fff;font-size:16px;margin-bottom:12px}
+button{width:100%;padding:15px;border:0;border-radius:12px;background:#fff;color:#111827;font-size:17px;font-weight:bold;cursor:pointer;margin-top:8px}
+button.secondary{background:#27324d;color:#fff}
+button.danger{background:#8b2635;color:#fff}
 .hidden{display:none!important}
-.message{
-    text-align:center;
-    margin-top:15px;
-    color:#aeb8d0;
-}
-.stats{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:10px;
-}
-.stat{
-    background:#0e1528;
-    padding:15px 8px;
-    border-radius:14px;
-    text-align:center;
-}
-.stat b{
-    display:block;
-    font-size:22px;
-    margin-top:5px;
-}
-.games{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:12px;
-}
-.game{
-    background:#0e1528;
-    border:1px solid #293654;
-    border-radius:16px;
-    padding:22px 10px;
-    text-align:center;
-    cursor:pointer;
-    transition:.2s;
-}
-.game:hover{transform:translateY(-3px)}
-.icon{
-    font-size:35px;
-    display:block;
-    margin-bottom:8px;
-}
-.topbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:10px;
-    margin-bottom:20px;
-}
-.small{
-    color:#aeb8d0;
-    font-size:14px;
-}
-.question{
-    font-size:23px;
-    line-height:1.6;
-    text-align:center;
-    margin:25px 0;
-}
-.timer{
-    text-align:center;
-    font-size:32px;
-    font-weight:bold;
-}
-.answers{
-    display:grid;
-    gap:10px;
-}
-.answer{
-    background:#202b46;
-    color:#fff;
-}
-.result{
-    text-align:center;
-    font-size:22px;
-    padding:20px;
-}
+.message{text-align:center;margin-top:15px;color:#aeb8d0}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.stat{background:#0e1528;padding:15px 8px;border-radius:14px;text-align:center}
+.stat b{display:block;font-size:22px;margin-top:5px}
+.games{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.game{background:#0e1528;border:1px solid #293654;border-radius:16px;padding:22px 10px;text-align:center;cursor:pointer}
+.icon{font-size:35px;display:block;margin-bottom:8px}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:20px}
+.small{color:#aeb8d0;font-size:14px}
+.question{font-size:23px;line-height:1.6;text-align:center;margin:25px 0}
+.timer{text-align:center;font-size:32px;font-weight:bold}
+.answers{display:grid;gap:10px}
+.answer{background:#202b46;color:#fff}
+.result{text-align:center;font-size:22px;padding:20px}
+
 @media(max-width:650px){
-    .stats{grid-template-columns:repeat(2,1fr)}
-    .games{grid-template-columns:repeat(2,1fr)}
-    .logo{font-size:34px}
+.stats{grid-template-columns:repeat(2,1fr)}
+.games{grid-template-columns:repeat(2,1fr)}
+.logo{font-size:34px}
 }
 </style>
 </head>
@@ -158,181 +47,145 @@ button.danger{
 
 <div class="container">
 
-<!-- LOGIN -->
 <section id="authScreen">
-    <div class="logo">⚡ CHALLENGE</div>
-    <div class="subtitle">اختبر نفسك... وتحدى العالم</div>
+<div class="logo">⚡ CHALLENGE</div>
+<div class="subtitle">اختبر نفسك... وتحدى العالم</div>
 
-    <div class="card">
-        <h2 id="authTitle">تسجيل حساب جديد</h2>
+<div class="card">
+<h2>تسجيل حساب جديد</h2>
 
-        <input id="username" type="text" placeholder="اسم اللاعب">
+<input id="username" type="text" placeholder="اسم اللاعب">
+<input id="email" type="email" placeholder="البريد الإلكتروني">
+<input id="password" type="password" placeholder="كلمة المرور">
 
-        <input id="email" type="email" placeholder="البريد الإلكتروني">
+<button onclick="signUp()">إنشاء حساب</button>
+<button class="secondary" onclick="signIn()">لدي حساب بالفعل</button>
 
-        <input id="password" type="password" placeholder="كلمة المرور">
-
-        <button onclick="signUp()">إنشاء حساب</button>
-        <button class="secondary" onclick="signIn()">لدي حساب بالفعل</button>
-
-        <div id="authMessage" class="message"></div>
-    </div>
+<div id="authMessage" class="message"></div>
+</div>
 </section>
 
 
-<!-- HOME -->
 <section id="homeScreen" class="hidden">
 
-    <div class="topbar">
-        <div>
-            <h2 id="welcome">أهلاً بك 👋</h2>
-            <div class="small" id="playerEmail"></div>
-        </div>
-        <button class="danger" style="width:auto;padding:10px 15px" onclick="signOut()">
-            خروج
-        </button>
-    </div>
+<div class="topbar">
+<div>
+<h2 id="welcome">أهلاً بك 👋</h2>
+<div class="small" id="playerEmail"></div>
+</div>
 
-    <div class="card">
-        <div class="stats">
-            <div class="stat">
-                المستوى
-                <b id="level">1</b>
-            </div>
+<button class="danger" style="width:auto;padding:10px 15px" onclick="signOut()">خروج</button>
+</div>
 
-            <div class="stat">
-                XP
-                <b id="xp">0</b>
-            </div>
+<div class="card">
+<div class="stats">
 
-            <div class="stat">
-                العملات
-                <b id="coins">0</b>
-            </div>
+<div class="stat">المستوى<b id="level">1</b></div>
+<div class="stat">XP<b id="xp">0</b></div>
+<div class="stat">العملات<b id="coins">0</b></div>
+<div class="stat">أفضل نتيجة<b id="bestScore">0</b></div>
 
-            <div class="stat">
-                أفضل نتيجة
-                <b id="bestScore">0</b>
-            </div>
-        </div>
-    </div>
+</div>
+</div>
 
-    <div class="card">
-        <h2>🎯 اختر التحدي</h2>
 
-        <div class="games">
+<div class="card">
+<h2>🎯 اختر التحدي</h2>
 
-            <div class="game" onclick="startGame('history')">
-                <span class="icon">🏛️</span>
-                التاريخ
-            </div>
+<div class="games">
 
-            <div class="game" onclick="startGame('sports')">
-                <span class="icon">⚽</span>
-                الرياضة
-            </div>
+<div class="game" onclick="startGame('history')">
+<span class="icon">🏛️</span>التاريخ
+</div>
 
-            <div class="game" onclick="startGame('series')">
-                <span class="icon">📺</span>
-                المسلسلات
-            </div>
+<div class="game" onclick="startGame('sports')">
+<span class="icon">⚽</span>الرياضة
+</div>
 
-            <div class="game" onclick="startGame('puzzles')">
-                <span class="icon">🧩</span>
-                الألغاز
-            </div>
+<div class="game" onclick="startGame('series')">
+<span class="icon">📺</span>المسلسلات
+</div>
 
-            <div class="game" onclick="startGame('proverbs')">
-                <span class="icon">💬</span>
-                الأمثال
-            </div>
+<div class="game" onclick="startGame('puzzles')">
+<span class="icon">🧩</span>الألغاز
+</div>
 
-            <div class="game" onclick="startGame('rewrite')">
-                <span class="icon">✍️</span>
-                إعادة كتابة
-            </div>
+<div class="game" onclick="startGame('proverbs')">
+<span class="icon">💬</span>الأمثال
+</div>
 
-            <div class="game" onclick="startGame('spot-difference')">
-                <span class="icon">👀</span>
-                الفروق الخمسة
-            </div>
+<div class="game" onclick="startGame('rewrite')">
+<span class="icon">✍️</span>إعادة كتابة
+</div>
 
-            <div class="game" onclick="startGame('memory')">
-                <span class="icon">🧠</span>
-                الذاكرة
-            </div>
+<div class="game" onclick="startGame('spot-difference')">
+<span class="icon">👀</span>الفروق الخمسة
+</div>
 
-            <div class="game" onclick="startGame('math')">
-                <span class="icon">🔢</span>
-                الرياضيات
-            </div>
+<div class="game" onclick="startGame('memory')">
+<span class="icon">🧠</span>الذاكرة
+</div>
 
-        </div>
-    </div>
+<div class="game" onclick="startGame('math')">
+<span class="icon">🔢</span>الرياضيات
+</div>
 
-    <div class="card">
-        <h2>⚔️ تحدى صديق</h2>
-        <p class="small">
-            تحدى صديقك وشوف من يحل التحدي أسرع.
-        </p>
-        <button onclick="friendChallenge()">دعوة صديق للمنافسة</button>
-    </div>
+</div>
+</div>
 
-    <div class="card">
-        <h2>👑 PRO</h2>
-        <p class="small">
-            التجربة المجانية متاحة لفترة محدودة. افتح جميع المستويات والتحديات مع PRO.
-        </p>
-        <button onclick="showPro()">10 ريال / شهر</button>
-    </div>
+
+<div class="card">
+<h2>⚔️ تحدى صديق</h2>
+<p class="small">تحدى صديقك وشوف من يحل التحدي أسرع.</p>
+<button onclick="friendChallenge()">دعوة صديق للمنافسة</button>
+</div>
+
+
+<div class="card">
+<h2>👑 PRO</h2>
+<p class="small">افتح جميع المستويات والتحديات مع PRO.</p>
+<button onclick="showPro()">10 ريال / شهر</button>
+</div>
 
 </section>
 
 
-<!-- GAME -->
 <section id="gameScreen" class="hidden">
 
-    <div class="topbar">
-        <button class="secondary" style="width:auto" onclick="goHome()">← رجوع</button>
-        <div>
-            <b id="gameTitle">التحدي</b>
-        </div>
-    </div>
+<div class="topbar">
+<button class="secondary" style="width:auto" onclick="goHome()">← رجوع</button>
+<b id="gameTitle">التحدي</b>
+</div>
 
-    <div class="card">
+<div class="card">
 
-        <div class="timer" id="timer">15</div>
+<div class="timer" id="timer">15</div>
 
-        <div class="question" id="question">
-            جاري تحميل التحدي...
-        </div>
+<div class="question" id="question">
+جاري تحميل التحدي...
+</div>
 
-        <div class="answers" id="answers"></div>
+<div class="answers" id="answers"></div>
 
-        <div id="gameMessage" class="message"></div>
+<div id="gameMessage" class="message"></div>
 
-    </div>
-
+</div>
 </section>
 
 
-<!-- RESULT -->
 <section id="resultScreen" class="hidden">
 
-    <div class="card result">
+<div class="card result">
 
-        <h1>🏆 انتهى التحدي</h1>
+<h1>🏆 انتهى التحدي</h1>
 
-        <p id="resultText"></p>
+<p id="resultText"></p>
 
-        <button onclick="goHome()">العودة للرئيسية</button>
+<button onclick="goHome()">العودة للرئيسية</button>
 
-        <button class="secondary" onclick="friendChallenge()">
-            ⚔️ تحدى صديق
-        </button>
+<button class="secondary" onclick="friendChallenge()">⚔️ تحدى صديق</button>
 
-    </div>
-
+</div>
 </section>
 
 </div>
@@ -340,298 +193,229 @@ button.danger{
 
 <script>
 
-// ===============================
-// SUPABASE
-// ===============================
+const SUPABASE_URL="https://avjawmakdpzbdswusqqz.supabase.co";
 
-const SUPABASE_URL =
-"https://avjawmakdpzbdswusqqz.supabase.co";
+const SUPABASE_KEY="sb_publishable_EmDD96CXmQb_S_xhtaS1Kw_YaIBApwt";
 
-const SUPABASE_KEY =
-"sb_publishable_EmDD96CXmQb_S_xhtaS1Kw_YaIBApwt";
+const supabaseClient=supabase.createClient(
+SUPABASE_URL,
+SUPABASE_KEY
+);
 
-const supabaseClient =
-supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+let currentUser=null;
+let currentProfile=null;
 
+let currentGame=null;
+let currentQuestions=[];
+let currentQuestion=0;
 
-// ===============================
-// VARIABLES
-// ===============================
+let score=0;
+let correct=0;
+let wrong=0;
 
-let currentUser = null;
-let currentProfile = null;
-
-let currentGame = null;
-let currentQuestions = [];
-let currentQuestion = 0;
-
-let score = 0;
-let correct = 0;
-let wrong = 0;
-
-let timer = null;
-let timeLeft = 15;
+let timer=null;
+let timeLeft=15;
 
 
-// ===============================
-// START
-// ===============================
+window.addEventListener("load",async()=>{
 
-window.addEventListener("load", async () => {
+const {data:{session}}=
+await supabaseClient.auth.getSession();
 
-    const {
-        data: { session }
-    } = await supabaseClient.auth.getSession();
+if(session){
 
-    if(session){
-        currentUser = session.user;
-        await loadProfile();
-    }else{
-        showScreen("authScreen");
-    }
+currentUser=session.user;
+await loadProfile();
+
+}else{
+
+showScreen("authScreen");
+
+}
 
 });
 
 
-// ===============================
-// AUTH
-// ===============================
-
 async function signUp(){
 
-    const username =
-        document.getElementById("username").value.trim();
+const username=document.getElementById("username").value.trim();
+const email=document.getElementById("email").value.trim();
+const password=document.getElementById("password").value;
+const message=document.getElementById("authMessage");
 
-    const email =
-        document.getElementById("email").value.trim();
+if(!username||!email||!password){
+message.textContent="اكتب اسم اللاعب والبريد وكلمة المرور.";
+return;
+}
 
-    const password =
-        document.getElementById("password").value;
+if(password.length<6){
+message.textContent="كلمة المرور يجب أن تكون 6 أحرف على الأقل.";
+return;
+}
 
-    const message =
-        document.getElementById("authMessage");
+message.textContent="جاري إنشاء الحساب...";
 
-    if(!username || !email || !password){
-        message.textContent =
-        "اكتب اسم اللاعب والبريد وكلمة المرور.";
-        return;
-    }
+const {data,error}=await supabaseClient.auth.signUp({
+email:email,
+password:password,
+options:{
+data:{username:username}
+}
+});
 
-    if(password.length < 6){
-        message.textContent =
-        "كلمة المرور يجب أن تكون 6 أحرف على الأقل.";
-        return;
-    }
+if(error){
+message.textContent="❌ "+error.message;
+return;
+}
 
-    message.textContent = "جاري إنشاء الحساب...";
+if(data.user){
 
-    const {
-        data,
-        error
-    } = await supabaseClient.auth.signUp({
-        email,
-        password,
-        options:{
-            data:{
-                username:username
-            }
-        }
-    });
+currentUser=data.user;
 
-    if(error){
-        message.textContent =
-        "❌ " + error.message;
-        return;
-    }
+if(data.session){
 
-    if(data.user){
+await createProfile(username);
+await loadProfile();
 
-        currentUser = data.user;
+}else{
 
-        // إذا كان الدخول فوري
-        if(data.session){
-
-            await createProfile(username);
-            await loadProfile();
-
-        }else{
-
-            message.textContent =
-            "✅ تم إنشاء الحساب. تحقق من بريدك الإلكتروني ثم سجل الدخول.";
-
-        }
-    }
+message.textContent=
+"✅ تم إنشاء الحساب. تحقق من بريدك الإلكتروني ثم سجل الدخول.";
 
 }
 
+}
 
-// ===============================
-// LOGIN
-// ===============================
+}
+
 
 async function signIn(){
 
-    const email =
-        document.getElementById("email").value.trim();
+const email=document.getElementById("email").value.trim();
+const password=document.getElementById("password").value;
+const message=document.getElementById("authMessage");
 
-    const password =
-        document.getElementById("password").value;
+if(!email||!password){
+message.textContent="اكتب البريد وكلمة المرور.";
+return;
+}
 
-    const message =
-        document.getElementById("authMessage");
+message.textContent="جاري تسجيل الدخول...";
 
-    if(!email || !password){
-        message.textContent =
-        "اكتب البريد وكلمة المرور.";
-        return;
-    }
+const {data,error}=
+await supabaseClient.auth.signInWithPassword({
+email:email,
+password:password
+});
 
-    message.textContent = "جاري تسجيل الدخول...";
+if(error){
+message.textContent="❌ "+error.message;
+return;
+}
 
-    const {
-        data,
-        error
-    } = await supabaseClient.auth.signInWithPassword({
-        email,
-        password
-    });
+currentUser=data.user;
 
-    if(error){
-        message.textContent =
-        "❌ " + error.message;
-        return;
-    }
-
-    currentUser = data.user;
-
-    await loadProfile();
+await loadProfile();
 
 }
 
 
-// ===============================
-// PROFILE
-// ===============================
-
 async function createProfile(username){
 
-    const referralCode =
-        "CH-" +
-        Math.random()
-        .toString(36)
-        .substring(2,8)
-        .toUpperCase();
+const referralCode=
+"CH-"+Math.random().toString(36).substring(2,8).toUpperCase();
 
-    const {
-        error
-    } = await supabaseClient
-        .from("profiles")
-        .insert({
-            id: currentUser.id,
-            username: username,
-            level: 1,
-            xp: 0,
-            coins: 100,
-            total_score: 0,
-            best_score: 0,
-            games_played: 0,
-            login_days: 1,
-            is_pro: false,
-            trial_started_at: new Date().toISOString(),
-            referral_code: referralCode
-        });
+const {error}=await supabaseClient
+.from("profiles")
+.insert({
+id:currentUser.id,
+username:username,
+level:1,
+xp:0,
+coins:100,
+total_score:0,
+best_score:0,
+games_played:0,
+login_days:1,
+is_pro:false,
+trial_started_at:new Date().toISOString(),
+referral_code:referralCode
+});
 
-    if(error){
-
-        // الحساب قد يكون له Profile بالفعل
-        if(!error.message.includes("duplicate")){
-            console.log(error);
-        }
-
-    }
+if(error&&!error.message.includes("duplicate")){
+console.log(error);
+}
 
 }
 
 
 async function loadProfile(){
 
-    if(!currentUser) return;
+if(!currentUser)return;
 
-    let {
-        data: profile,
-        error
-    } = await supabaseClient
-        .from("profiles")
-        .select("*")
-        .eq("id", currentUser.id)
-        .maybeSingle();
+let {data:profile,error}=
+await supabaseClient
+.from("profiles")
+.select("*")
+.eq("id",currentUser.id)
+.maybeSingle();
 
-    if(error){
-        console.log(error);
-    }
+if(error)console.log(error);
 
-    // إذا الحساب موجود بدون Profile
-    if(!profile){
+if(!profile){
 
-        const username =
-            currentUser.user_metadata?.username ||
-            currentUser.email.split("@")[0];
+const username=
+currentUser.user_metadata?.username||
+currentUser.email.split("@")[0];
 
-        await createProfile(username);
+await createProfile(username);
 
-        const result =
-            await supabaseClient
-            .from("profiles")
-            .select("*")
-            .eq("id", currentUser.id)
-            .maybeSingle();
+const result=
+await supabaseClient
+.from("profiles")
+.select("*")
+.eq("id",currentUser.id)
+.maybeSingle();
 
-        profile = result.data;
-    }
-
-    currentProfile = profile;
-
-    updateHome();
-
-    showScreen("homeScreen");
+profile=result.data;
 
 }
 
+currentProfile=profile;
 
-// ===============================
-// HOME
-// ===============================
+updateHome();
+
+showScreen("homeScreen");
+
+}
+
 
 function updateHome(){
 
-    if(!currentProfile) return;
+if(!currentProfile)return;
 
-    document.getElementById("welcome").textContent =
-        "أهلاً " + currentProfile.username + " 👋";
+document.getElementById("welcome").textContent=
+"أهلاً "+currentProfile.username+" 👋";
 
-    document.getElementById("playerEmail").textContent =
-        currentUser.email;
+document.getElementById("playerEmail").textContent=
+currentUser.email;
 
-    document.getElementById("level").textContent =
-        currentProfile.level || 1;
+document.getElementById("level").textContent=
+currentProfile.level||1;
 
-    document.getElementById("xp").textContent =
-        currentProfile.xp || 0;
+document.getElementById("xp").textContent=
+currentProfile.xp||0;
 
-    document.getElementById("coins").textContent =
-        currentProfile.coins || 0;
+document.getElementById("coins").textContent=
+currentProfile.coins||0;
 
-    document.getElementById("bestScore").textContent =
-        currentProfile.best_score || 0;
+document.getElementById("bestScore").textContent=
+currentProfile.best_score||0;
 
 }
 
 
-// ===============================
-// GAMES
-// ===============================
-
-const localQuestions = {
+const localQuestions={
 
 history:[
 {
@@ -640,8 +424,8 @@ a:["الحضارة السومرية","الحضارة الرومانية","الح
 c:0
 },
 {
-q:"في أي قارة قامت الإمبراطورية الرومانية أساساً؟",
-a:["أوروبا","أستراليا","أمريكا الجنوبية","القارة القطبية"],
+q:"من بنى مدينة البتراء؟",
+a:["الأنباط","الرومان","الفراعنة","الإغريق"],
 c:0
 }
 ],
@@ -698,7 +482,7 @@ c:0
 
 "spot-difference":[
 {
-q:"👀 في هذا التحدي التجريبي، كم عدد الفروق المطلوبة عادة؟",
+q:"👀 في هذا التحدي التجريبي، كم عدد الفروق المطلوبة؟",
 a:["3","4","5","10"],
 c:2
 }
@@ -730,290 +514,237 @@ c:2
 
 async function startGame(mode){
 
-    currentGame = mode;
+currentGame=mode;
+currentQuestions=localQuestions[mode]||[];
 
-    currentQuestions =
-        localQuestions[mode] || [];
+currentQuestion=0;
+score=0;
+correct=0;
+wrong=0;
 
-    currentQuestion = 0;
-    score = 0;
-    correct = 0;
-    wrong = 0;
+document.getElementById("gameTitle").textContent=
+getGameName(mode);
 
-    document.getElementById("gameTitle").textContent =
-        getGameName(mode);
+showScreen("gameScreen");
 
-    showScreen("gameScreen");
-
-    loadQuestion();
+loadQuestion();
 
 }
 
 
 function getGameName(mode){
 
-    const names = {
-        history:"🏛️ التاريخ",
-        sports:"⚽ الرياضة",
-        series:"📺 المسلسلات",
-        puzzles:"🧩 الألغاز",
-        proverbs:"💬 الأمثال",
-        rewrite:"✍️ إعادة كتابة",
-        "spot-difference":"👀 الفروق الخمسة",
-        memory:"🧠 الذاكرة",
-        math:"🔢 الرياضيات"
-    };
+const names={
+history:"🏛️ التاريخ",
+sports:"⚽ الرياضة",
+series:"📺 المسلسلات",
+puzzles:"🧩 الألغاز",
+proverbs:"💬 الأمثال",
+rewrite:"✍️ إعادة كتابة",
+"spot-difference":"👀 الفروق الخمسة",
+memory:"🧠 الذاكرة",
+math:"🔢 الرياضيات"
+};
 
-    return names[mode] || "التحدي";
+return names[mode]||"التحدي";
+
 }
 
 
-// ===============================
-// QUESTION
-// ===============================
-
 function loadQuestion(){
 
-    clearInterval(timer);
+clearInterval(timer);
 
-    if(currentQuestion >= currentQuestions.length){
-        finishGame();
-        return;
-    }
+if(currentQuestion>=currentQuestions.length){
 
-    const item =
-        currentQuestions[currentQuestion];
+finishGame();
+return;
 
-    document.getElementById("question").textContent =
-        item.q;
+}
 
-    const answers =
-        document.getElementById("answers");
+const item=currentQuestions[currentQuestion];
 
-    answers.innerHTML = "";
+document.getElementById("question").textContent=item.q;
 
-    item.a.forEach((answer,index)=>{
+const answers=document.getElementById("answers");
 
-        const button =
-            document.createElement("button");
+answers.innerHTML="";
 
-        button.className = "answer";
+item.a.forEach((answer,index)=>{
 
-        button.textContent = answer;
+const button=document.createElement("button");
 
-        button.onclick = () =>
-            answerQuestion(index);
+button.className="answer";
+button.textContent=answer;
 
-        answers.appendChild(button);
+button.onclick=()=>answerQuestion(index);
 
-    });
+answers.appendChild(button);
 
-    timeLeft = 15;
+});
 
-    document.getElementById("timer").textContent =
-        timeLeft;
+timeLeft=15;
 
-    timer =
-        setInterval(()=>{
+document.getElementById("timer").textContent=timeLeft;
 
-            timeLeft--;
+timer=setInterval(()=>{
 
-            document.getElementById("timer").textContent =
-                timeLeft;
+timeLeft--;
 
-            if(timeLeft <= 0){
+document.getElementById("timer").textContent=timeLeft;
 
-                clearInterval(timer);
+if(timeLeft<=0){
 
-                wrong++;
+clearInterval(timer);
 
-                currentQuestion++;
+wrong++;
+currentQuestion++;
 
-                loadQuestion();
+loadQuestion();
 
-            }
+}
 
-        },1000);
+},1000);
 
 }
 
 
 function answerQuestion(index){
 
-    clearInterval(timer);
+clearInterval(timer);
 
-    const item =
-        currentQuestions[currentQuestion];
+const item=currentQuestions[currentQuestion];
 
-    if(index === item.c){
+if(index===item.c){
 
-        correct++;
+correct++;
+score+=100+(timeLeft*5);
 
-        score += 100 + (timeLeft * 5);
+}else{
 
-    }else{
-
-        wrong++;
-
-    }
-
-    currentQuestion++;
-
-    loadQuestion();
+wrong++;
 
 }
 
+currentQuestion++;
 
-// ===============================
-// RESULT
-// ===============================
+loadQuestion();
+
+}
+
 
 function finishGame(){
 
-    clearInterval(timer);
+clearInterval(timer);
 
-    const result =
-        document.getElementById("resultText");
+const result=document.getElementById("resultText");
 
-    result.innerHTML =
-        "نتيجتك: <strong>" + score +
-        "</strong><br><br>" +
-        "إجابات صحيحة: " + correct +
-        "<br>" +
-        "إجابات خاطئة: " + wrong;
+result.innerHTML=
+"نتيجتك: <strong>"+score+
+"</strong><br><br>"+
+"إجابات صحيحة: "+correct+
+"<br>إجابات خاطئة: "+wrong;
 
-    showScreen("resultScreen");
+showScreen("resultScreen");
 
 }
 
-
-// ===============================
-// FRIEND CHALLENGE
-// ===============================
 
 function friendChallenge(){
 
-    const code =
-        Math.random()
-        .toString(36)
-        .substring(2,8)
-        .toUpperCase();
+const code=Math.random()
+.toString(36)
+.substring(2,8)
+.toUpperCase();
 
-    const link =
-        window.location.origin +
-        window.location.pathname +
-        "?challenge=" +
-        code;
+const link=
+window.location.origin+
+window.location.pathname+
+"?challenge="+code;
 
-    const text =
-        "⚔️ أتحداك في CHALLENGE!\n" +
-        "من يحل أسرع؟\n\n" +
-        link;
+const text=
+"⚔️ أتحداك في CHALLENGE!\nمن يحل أسرع؟\n\n"+link;
 
-    if(navigator.share){
+if(navigator.share){
 
-        navigator.share({
-            title:"CHALLENGE",
-            text:text
-        });
+navigator.share({
+title:"CHALLENGE",
+text:text
+});
 
-    }else{
+}else{
 
-        navigator.clipboard
-            .writeText(text)
-            .then(()=>{
-                alert("✅ تم نسخ رابط التحدي. أرسله لصديقك.");
-            });
-
-    }
+navigator.clipboard.writeText(text)
+.then(()=>{
+alert("✅ تم نسخ رابط التحدي. أرسله لصديقك.");
+});
 
 }
 
+}
 
-// ===============================
-// PRO
-// ===============================
 
 function showPro(){
 
-    alert(
-        "🔥 PRO\n\n" +
-        "10 ريال شهرياً\n\n" +
-        "• جميع المستويات\n" +
-        "• جميع التحديات\n" +
-        "• تحديات الأصدقاء\n" +
-        "• المكافآت\n" +
-        "• المسابقات\n\n" +
-        "الدفع الإلكتروني سنضيفه في المرحلة القادمة."
-    );
+alert(
+"🔥 PRO\n\n"+
+"10 ريال شهرياً\n\n"+
+"• جميع المستويات\n"+
+"• جميع التحديات\n"+
+"• تحديات الأصدقاء\n"+
+"• المكافآت\n"+
+"• المسابقات\n\n"+
+"الدفع الإلكتروني سنضيفه في المرحلة القادمة."
+);
 
 }
 
-
-// ===============================
-// LOGOUT
-// ===============================
 
 async function signOut(){
 
-    await supabaseClient.auth.signOut();
+await supabaseClient.auth.signOut();
 
-    currentUser = null;
-    currentProfile = null;
+currentUser=null;
+currentProfile=null;
 
-    showScreen("authScreen");
+showScreen("authScreen");
 
 }
 
 
-// ===============================
-// NAVIGATION
-// ===============================
-
 function goHome(){
 
-    clearInterval(timer);
+clearInterval(timer);
 
-    showScreen("homeScreen");
+showScreen("homeScreen");
 
 }
 
 
 function showScreen(id){
 
-    [
-        "authScreen",
-        "homeScreen",
-        "gameScreen",
-        "resultScreen"
-    ].forEach(screen=>{
+[
+"authScreen",
+"homeScreen",
+"gameScreen",
+"resultScreen"
+].forEach(screen=>{
+document.getElementById(screen).classList.add("hidden");
+});
 
-        document.getElementById(screen)
-            .classList.add("hidden");
-
-    });
-
-    document.getElementById(id)
-        .classList.remove("hidden");
+document.getElementById(id).classList.remove("hidden");
 
 }
 
 
-// ===============================
-// AUTH STATE
-// ===============================
-
 supabaseClient.auth.onAuthStateChange(
-    async (event, session)=>{
+async(event,session)=>{
 
-        if(session){
+if(session){
+currentUser=session.user;
+}
 
-            currentUser = session.user;
-
-        }
-
-    }
-);
+});
 
 </script>
 

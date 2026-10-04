@@ -2,221 +2,111 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
 <title>CHALLENGE</title>
 
 <style>
 :root{
-  --bg:#181b20;
-  --bg2:#20242b;
-  --surface:#252930;
-  --surface2:#2c3139;
-  --surface3:#343a44;
-  --text:#f4f4f2;
+  --bg:#15181d;
+  --bg2:#1c2026;
+  --card:#232831;
+  --card2:#292f38;
+  --line:#3a414c;
+  --text:#f5f5f2;
   --muted:#aeb4be;
-  --line:#404650;
   --gold:#d7b574;
-
-  --easy:#7f9f8b;
-  --hard:#6f88b5;
-  --extreme:#8c78ae;
-
-  --success:#7f9f8b;
-  --danger:#8b7890;
-
-  --shadow:0 25px 70px rgba(0,0,0,.28);
+  --green:#7f9f8b;
+  --blue:#7189b5;
+  --purple:#8d78ad;
+  --red:#a87979;
+  --shadow:0 20px 60px rgba(0,0,0,.28);
 }
 
-*{
-  box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
-}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Arial,"Tahoma",sans-serif}
+body{min-height:100vh}
+button,input{font:inherit}
+button{cursor:pointer}
+a{text-decoration:none;color:inherit}
 
-html,body{
-  margin:0;
-  padding:0;
-  min-height:100%;
-  font-family:Arial,"Tahoma",sans-serif;
-  background:
-    radial-gradient(circle at 20% 0%,rgba(215,181,116,.07),transparent 30%),
-    linear-gradient(145deg,var(--bg),var(--bg2));
-  color:var(--text);
-}
-
-body{
-  min-height:100vh;
-}
-
-button,
-input{
-  font:inherit;
-}
-
-button{
-  cursor:pointer;
-}
-
-.hidden{
-  display:none!important;
-}
-
-/* HEADER */
+.hidden{display:none!important}
 
 .topbar{
-  width:100%;
-  position:sticky;
-  top:0;
-  z-index:50;
-  backdrop-filter:blur(18px);
-  background:rgba(24,27,32,.86);
-  border-bottom:1px solid rgba(255,255,255,.05);
-}
-
-.topbar-inner{
-  max-width:1200px;
-  margin:auto;
-  height:70px;
+  height:64px;
   padding:0 18px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:15px;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  background:rgba(21,24,29,.94);
+  position:sticky;
+  top:0;
+  z-index:20;
+  backdrop-filter:blur(15px);
 }
 
 .logo{
-  font-size:20px;
+  font-size:21px;
   font-weight:900;
   letter-spacing:2px;
   color:var(--gold);
 }
 
-.header-actions{
-  display:flex;
-  align-items:center;
-  gap:8px;
-}
+.top-actions{display:flex;gap:8px;align-items:center}
 
 .icon-btn{
-  width:42px;
-  height:42px;
-  border-radius:13px;
+  width:40px;height:40px;
   border:1px solid var(--line);
-  background:var(--surface);
+  background:var(--card);
   color:var(--text);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  transition:.2s;
-}
-
-.icon-btn:hover{
-  transform:translateY(-1px);
-  border-color:var(--gold);
-}
-
-.user-chip{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  background:var(--surface);
-  border:1px solid var(--line);
-  padding:7px 11px;
-  border-radius:14px;
-  color:var(--text);
-}
-
-.user-avatar{
-  width:30px;
-  height:30px;
-  border-radius:10px;
-  background:var(--surface3);
+  border-radius:12px;
   display:flex;
   align-items:center;
   justify-content:center;
 }
 
-/* APP */
-
-.app{
-  max-width:1200px;
+.container{
+  width:min(1050px,calc(100% - 28px));
   margin:auto;
-  padding:30px 18px 70px;
 }
 
-.screen{
-  animation:fadeIn .25s ease;
-}
-
-@keyframes fadeIn{
-  from{
-    opacity:0;
-    transform:translateY(7px);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
-}
-
-/* HOME */
+.screen{padding:28px 0 55px}
 
 .hero{
+  padding:30px 8px 20px;
   text-align:center;
-  padding:30px 10px 20px;
+}
+
+.hero .small{
+  color:var(--gold);
+  font-size:12px;
+  letter-spacing:3px;
+  font-weight:bold;
 }
 
 .hero h1{
-  margin:0;
-  font-size:clamp(34px,7vw,64px);
-  letter-spacing:5px;
-  font-weight:1000;
-}
-
-.hero h1 span{
-  color:var(--gold);
+  font-size:clamp(38px,10vw,70px);
+  margin:9px 0;
+  letter-spacing:4px;
 }
 
 .hero p{
-  margin:12px 0 0;
   color:var(--muted);
-  font-size:15px;
+  max-width:620px;
+  margin:auto;
+  line-height:1.8;
 }
-
-.language-row{
-  display:flex;
-  justify-content:center;
-  gap:7px;
-  margin:22px auto 28px;
-}
-
-.lang-btn{
-  width:42px;
-  height:38px;
-  border-radius:11px;
-  border:1px solid var(--line);
-  background:var(--surface);
-  color:var(--muted);
-  font-weight:900;
-}
-
-.lang-btn.active{
-  color:var(--gold);
-  border-color:var(--gold);
-  background:rgba(215,181,116,.08);
-}
-
-/* DIFFICULTY */
 
 .section-title{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  margin:28px 0 13px;
+  margin:25px 0 12px;
 }
 
 .section-title h2{
   margin:0;
-  font-size:18px;
+  font-size:20px;
 }
 
 .section-title span{
@@ -224,225 +114,205 @@ button{
   font-size:12px;
 }
 
-.difficulty-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:12px;
+.card{
+  background:linear-gradient(145deg,var(--card),var(--bg2));
+  border:1px solid var(--line);
+  border-radius:20px;
+  box-shadow:var(--shadow);
 }
 
-.diff-card{
-  min-height:150px;
-  padding:18px;
-  border-radius:20px;
-  background:var(--surface);
+.partner{
+  padding:16px 18px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  margin:8px 0 20px;
+}
+
+.partner small{color:var(--gold)}
+.partner strong{display:block;margin-top:5px}
+.partner .partner-mark{
+  width:45px;height:45px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  background:rgba(215,181,116,.1);
+  border:1px solid rgba(215,181,116,.25);
+  color:var(--gold);
+}
+
+.main-actions{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
+
+.main-action{
+  min-height:145px;
+  padding:22px;
+  border-radius:22px;
   border:1px solid var(--line);
+  background:linear-gradient(145deg,#272d36,#1d2229);
   color:var(--text);
   text-align:right;
-  position:relative;
-  overflow:hidden;
   transition:.2s;
 }
 
-.diff-card:hover{
-  transform:translateY(-2px);
+.main-action:hover{transform:translateY(-2px);border-color:#59616d}
+.main-action .emoji{font-size:32px}
+.main-action h3{margin:13px 0 5px;font-size:19px}
+.main-action p{margin:0;color:var(--muted);font-size:13px;line-height:1.6}
+
+.pro-badge{
+  display:inline-block;
+  margin-top:10px;
+  padding:5px 9px;
+  border-radius:8px;
+  background:rgba(215,181,116,.12);
+  color:var(--gold);
+  font-size:10px;
+  font-weight:bold;
 }
 
-.diff-card.active{
-  transform:translateY(-2px);
-}
-
-.diff-card.easy.active{
-  border-color:var(--easy);
-  box-shadow:0 0 0 1px rgba(127,159,139,.18);
-}
-
-.diff-card.hard.active{
-  border-color:var(--hard);
-  box-shadow:0 0 0 1px rgba(111,136,181,.18);
-}
-
-.diff-card.extreme.active{
-  border-color:var(--extreme);
-  box-shadow:0 0 0 1px rgba(140,120,174,.18);
-}
-
-.diff-top{
+.lang-row{
   display:flex;
-  align-items:center;
   gap:8px;
-  margin-bottom:14px;
+  overflow:auto;
+  padding-bottom:3px;
 }
 
-.dot{
-  width:9px;
-  height:9px;
-  border-radius:50%;
-}
-
-.easy .dot{
-  background:var(--easy);
-}
-
-.hard .dot{
-  background:var(--hard);
-}
-
-.extreme .dot{
-  background:var(--extreme);
-}
-
-.diff-card strong{
-  font-size:17px;
-}
-
-.diff-card p{
-  margin:7px 0 0;
+.lang-btn,.filter-btn{
+  border:1px solid var(--line);
+  background:var(--card);
   color:var(--muted);
-  line-height:1.6;
-  font-size:13px;
+  border-radius:11px;
+  padding:10px 14px;
+  white-space:nowrap;
 }
 
-.diff-meta{
-  margin-top:13px;
-  font-size:12px;
-  color:var(--muted);
+.lang-btn.active,.filter-btn.active{
+  background:rgba(215,181,116,.12);
+  color:var(--gold);
+  border-color:rgba(215,181,116,.4);
 }
 
-/* CATEGORIES */
+.difficulty-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+
+.diff{
+  border:1px solid var(--line);
+  background:var(--card);
+  color:var(--text);
+  border-radius:18px;
+  padding:17px;
+  text-align:right;
+  min-height:120px;
+}
+
+.diff strong{display:block;font-size:17px;margin-bottom:8px}
+.diff small{color:var(--muted);line-height:1.5}
+.diff.easy{border-top:3px solid var(--green)}
+.diff.medium{border-top:3px solid var(--gold)}
+.diff.hard{border-top:3px solid var(--blue)}
+.diff.extreme{border-top:3px solid var(--purple)}
 
 .category-grid{
   display:grid;
-  grid-template-columns:repeat(5,1fr);
+  grid-template-columns:repeat(4,1fr);
   gap:10px;
 }
 
 .category{
-  min-height:104px;
   border:1px solid var(--line);
-  background:var(--surface);
-  border-radius:17px;
+  background:var(--card);
   color:var(--text);
-  padding:12px 8px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  transition:.2s;
-}
-
-.category:hover{
-  transform:translateY(-2px);
-  border-color:rgba(215,181,116,.5);
-}
-
-.category-icon{
-  font-size:25px;
-}
-
-.category-name{
-  font-size:12px;
-  font-weight:700;
-}
-
-/* INTRO */
-
-.intro-box{
-  max-width:720px;
-  margin:55px auto 0;
-  background:var(--surface);
-  border:1px solid var(--line);
-  border-radius:26px;
-  padding:30px;
+  border-radius:16px;
+  padding:15px 8px;
   text-align:center;
-  box-shadow:var(--shadow);
+  min-height:95px;
 }
 
-.intro-icon{
-  font-size:48px;
-  margin-bottom:12px;
-}
+.category .cat-icon{font-size:26px;display:block;margin-bottom:8px}
+.category small{color:var(--muted)}
 
-.intro-box h2{
-  margin:0 0 8px;
-  font-size:27px;
-}
-
-.intro-box p{
-  color:var(--muted);
-  line-height:1.8;
-  margin:0 auto 24px;
-}
-
-.primary-btn{
+.btn{
   border:0;
-  border-radius:14px;
+  border-radius:13px;
+  padding:13px 18px;
   background:var(--gold);
-  color:#17181b;
-  font-weight:900;
-  padding:13px 25px;
-  min-width:150px;
+  color:#191919;
+  font-weight:800;
 }
 
-.secondary-btn{
-  border:1px solid var(--line);
-  border-radius:14px;
-  background:var(--surface2);
+.btn.secondary{
+  background:var(--card2);
   color:var(--text);
-  padding:12px 22px;
+  border:1px solid var(--line);
 }
 
-/* GAME */
+.btn.full{width:100%}
 
-.game-wrap{
-  max-width:850px;
-  margin:20px auto 0;
+.center{text-align:center}
+
+.back{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  color:var(--muted);
+  margin-bottom:18px;
+  background:none;
+  border:0;
 }
+
+.intro{
+  max-width:650px;
+  margin:30px auto;
+  padding:28px;
+  text-align:center;
+}
+
+.intro .big{font-size:55px}
+.intro h2{font-size:28px;margin:12px 0}
+.intro p{color:var(--muted);line-height:1.8}
 
 .game-head{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  gap:12px;
+  gap:10px;
   margin-bottom:15px;
 }
 
-.game-info{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-}
-
-.info-pill{
-  background:var(--surface);
+.game-stat{
+  padding:9px 12px;
+  border-radius:10px;
+  background:var(--card);
   border:1px solid var(--line);
-  border-radius:12px;
-  padding:8px 11px;
-  color:var(--muted);
   font-size:12px;
 }
 
-.timer{
-  min-width:76px;
-  text-align:center;
-  border-radius:13px;
-  padding:10px;
-  background:var(--surface);
-  border:1px solid var(--line);
-  font-weight:900;
+.progress{
+  height:5px;
+  background:#303640;
+  border-radius:10px;
+  overflow:hidden;
+  margin-bottom:25px;
 }
 
-.timer.warning{
-  border-color:var(--gold);
-  color:var(--gold);
+.progress div{
+  height:100%;
+  background:var(--gold);
+  transition:.3s;
 }
 
 .question-card{
-  background:var(--surface);
-  border:1px solid var(--line);
-  border-radius:23px;
+  max-width:750px;
+  margin:auto;
   padding:25px;
-  box-shadow:var(--shadow);
 }
 
 .question-number{
@@ -451,386 +321,314 @@ button{
   margin-bottom:12px;
 }
 
-.question-visual{
-  text-align:center;
-  font-size:50px;
-  margin:5px 0 13px;
-}
-
 .question{
-  font-size:clamp(19px,3vw,27px);
+  font-size:clamp(21px,5vw,31px);
   line-height:1.6;
-  text-align:center;
-  margin:0 0 22px;
-  font-weight:800;
+  margin-bottom:25px;
 }
 
 .answers{
   display:grid;
-  grid-template-columns:1fr 1fr;
   gap:10px;
 }
 
 .answer{
-  min-height:60px;
-  background:var(--surface2);
-  border:1px solid var(--line);
-  border-radius:15px;
-  color:var(--text);
-  padding:12px;
-  text-align:center;
-  transition:.18s;
-}
-
-.answer:hover{
-  border-color:var(--gold);
-}
-
-.answer.correct{
-  border-color:var(--success);
-  background:rgba(127,159,139,.13);
-}
-
-.answer.wrong{
-  border-color:var(--danger);
-  background:rgba(139,120,144,.13);
-}
-
-.progress{
-  height:5px;
-  border-radius:99px;
-  background:var(--surface3);
-  margin-bottom:14px;
-  overflow:hidden;
-}
-
-.progress-fill{
-  height:100%;
-  background:var(--gold);
-  transition:.3s;
-}
-
-/* RESULT */
-
-.result-box{
-  max-width:650px;
-  margin:70px auto 0;
-  text-align:center;
-  background:var(--surface);
-  border:1px solid var(--line);
-  border-radius:27px;
-  padding:35px;
-  box-shadow:var(--shadow);
-}
-
-.result-score{
-  font-size:55px;
-  font-weight:1000;
-  color:var(--gold);
-  margin:10px 0;
-}
-
-.result-stats{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:9px;
-  margin:24px 0;
-}
-
-.stat{
-  background:var(--surface2);
-  border:1px solid var(--line);
-  border-radius:14px;
-  padding:13px 7px;
-}
-
-.stat strong{
-  display:block;
-  font-size:20px;
-  margin-bottom:4px;
-}
-
-.stat span{
-  color:var(--muted);
-  font-size:11px;
-}
-
-/* VISUAL */
-
-.visual-box{
-  max-width:850px;
-  margin:25px auto;
-  text-align:center;
-}
-
-.visual-stage{
-  background:var(--surface);
-  border:1px solid var(--line);
-  border-radius:25px;
-  padding:25px;
-  min-height:330px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-  overflow:hidden;
-}
-
-.memory-grid{
-  width:min(500px,100%);
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:10px;
-}
-
-.memory-card{
-  aspect-ratio:1;
-  border-radius:15px;
-  border:1px solid var(--line);
-  background:var(--surface2);
-  color:transparent;
-  font-size:28px;
-}
-
-.memory-card.revealed{
-  color:var(--text);
-  background:var(--surface3);
-}
-
-.city-card{
   width:100%;
-  max-width:650px;
-}
-
-.city-image{
-  min-height:230px;
-  border-radius:20px;
-  background:
-    linear-gradient(rgba(35,39,45,.15),rgba(35,39,45,.25)),
-    repeating-linear-gradient(
-      90deg,
-      #353b44 0 35px,
-      #2c3139 35px 70px
-    );
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:75px;
-}
-
-.visual-options{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:9px;
-  margin-top:15px;
-}
-
-/* FRIEND */
-
-.friend-box{
-  max-width:650px;
-  margin:45px auto;
-  background:var(--surface);
+  text-align:right;
+  padding:16px;
   border:1px solid var(--line);
-  border-radius:25px;
+  background:var(--card2);
+  color:var(--text);
+  border-radius:14px;
+  transition:.15s;
+}
+
+.answer:hover{border-color:var(--gold)}
+.answer.correct{background:rgba(127,159,139,.2);border-color:var(--green)}
+.answer.wrong{background:rgba(168,121,121,.2);border-color:var(--red)}
+
+.timer{
+  width:48px;height:48px;
+  border-radius:50%;
+  border:2px solid var(--gold);
+  display:grid;
+  place-items:center;
+  color:var(--gold);
+  font-weight:bold;
+}
+
+.result-card{
+  max-width:650px;
+  margin:30px auto;
   padding:30px;
   text-align:center;
 }
 
-.friend-code{
-  font-size:38px;
-  font-weight:1000;
-  letter-spacing:8px;
+.score{
+  font-size:65px;
+  font-weight:900;
   color:var(--gold);
+}
+
+.result-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin:22px 0;
+}
+
+.result-stat{
+  background:var(--card2);
+  border:1px solid var(--line);
+  padding:15px;
+  border-radius:14px;
+}
+
+.result-stat b{display:block;font-size:20px}
+.result-stat small{color:var(--muted)}
+
+.upsell{
+  margin-top:22px;
+  padding:20px;
+  text-align:right;
+  border:1px solid rgba(215,181,116,.3);
+  background:rgba(215,181,116,.07);
+  border-radius:18px;
+}
+
+.upsell h3{margin-top:0;color:var(--gold)}
+.upsell li{margin:9px 0;color:var(--muted)}
+
+.pro-screen{
+  max-width:760px;
+  margin:auto;
+}
+
+.pro-hero{
+  padding:30px;
+  text-align:center;
+  border-radius:25px;
+  border:1px solid rgba(215,181,116,.35);
+  background:linear-gradient(145deg,rgba(215,181,116,.1),var(--card));
+}
+
+.pro-hero .crown{font-size:48px}
+.pro-hero h2{font-size:30px;margin:10px 0}
+.pro-hero p{color:var(--muted);line-height:1.8}
+
+.benefits{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
   margin:18px 0;
 }
 
-.input{
-  width:100%;
-  background:var(--surface2);
-  color:var(--text);
+.benefit{
+  padding:17px;
   border:1px solid var(--line);
-  border-radius:13px;
-  padding:13px;
+  background:var(--card);
+  border-radius:16px;
+}
+
+.benefit b{display:block;margin-bottom:6px}
+.benefit span{color:var(--muted);font-size:13px;line-height:1.6}
+
+.clubs{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+
+.club{
+  padding:20px;
+  min-height:170px;
+  border:1px solid var(--line);
+  background:var(--card);
+  border-radius:20px;
+}
+
+.club .club-icon{font-size:35px}
+.club h3{margin:12px 0 7px}
+.club p{color:var(--muted);font-size:13px;line-height:1.6}
+
+.friend-box{
+  max-width:600px;
+  margin:30px auto;
+  padding:28px;
+  text-align:center;
+}
+
+.code{
+  margin:20px 0;
+  font-size:35px;
+  letter-spacing:7px;
+  color:var(--gold);
+  font-weight:900;
+  background:var(--bg);
+  border:1px dashed var(--gold);
+  padding:18px;
+  border-radius:15px;
+}
+
+input.text-input{
+  width:100%;
+  padding:14px;
+  border-radius:12px;
+  border:1px solid var(--line);
+  background:var(--bg);
+  color:var(--text);
   outline:none;
+  margin-bottom:10px;
 }
 
-.input:focus{
-  border-color:var(--gold);
+.visual-box{
+  max-width:650px;
+  margin:25px auto;
+  padding:25px;
+  text-align:center;
 }
 
-/* PROFILE */
+.visual-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+  margin:20px 0;
+}
+
+.visual-cell{
+  height:70px;
+  background:var(--card2);
+  border:1px solid var(--line);
+  border-radius:10px;
+  display:grid;
+  place-items:center;
+  font-size:25px;
+}
 
 .modal{
   position:fixed;
   inset:0;
   z-index:100;
-  background:rgba(0,0,0,.65);
-  backdrop-filter:blur(8px);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
+  background:rgba(0,0,0,.7);
+  display:grid;
+  place-items:center;
+  padding:18px;
 }
 
-.profile-card{
-  width:min(620px,100%);
-  background:var(--surface);
+.modal-box{
+  width:min(600px,100%);
+  max-height:90vh;
+  overflow:auto;
+  background:var(--card);
   border:1px solid var(--line);
-  border-radius:25px;
+  border-radius:23px;
   padding:25px;
-  position:relative;
+  box-shadow:var(--shadow);
+}
+
+.modal-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 }
 
 .close{
-  position:absolute;
-  top:14px;
-  left:14px;
-  width:38px;
-  height:38px;
-  border-radius:11px;
-  background:var(--surface2);
-  color:var(--text);
-  border:1px solid var(--line);
-}
-
-.profile-head{
-  display:flex;
-  align-items:center;
-  gap:13px;
-  margin-bottom:22px;
-}
-
-.big-avatar{
-  width:60px;
-  height:60px;
-  border-radius:18px;
-  background:var(--surface3);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:27px;
-}
-
-.profile-name{
-  font-size:22px;
-  font-weight:900;
-}
-
-.profile-level{
+  border:0;
+  background:none;
   color:var(--muted);
-  font-size:12px;
-  margin-top:5px;
+  font-size:25px;
 }
 
 .profile-stats{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
+  grid-template-columns:repeat(3,1fr);
+  gap:9px;
+  margin:18px 0;
 }
 
 .profile-stat{
-  background:var(--surface2);
-  border:1px solid var(--line);
-  border-radius:15px;
+  padding:13px 5px;
+  background:var(--bg2);
+  border-radius:12px;
+  text-align:center;
+}
+
+.profile-stat b{display:block}
+.profile-stat small{color:var(--muted);font-size:10px}
+
+.contact-list{display:grid;gap:9px}
+
+.contact-item{
   padding:15px;
+  border:1px solid var(--line);
+  background:var(--bg2);
+  border-radius:13px;
+  color:var(--text);
+  text-align:right;
 }
 
-.profile-stat span{
-  display:block;
-  color:var(--muted);
-  font-size:11px;
-  margin-bottom:6px;
+.footer{
+  margin-top:45px;
+  padding:25px 0 10px;
+  border-top:1px solid rgba(255,255,255,.07);
+  text-align:center;
 }
 
-.profile-stat strong{
-  font-size:20px;
+.socials{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin:15px 0;
 }
 
-.pro-box{
-  margin-top:12px;
-  padding:16px;
-  border:1px solid rgba(215,181,116,.3);
-  border-radius:15px;
-  background:rgba(215,181,116,.06);
+.social{
+  width:43px;height:43px;
+  border-radius:12px;
+  display:grid;
+  place-items:center;
+  background:var(--card);
+  border:1px solid var(--line);
+  color:var(--text);
+  font-weight:bold;
 }
 
-/* TOAST */
+.footer small{color:var(--muted)}
 
 .toast{
   position:fixed;
+  bottom:22px;
   left:50%;
-  bottom:25px;
-  transform:translateX(-50%) translateY(20px);
-  background:var(--surface3);
+  transform:translateX(-50%) translateY(100px);
+  background:#2b3038;
   border:1px solid var(--line);
-  color:var(--text);
-  padding:12px 18px;
+  padding:13px 18px;
   border-radius:13px;
-  opacity:0;
-  pointer-events:none;
-  transition:.25s;
   z-index:200;
+  opacity:0;
+  transition:.25s;
+  box-shadow:var(--shadow);
 }
 
 .toast.show{
-  opacity:1;
   transform:translateX(-50%) translateY(0);
+  opacity:1;
 }
 
-/* RESPONSIVE */
-
-@media(max-width:800px){
-  .difficulty-grid{
-    grid-template-columns:1fr;
-  }
-
-  .category-grid{
-    grid-template-columns:repeat(3,1fr);
-  }
+@media(max-width:750px){
+  .difficulty-grid{grid-template-columns:repeat(2,1fr)}
+  .category-grid{grid-template-columns:repeat(3,1fr)}
+  .clubs{grid-template-columns:1fr}
 }
 
-@media(max-width:560px){
-  .app{
-    padding:20px 12px 50px;
-  }
-
-  .topbar-inner{
-    height:62px;
-  }
-
-  .logo{
-    font-size:17px;
-  }
-
-  .user-chip{
-    padding:5px 8px;
-  }
-
-  .user-chip .user-name{
-    display:none;
-  }
-
-  .category-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .answers{
-    grid-template-columns:1fr;
-  }
-
-  .question-card{
-    padding:18px;
-  }
-
-  .result-stats{
-    grid-template-columns:1fr;
-  }
-
-  .profile-stats{
-    grid-template-columns:1fr 1fr;
-  }
+@media(max-width:520px){
+  .main-actions{grid-template-columns:1fr}
+  .category-grid{grid-template-columns:repeat(3,1fr)}
+  .category{min-height:85px;padding:12px 5px}
+  .category .cat-icon{font-size:22px}
+  .result-grid{grid-template-columns:repeat(3,1fr)}
+  .benefits{grid-template-columns:1fr}
+  .question-card{padding:19px}
+  .hero{padding-top:22px}
 }
 </style>
 </head>
@@ -838,226 +636,299 @@ button{
 <body>
 
 <header class="topbar">
-  <div class="topbar-inner">
-
-    <div class="logo">CHALLENGE</div>
-
-    <div class="header-actions">
-
-      <button class="user-chip" onclick="openProfile()">
-        <span class="user-avatar">👤</span>
-        <span class="user-name" id="usernameTop">Player</span>
-      </button>
-
-      <button class="icon-btn" onclick="showFriend()" title="Friend Challenge">⚔️</button>
-
-      <button class="icon-btn" onclick="toggleInterfaceLanguage()" id="interfaceBtn">
-        EN
-      </button>
-
-      <button class="icon-btn" onclick="goHome()">⌂</button>
-
-    </div>
+  <button class="icon-btn" onclick="openProfile()">👤</button>
+  <div class="logo">CHALLENGE</div>
+  <div class="top-actions">
+    <button class="icon-btn" onclick="toggleInterfaceLanguage()">ع</button>
+    <button class="icon-btn" onclick="openFriend()">⚔️</button>
   </div>
 </header>
 
-<main class="app">
+<main class="container">
 
 <!-- HOME -->
-
 <section id="homeScreen" class="screen">
 
   <div class="hero">
-    <h1>CHALL<span>ENGE</span></h1>
-    <p id="welcomeText">جاهز؟</p>
+    <div class="small">YOUR NEXT CHALLENGE</div>
+    <h1>CHALLENGE</h1>
+    <p>
+      اختبر معلوماتك، نافس أصدقاءك، وارفع مستواك.
+      تحديات متنوعة بتجربة سريعة وممتعة.
+    </p>
+  </div>
 
-    <div class="language-row">
-      <button class="lang-btn active" id="langA" onclick="setQuestionLanguage('ar')">A</button>
-      <button class="lang-btn" id="langE" onclick="setQuestionLanguage('en')">E</button>
-      <button class="lang-btn" id="langM" onclick="setQuestionLanguage('mix')">M</button>
+  <div class="partner card">
+    <div>
+      <small>شريك CHALLENGE</small>
+      <strong>مساحة مخصصة للشركاء والجوائز</strong>
     </div>
+    <div class="partner-mark">✦</div>
+  </div>
+
+  <div class="main-actions">
+
+    <button class="main-action" onclick="openChallenges()">
+      <div class="emoji">🎯</div>
+      <h3>التحديات</h3>
+      <p>اختر الفئة والمستوى وابدأ التحدي.</p>
+    </button>
+
+    <button class="main-action" onclick="openClubs()">
+      <div class="emoji">🏆</div>
+      <h3>أندية وتحديات</h3>
+      <p>مسابقات خاصة بالأندية وتحديات وجوائز حصرية.</p>
+      <span class="pro-badge">PRO</span>
+    </button>
+
+    <button class="main-action" onclick="openFriend()">
+      <div class="emoji">⚔️</div>
+      <h3>تحدي صديق</h3>
+      <p>أنشئ تحديًا خاصًا وشارك الكود مع صديقك.</p>
+    </button>
+
+    <button class="main-action" onclick="openPro()">
+      <div class="emoji">👑</div>
+      <h3>CHALLENGE PRO</h3>
+      <p>افتح المستويات والمسابقات والمحتوى الحصري.</p>
+    </button>
+
+  </div>
+
+  <div class="footer">
+    <strong>تواصل معنا</strong>
+    <div class="socials">
+      <button class="social" onclick="social('TikTok')">TT</button>
+      <button class="social" onclick="social('Instagram')">IG</button>
+      <button class="social" onclick="openContact()">✉</button>
+    </div>
+    <small>© 2026 CHALLENGE — جميع الحقوق محفوظة</small>
+  </div>
+
+</section>
+
+
+<!-- CHALLENGES -->
+<section id="challengesScreen" class="screen hidden">
+
+  <button class="back" onclick="goHome()">→ الرئيسية</button>
+
+  <div class="section-title">
+    <h2>التحديات</h2>
+    <span>اختر المستوى</span>
+  </div>
+
+  <div class="lang-row">
+    <button class="lang-btn" data-q="ar" onclick="setQuestionLanguage('ar')">العربية</button>
+    <button class="lang-btn" data-q="en" onclick="setQuestionLanguage('en')">English</button>
+    <button class="lang-btn" data-q="mix" onclick="setQuestionLanguage('mix')">Mix</button>
+  </div>
+
+  <div class="difficulty-grid" style="margin-top:14px">
+
+    <button class="diff easy" onclick="chooseDifficulty('easy')">
+      <strong>EASY</strong>
+      <small>5 أسئلة مجانية في التجربة الأولى.</small>
+    </button>
+
+    <button class="diff medium" onclick="chooseDifficulty('medium')">
+      <strong>MEDIUM</strong>
+      <small>3 أسئلة مجانية ثم افتح المزيد مع PRO.</small>
+    </button>
+
+    <button class="diff hard" onclick="chooseDifficulty('hard')">
+      <strong>HARD</strong>
+      <small>سؤالان للتجربة ثم PRO للتحديات الكاملة.</small>
+    </button>
+
+    <button class="diff extreme" onclick="chooseDifficulty('extreme')">
+      <strong>EXTREME</strong>
+      <small>تحديات متقدمة لمشتركي PRO.</small>
+    </button>
+
   </div>
 
   <div class="section-title">
-    <h2 id="difficultyHeading">المستوى</h2>
-    <span id="difficultyHint">اختر مستوى التحدي</span>
+    <h2>الفئات</h2>
+    <span>اختر مجال التحدي</span>
   </div>
 
-  <div class="difficulty-grid">
-
-    <button class="diff-card easy active" onclick="setDifficulty('easy',this)">
-      <div class="diff-top">
-        <span class="dot"></span>
-        <strong id="easyTitle">EASY</strong>
-      </div>
-      <p id="easyDesc">مناسب للبداية والتعلم بدون ضغط.</p>
-      <div class="diff-meta" id="easyMeta">مجاني • وقت أطول</div>
-    </button>
-
-    <button class="diff-card hard" onclick="setDifficulty('hard',this)">
-      <div class="diff-top">
-        <span class="dot"></span>
-        <strong id="hardTitle">HARD</strong>
-      </div>
-      <p id="hardDesc">أسئلة أصعب ووقت أقل ومكافآت أفضل.</p>
-      <div class="diff-meta" id="hardMeta">PRO • تحدي حقيقي</div>
-    </button>
-
-    <button class="diff-card extreme" onclick="setDifficulty('extreme',this)">
-      <div class="diff-top">
-        <span class="dot"></span>
-        <strong id="extremeTitle">EXTREME</strong>
-      </div>
-      <p id="extremeDesc">أقصى صعوبة وأسئلة متقدمة.</p>
-      <div class="diff-meta" id="extremeMeta">PRO • أعلى المكافآت</div>
-    </button>
-
-  </div>
-
-  <div class="section-title">
-    <h2 id="categoriesHeading">التصنيفات</h2>
-    <span id="categoriesHint">اختر تحديك</span>
-  </div>
-
-  <div class="category-grid" id="categoryGrid"></div>
+  <div id="categoryGrid" class="category-grid"></div>
 
 </section>
 
 
 <!-- INTRO -->
-
 <section id="introScreen" class="screen hidden">
+  <button class="back" onclick="openChallenges()">→ التحديات</button>
 
-  <div class="intro-box">
-
-    <div class="intro-icon" id="introIcon">🧠</div>
-
+  <div class="intro card">
+    <div id="introIcon" class="big">🎯</div>
     <h2 id="introTitle">التحدي</h2>
+    <p id="introText"></p>
 
-    <p id="introDescription">
-      استعد. الأسئلة قادمة.
-    </p>
-
-    <div style="display:flex;justify-content:center;gap:9px;flex-wrap:wrap">
-
-      <button class="secondary-btn" onclick="goHome()" id="backBtn">
-        رجوع
-      </button>
-
-      <button class="primary-btn" onclick="startGame()" id="startBtn">
-        ابدأ التحدي
-      </button>
-
-    </div>
-
+    <button class="btn full" onclick="startGame()">ابدأ التحدي</button>
   </div>
-
 </section>
 
 
 <!-- GAME -->
-
 <section id="gameScreen" class="screen hidden">
 
-  <div class="game-wrap">
+  <div class="game-head">
+    <div class="game-stat">السؤال <span id="questionNo">1</span>/<span id="questionTotal">5</span></div>
+    <div class="timer" id="timer">20</div>
+    <div class="game-stat">النقاط: <span id="liveScore">0</span></div>
+  </div>
 
-    <div class="game-head">
+  <div class="progress">
+    <div id="progressBar" style="width:0"></div>
+  </div>
 
-      <div class="game-info">
-        <div class="info-pill" id="gameCategory">Category</div>
-        <div class="info-pill" id="gameDifficulty">EASY</div>
-      </div>
-
-      <div class="timer" id="timer">20</div>
-
-    </div>
-
-    <div class="progress">
-      <div class="progress-fill" id="progressFill"></div>
-    </div>
-
-    <div class="question-card">
-
-      <div class="question-number" id="questionNumber">
-        السؤال 1
-      </div>
-
-      <div class="question-visual" id="questionVisual">
-        🧠
-      </div>
-
-      <p class="question" id="questionText">
-        السؤال
-      </p>
-
-      <div class="answers" id="answers"></div>
-
-    </div>
-
+  <div class="question-card card">
+    <div id="questionNumber" class="question-number"></div>
+    <div id="questionText" class="question"></div>
+    <div id="answers" class="answers"></div>
   </div>
 
 </section>
 
 
 <!-- RESULT -->
-
 <section id="resultScreen" class="screen hidden">
 
-  <div class="result-box">
+  <div class="result-card card">
+    <div>نتيجتك</div>
+    <div id="finalScore" class="score">0</div>
+    <div id="resultMessage"></div>
 
-    <div style="font-size:42px">🏆</div>
+    <div class="result-grid">
+      <div class="result-stat">
+        <b id="correctCount">0</b>
+        <small>صحيح</small>
+      </div>
+      <div class="result-stat">
+        <b id="wrongCount">0</b>
+        <small>خطأ</small>
+      </div>
+      <div class="result-stat">
+        <b id="earnedCoins">0</b>
+        <small>عملات</small>
+      </div>
+    </div>
 
-    <h2 id="resultTitle">انتهى التحدي</h2>
+    <div id="upsellBox"></div>
 
-    <div class="result-score" id="resultScore">0</div>
+    <button class="btn full" onclick="openChallenges()">تحدي جديد</button>
+    <br><br>
+    <button class="btn secondary full" onclick="goHome()">الرئيسية</button>
+  </div>
 
-    <div class="result-stats">
+</section>
 
-      <div class="stat">
-        <strong id="correctStat">0</strong>
-        <span id="correctLabel">صحيح</span>
+
+<!-- PRO -->
+<section id="proScreen" class="screen hidden">
+
+  <button class="back" onclick="goHome()">→ الرئيسية</button>
+
+  <div class="pro-screen">
+
+    <div class="pro-hero">
+      <div class="crown">👑</div>
+      <h2>CHALLENGE PRO</h2>
+      <p>
+        التجربة الكاملة ليست مجرد أسئلة إضافية.
+        افتح مستويات أقوى، مسابقات خاصة، تحديات الأندية،
+        ومحتوى حصري مصمم للمنافسة.
+      </p>
+      <button class="btn" onclick="subscribe()">اشترك الآن</button>
+    </div>
+
+    <div class="section-title">
+      <h2>ماذا تحصل عليه؟</h2>
+    </div>
+
+    <div class="benefits">
+
+      <div class="benefit">
+        <b>🎯 مستويات متعددة</b>
+        <span>انتقل من التحديات العادية إلى مستويات أصعب وأكثر تنافسية.</span>
       </div>
 
-      <div class="stat">
-        <strong id="wrongStat">0</strong>
-        <span id="wrongLabel">خطأ</span>
+      <div class="benefit">
+        <b>🏆 مسابقات وجوائز</b>
+        <span>شارك في مسابقات خاصة وفرص للفوز بالجوائز.</span>
       </div>
 
-      <div class="stat">
-        <strong id="timeStat">0s</strong>
-        <span id="timeLabel">الوقت</span>
+      <div class="benefit">
+        <b>⚽ تحديات الأندية</b>
+        <span>مسابقات خاصة لعشاق الأندية والرياضة.</span>
+      </div>
+
+      <div class="benefit">
+        <b>🔒 محتوى حصري</b>
+        <span>أسئلة وتحديات غير متاحة للمستخدم المجاني.</span>
+      </div>
+
+      <div class="benefit">
+        <b>⚔️ منافسات أقوى</b>
+        <span>تحديات متقدمة ومنافسة أكثر حماسًا.</span>
+      </div>
+
+      <div class="benefit">
+        <b>🎁 عروض خاصة</b>
+        <span>عروض ومسابقات من شركاء CHALLENGE مستقبلاً.</span>
       </div>
 
     </div>
-
-    <button class="primary-btn" onclick="goHome()" id="resultHome">
-      الرئيسية
-    </button>
 
   </div>
 
 </section>
 
 
-<!-- VISUAL -->
+<!-- CLUBS -->
+<section id="clubsScreen" class="screen hidden">
 
-<section id="visualScreen" class="screen hidden">
+  <button class="back" onclick="goHome()">→ الرئيسية</button>
 
-  <div class="visual-box">
+  <div class="section-title">
+    <h2>أندية وتحديات</h2>
+    <span>PRO</span>
+  </div>
 
-    <div class="section-title">
-      <h2 id="visualTitle">تحدي بصري</h2>
-      <span id="visualHint">ركز جيدًا</span>
+  <div class="pro-hero" style="margin-bottom:20px">
+    <div class="crown">🏆</div>
+    <h2>مسابقات وجوائز الأندية</h2>
+    <p>
+      تحديات خاصة لعشاق الرياضة والأندية.
+      الأسئلة الأصعب والمسابقات والجوائز ستكون ضمن تجربة PRO.
+    </p>
+    <button class="btn" onclick="openPro()">فتح PRO</button>
+  </div>
+
+  <div class="clubs">
+
+    <div class="club">
+      <div class="club-icon">⚽</div>
+      <h3>تحديات كرة القدم</h3>
+      <p>اختبر معلوماتك الرياضية في تحديات صعبة ومتنوعة.</p>
+      <button class="btn secondary" onclick="clubLocked()">ابدأ</button>
     </div>
 
-    <div class="visual-stage" id="visualStage"></div>
+    <div class="club">
+      <div class="club-icon">🏟️</div>
+      <h3>مسابقات الأندية</h3>
+      <p>مسابقات مخصصة لعشاق الأندية والبطولات.</p>
+      <button class="btn secondary" onclick="clubLocked()">ابدأ</button>
+    </div>
 
-    <div class="visual-options" id="visualOptions"></div>
-
-    <div style="margin-top:20px">
-      <button class="secondary-btn" onclick="goHome()" id="visualBack">
-        رجوع
-      </button>
+    <div class="club">
+      <div class="club-icon">🥇</div>
+      <h3>جوائز وتحديات</h3>
+      <p>فعاليات مستقبلية بالتعاون مع الأندية والشركاء.</p>
+      <button class="btn secondary" onclick="clubLocked()">ابدأ</button>
     </div>
 
   </div>
@@ -1066,452 +937,607 @@ button{
 
 
 <!-- FRIEND -->
-
 <section id="friendScreen" class="screen hidden">
 
-  <div class="friend-box">
+  <button class="back" onclick="goHome()">→ الرئيسية</button>
 
+  <div class="friend-box card">
     <div style="font-size:45px">⚔️</div>
-
-    <h2 id="friendTitle">تحدي صديق</h2>
-
-    <p id="friendDescription" style="color:var(--muted);line-height:1.8">
+    <h2>تحدي صديق</h2>
+    <p style="color:var(--muted)">
       أنشئ كود تحدي وشاركه مع صديقك.
     </p>
 
-    <button class="primary-btn" onclick="createFriendCode()" id="createCodeBtn">
-      إنشاء تحدي
-    </button>
+    <button class="btn" onclick="generateFriendCode()">إنشاء تحدي</button>
 
-    <div id="friendCreated" class="hidden">
+    <div id="friendCodeArea"></div>
 
-      <div class="friend-code" id="friendCode">------</div>
+    <hr style="border:0;border-top:1px solid var(--line);margin:25px 0">
 
-      <button class="secondary-btn" onclick="copyFriendCode()" id="copyCodeBtn">
-        نسخ الكود
-      </button>
-
-      <div style="height:25px"></div>
-
-      <input
-        class="input"
-        id="joinCode"
-        maxlength="6"
-        placeholder="أدخل كود صديقك"
-      >
-
-      <div style="height:10px"></div>
-
-      <button class="primary-btn" onclick="joinFriendChallenge()" id="joinBtn">
-        دخول بالتحدي
-      </button>
-
-    </div>
-
-    <div style="margin-top:18px">
-      <button class="secondary-btn" onclick="goHome()" id="friendBack">
-        رجوع
-      </button>
-    </div>
-
+    <input id="joinCode" class="text-input" placeholder="أدخل كود التحدي">
+    <button class="btn secondary full" onclick="joinFriend()">دخول بالتحدي</button>
   </div>
 
 </section>
 
+
+<!-- VISUAL -->
+<section id="visualScreen" class="screen hidden">
+
+  <button class="back" onclick="openChallenges()">→ التحديات</button>
+
+  <div class="visual-box card">
+    <div style="font-size:45px">🧩</div>
+    <h2 id="visualTitle">تحدي بصري</h2>
+    <p id="visualText" style="color:var(--muted)"></p>
+
+    <div id="visualContent"></div>
+
+    <button class="btn full" onclick="startVisualChallenge()">ابدأ التحدي</button>
+  </div>
+
+</section>
+
+
 </main>
 
 
-<!-- PROFILE MODAL -->
+<!-- PROFILE -->
+<div id="profileModal" class="modal hidden" onclick="closeModal(event,'profileModal')">
+  <div class="modal-box" onclick="event.stopPropagation()">
 
-<div id="profileModal" class="modal hidden">
-
-  <div class="profile-card">
-
-    <button class="close" onclick="closeProfile()">×</button>
-
-    <div class="profile-head">
-
-      <div class="big-avatar">👤</div>
-
-      <div>
-        <div class="profile-name" id="profileName">Player</div>
-        <div class="profile-level" id="profileLevel">Level 1</div>
-      </div>
-
+    <div class="modal-head">
+      <h2>الملف الشخصي</h2>
+      <button class="close" onclick="hide('profileModal')">×</button>
     </div>
+
+    <input id="usernameInput" class="text-input" placeholder="اسم اللاعب">
+
+    <button class="btn full" onclick="saveUsername()">حفظ الاسم</button>
 
     <div class="profile-stats">
-
       <div class="profile-stat">
-        <span id="pointsLabel">النقاط</span>
-        <strong id="profilePoints">0</strong>
+        <b id="profileLevel">1</b>
+        <small>المستوى</small>
       </div>
-
       <div class="profile-stat">
-        <span id="coinsLabel">المكافآت</span>
-        <strong id="profileCoins">0 🪙</strong>
+        <b id="profilePoints">0</b>
+        <small>النقاط</small>
       </div>
-
       <div class="profile-stat">
-        <span id="xpLabel">XP</span>
-        <strong id="profileXP">0</strong>
+        <b id="profileCoins">0</b>
+        <small>العملات</small>
       </div>
-
       <div class="profile-stat">
-        <span id="gamesLabel">التحديات</span>
-        <strong id="profileGames">0</strong>
+        <b id="profileXP">0</b>
+        <small>XP</small>
       </div>
-
       <div class="profile-stat">
-        <span id="bestLabel">أفضل نتيجة</span>
-        <strong id="profileBest">0</strong>
+        <b id="profileGames">0</b>
+        <small>الألعاب</small>
       </div>
-
       <div class="profile-stat">
-        <span id="loginLabel">أيام الدخول</span>
-        <strong id="profileLoginDays">0</strong>
+        <b id="profileBest">0</b>
+        <small>أفضل نتيجة</small>
       </div>
-
     </div>
 
-    <div class="pro-box">
-
-      <strong id="subscriptionTitle">الاشتراك</strong>
-
-      <div style="color:var(--muted);font-size:13px;margin-top:7px" id="subscriptionText">
-        Free
-      </div>
-
-    </div>
-
-    <div style="margin-top:16px;text-align:left">
-
-      <button class="secondary-btn" onclick="logout()" id="logoutBtn">
-        ⎋
-      </button>
-
+    <div class="card" style="padding:15px">
+      <small style="color:var(--muted)">الحالة</small>
+      <strong id="profileSubscription" style="display:block;margin-top:6px">FREE</strong>
     </div>
 
   </div>
-
 </div>
 
 
-<div class="toast" id="toast"></div>
+<!-- CONTACT -->
+<div id="contactModal" class="modal hidden" onclick="closeModal(event,'contactModal')">
+  <div class="modal-box" onclick="event.stopPropagation()">
+
+    <div class="modal-head">
+      <h2>تواصل معنا</h2>
+      <button class="close" onclick="hide('contactModal')">×</button>
+    </div>
+
+    <div class="contact-list">
+      <button class="contact-item" onclick="contactType('استفسار')">💬 استفسار</button>
+      <button class="contact-item" onclick="contactType('مشكلة في اللعبة')">🛠️ مشكلة في اللعبة</button>
+      <button class="contact-item" onclick="contactType('اقتراح')">💡 اقتراح</button>
+      <button class="contact-item" onclick="contactType('الاشتراك')">👑 مشكلة في الاشتراك</button>
+    </div>
+
+    <p style="color:var(--muted);font-size:12px;margin-top:18px">
+      سيتم ربط قنوات التواصل الرسمية هنا عند تجهيزها.
+    </p>
+
+  </div>
+</div>
+
+
+<!-- STORE PARTNERS: PREPARED BUT HIDDEN -->
+<section id="storePartnerScreen" class="hidden">
+  <div>
+    <h2>تحديات المتاجر</h2>
+    <p>مساحة مخصصة للشركاء والمتاجر والحملات الإعلانية.</p>
+  </div>
+</section>
+
+
+<div id="toast" class="toast"></div>
 
 
 <script>
 
-/* =========================
-   STATE
-========================= */
-
 const state = {
+
   interfaceLanguage: localStorage.getItem("interfaceLanguage") || "ar",
+
   questionLanguage: localStorage.getItem("questionLanguage") || "ar",
+
   difficulty: localStorage.getItem("difficulty") || "easy",
+
   category: null,
 
   username: localStorage.getItem("username") || "Player",
 
   xp: Number(localStorage.getItem("xp") || 0),
+
   coins: Number(localStorage.getItem("coins") || 0),
+
   points: Number(localStorage.getItem("points") || 0),
+
   best: Number(localStorage.getItem("best") || 0),
+
   games: Number(localStorage.getItem("games") || 0),
+
   loginDays: Number(localStorage.getItem("loginDays") || 1),
 
   questions: [],
+
   questionIndex: 0,
+
   correct: 0,
+
   wrong: 0,
+
   score: 0,
-  startedAt: 0,
+
   timer: null,
-  timeLeft: 20
-};
 
+  timeLeft: 20,
 
-/* =========================
-   TRANSLATIONS
-========================= */
-
-const translations = {
-
-  ar:{
-    welcome:"جاهز؟",
-    difficulty:"المستوى",
-    difficultyHint:"اختر مستوى التحدي",
-    categories:"التصنيفات",
-    categoriesHint:"اختر تحديك",
-
-    easyDesc:"مناسب للبداية والتعلم بدون ضغط.",
-    easyMeta:"مجاني • وقت أطول",
-
-    hardDesc:"أسئلة أصعب ووقت أقل ومكافآت أفضل.",
-    hardMeta:"PRO • تحدي حقيقي",
-
-    extremeDesc:"أقصى صعوبة وأسئلة متقدمة.",
-    extremeMeta:"PRO • أعلى المكافآت",
-
-    back:"رجوع",
-    start:"ابدأ التحدي",
-    result:"انتهى التحدي",
-    correct:"صحيح",
-    wrong:"خطأ",
-    time:"الوقت",
-    home:"الرئيسية",
-
-    visual:"تحدي بصري",
-    focus:"ركز جيدًا",
-
-    friend:"تحدي صديق",
-    friendDescription:"أنشئ كود تحدي وشاركه مع صديقك.",
-    create:"إنشاء تحدي",
-    copy:"نسخ الكود",
-    join:"دخول بالتحدي",
-    codePlaceholder:"أدخل كود صديقك",
-
-    points:"النقاط",
-    coins:"المكافآت",
-    xp:"XP",
-    games:"التحديات",
-    best:"أفضل نتيجة",
-    loginDays:"أيام الدخول",
-    subscription:"الاشتراك",
-    free:"مجاني",
-
-    question:"السؤال",
-
-    categoriesNames:{
-      history:"التاريخ",
-      sports:"الرياضة",
-      general:"معلومات عامة",
-      geography:"الجغرافيا",
-      medicine:"الطب",
-      science:"العلوم",
-      technology:"التقنية",
-      anime:"الأنمي",
-      gulf:"المسلسلات الخليجية",
-      arabicSeries:"المسلسلات العربية",
-      turkish:"المسلسلات التركية",
-      films:"الأفلام",
-      music:"الموسيقى",
-      puzzles:"الألغاز",
-      focus:"التركيز",
-      memory:"الذاكرة",
-      logic:"المنطق",
-      math:"الرياضيات",
-      arabicGrammar:"النحو العربي",
-      englishGrammar:"English Grammar",
-      city:"المدن",
-      visual:"التحدي البصري",
-      rewrite:"إعادة الصياغة",
-      differences:"اكتشف الاختلافات"
-    }
-  },
-
-  en:{
-    welcome:"Ready?",
-    difficulty:"Difficulty",
-    difficultyHint:"Choose your challenge",
-    categories:"Categories",
-    categoriesHint:"Choose your challenge",
-
-    easyDesc:"Perfect for beginners and relaxed play.",
-    easyMeta:"FREE • More time",
-
-    hardDesc:"Harder questions, less time and better rewards.",
-    hardMeta:"PRO • Real challenge",
-
-    extremeDesc:"Maximum difficulty and advanced questions.",
-    extremeMeta:"PRO • Highest rewards",
-
-    back:"Back",
-    start:"Start Challenge",
-    result:"Challenge Complete",
-    correct:"Correct",
-    wrong:"Wrong",
-    time:"Time",
-    home:"Home",
-
-    visual:"Visual Challenge",
-    focus:"Focus carefully",
-
-    friend:"Friend Challenge",
-    friendDescription:"Create a challenge code and share it with a friend.",
-    create:"Create Challenge",
-    copy:"Copy Code",
-    join:"Join Challenge",
-    codePlaceholder:"Enter your friend's code",
-
-    points:"Points",
-    coins:"Rewards",
-    xp:"XP",
-    games:"Challenges",
-    best:"Best Score",
-    loginDays:"Login Days",
-    subscription:"Subscription",
-    free:"Free",
-
-    question:"Question",
-
-    categoriesNames:{
-      history:"History",
-      sports:"Sports",
-      general:"General Knowledge",
-      geography:"Geography",
-      medicine:"Medicine",
-      science:"Science",
-      technology:"Technology",
-      anime:"Anime",
-      gulf:"Gulf Series",
-      arabicSeries:"Arabic Series",
-      turkish:"Turkish Series",
-      films:"Films",
-      music:"Music",
-      puzzles:"Puzzles",
-      focus:"Focus",
-      memory:"Memory",
-      logic:"Logic",
-      math:"Math",
-      arabicGrammar:"Arabic Grammar",
-      englishGrammar:"English Grammar",
-      city:"Cities",
-      visual:"Visual Challenge",
-      rewrite:"Rewrite",
-      differences:"Spot Differences"
-    }
-  }
+  selectedAnswer:false
 
 };
 
-
-/* =========================
-   CATEGORIES
-========================= */
 
 const categories = [
 
-  ["history","🏛️"],
-  ["sports","⚽"],
-  ["general","🧠"],
-  ["geography","🌍"],
-  ["medicine","⚕️"],
-  ["science","🔬"],
-  ["technology","💻"],
-  ["anime","🎌"],
-  ["gulf","📺"],
-  ["arabicSeries","🎬"],
-  ["turkish","🎭"],
-  ["films","🎞️"],
-  ["music","🎵"],
-  ["puzzles","🧩"],
-  ["focus","🎯"],
-  ["memory","🧠"],
-  ["logic","♟️"],
-  ["math","∑"],
-  ["arabicGrammar","ع"],
-  ["englishGrammar","A"],
-  ["city","🏙️"],
-  ["visual","👁️"],
-  ["rewrite","✍️"],
-  ["differences","🔎"]
+  ["general","🧠","معلومات عامة"],
+
+  ["history","🏛️","التاريخ"],
+
+  ["sports","⚽","الرياضة"],
+
+  ["geography","🌍","الجغرافيا"],
+
+  ["science","🔬","العلوم"],
+
+  ["technology","💻","التقنية"],
+
+  ["medicine","⚕️","الطب"],
+
+  ["anime","🎌","الأنمي"],
+
+  ["films","🎞️","الأفلام"],
+
+  ["music","🎵","الموسيقى"],
+
+  ["puzzles","🧩","الألغاز"],
+
+  ["focus","🎯","التركيز"],
+
+  ["memory","🧠","الذاكرة"],
+
+  ["logic","♟️","المنطق"],
+
+  ["math","∑","الرياضيات"],
+
+  ["arabicGrammar","ع","النحو العربي"],
+
+  ["englishGrammar","A","English Grammar"],
+
+  ["city","🏙️","المدن"],
+
+  ["visual","👁️","التحدي البصري"],
+
+  ["rewrite","✍️","إعادة الكتابة"],
+
+  ["differences","🔎","الفروقات"],
+
+  ["gulf","📺","الخليج"],
+
+  ["arabicSeries","🎬","المسلسلات العربية"],
+
+  ["turkish","🎭","المسلسلات التركية"]
 
 ];
 
 
-function renderCategories(){
+const questionBank = {
 
-  const grid = document.getElementById("categoryGrid");
+ general:[
+  {
+   q:"ما هو أكبر محيط على سطح الأرض؟",
+   a:["المحيط الأطلسي","المحيط الهندي","المحيط الهادئ","المحيط المتجمد"],
+   c:2
+  },
+  {
+   q:"كم عدد أيام السنة الميلادية العادية؟",
+   a:["360","365","366","364"],
+   c:1
+  },
+  {
+   q:"أي كوكب يُعرف بالكوكب الأحمر؟",
+   a:["المشتري","المريخ","الزهرة","عطارد"],
+   c:1
+  },
+  {
+   q:"ما هي عاصمة اليابان؟",
+   a:["أوساكا","كيوتو","طوكيو","هيروشيما"],
+   c:2
+  },
+  {
+   q:"كم عدد القارات في العالم؟",
+   a:["5","6","7","8"],
+   c:2
+  },
+  {
+   q:"أي مادة يتكون منها الألماس بشكل أساسي؟",
+   a:["الحديد","الكربون","الذهب","السيليكون"],
+   c:1
+  },
+  {
+   q:"ما هو أسرع حيوان بري؟",
+   a:["الأسد","الفهد","الحصان","النمر"],
+   c:1
+  }
+ ],
 
-  grid.innerHTML = "";
+ history:[
+  {
+   q:"في أي عام انتهت الحرب العالمية الثانية؟",
+   a:["1943","1944","1945","1946"],
+   c:2
+  },
+  {
+   q:"من بنى الأهرامات في مصر القديمة؟",
+   a:["الرومان","المصريون القدماء","الفينيقيون","الإغريق"],
+   c:1
+  },
+  {
+   q:"أين بدأت الألعاب الأولمبية القديمة؟",
+   a:["روما","اليونان","مصر","تركيا"],
+   c:1
+  },
+  {
+   q:"ما اسم المدينة التي كانت عاصمة الدولة العباسية؟",
+   a:["دمشق","بغداد","القاهرة","المدينة"],
+   c:1
+  }
+ ],
 
-  categories.forEach(([id,icon])=>{
+ sports:[
+  {
+   q:"كم لاعبًا يوجد في فريق كرة القدم داخل الملعب؟",
+   a:["9","10","11","12"],
+   c:2
+  },
+  {
+   q:"كم مدة مباراة كرة القدم الأساسية؟",
+   a:["60 دقيقة","80 دقيقة","90 دقيقة","100 دقيقة"],
+   c:2
+  },
+  {
+   q:"في أي رياضة يُستخدم مصطلح Grand Slam؟",
+   a:["كرة القدم","التنس","السباحة","الملاكمة"],
+   c:1
+  },
+  {
+   q:"كم حلقة في الدائرة المركزية لملعب كرة القدم؟",
+   a:["ليست دائرة كاملة","دائرة كاملة","مربع","مثلث"],
+   c:0
+  }
+ ],
 
-    const button = document.createElement("button");
+ geography:[
+  {
+   q:"ما هي أكبر دولة في العالم من حيث المساحة؟",
+   a:["الصين","كندا","روسيا","أمريكا"],
+   c:2
+  },
+  {
+   q:"ما عاصمة المملكة العربية السعودية؟",
+   a:["جدة","مكة","الرياض","الدمام"],
+   c:2
+  },
+  {
+   q:"أي قارة تضم أكبر عدد من الدول؟",
+   a:["آسيا","أفريقيا","أوروبا","أمريكا الجنوبية"],
+   c:1
+  }
+ ],
 
-    button.className = "category";
+ science:[
+  {
+   q:"ما هو الغاز الأكثر وجودًا في الغلاف الجوي للأرض؟",
+   a:["الأكسجين","الهيدروجين","النيتروجين","ثاني أكسيد الكربون"],
+   c:2
+  },
+  {
+   q:"ما الوحدة الأساسية لقياس القوة؟",
+   a:["جول","نيوتن","واط","فولت"],
+   c:1
+  },
+  {
+   q:"ما أقرب نجم إلى الأرض؟",
+   a:["الشمس","الشعرى","النسر","سيريوس"],
+   c:0
+  }
+ ],
 
-    button.onclick = ()=>selectCategory(id);
+ technology:[
+  {
+   q:"ماذا تعني CPU؟",
+   a:["وحدة المعالجة المركزية","ذاكرة الجهاز","بطاقة الرسومات","نظام التشغيل"],
+   c:0
+  },
+  {
+   q:"ما اللغة الأساسية لبناء هيكل صفحات الويب؟",
+   a:["HTML","SQL","Python","C++"],
+   c:0
+  },
+  {
+   q:"ما الشركة التي طورت نظام Android؟",
+   a:["Apple","Google","Microsoft","Sony"],
+   c:1
+  }
+ ],
 
-    button.innerHTML = `
-      <div class="category-icon">${icon}</div>
-      <div class="category-name">${translations[state.interfaceLanguage].categoriesNames[id]}</div>
-    `;
+ medicine:[
+  {
+   q:"ما العضو الذي يضخ الدم إلى أنحاء الجسم؟",
+   a:["الكبد","القلب","الرئة","الكلى"],
+   c:1
+  },
+  {
+   q:"كم عدد حجرات القلب لدى الإنسان؟",
+   a:["2","3","4","5"],
+   c:2
+  },
+  {
+   q:"ما الفيتامين الذي يرتبط غالبًا بالتعرض لأشعة الشمس؟",
+   a:["A","B12","C","D"],
+   c:3
+  }
+ ],
 
-    grid.appendChild(button);
+ math:[
+  {
+   q:"ما ناتج 12 × 8؟",
+   a:["86","96","108","112"],
+   c:1
+  },
+  {
+   q:"ما الجذر التربيعي للعدد 144؟",
+   a:["10","11","12","14"],
+   c:2
+  },
+  {
+   q:"إذا كان 25% من عدد يساوي 20، فما العدد؟",
+   a:["60","70","80","100"],
+   c:2
+  }
+ ],
 
-  });
+ arabicGrammar:[
+  {
+   q:"ما نوع كلمة «الطالب» في جملة: حضر الطالب؟",
+   a:["فعل","اسم","حرف","صفة"],
+   c:1
+  },
+  {
+   q:"ما علامة رفع المثنى؟",
+   a:["الألف","الواو","الياء","الفتحة"],
+   c:0
+  }
+ ],
+
+ englishGrammar:[
+  {
+   q:"Choose the correct sentence:",
+   a:["He go to school.","He goes to school.","He going school.","He gone school."],
+   c:1
+  },
+  {
+   q:"What is the past tense of 'go'?",
+   a:["goed","goes","went","going"],
+   c:2
+  }
+ ],
+
+ puzzles:[
+  {
+   q:"شيء كلما أخذت منه كبر، ما هو؟",
+   a:["البحر","الحفرة","الكتاب","الطريق"],
+   c:1
+  },
+  {
+   q:"ما الشيء الذي له أسنان ولا يعض؟",
+   a:["المشط","الأسد","السكين","الباب"],
+   c:0
+  }
+ ],
+
+ logic:[
+  {
+   q:"إذا كان كل A هو B، وبعض B هو C، فهل بالضرورة كل A هو C؟",
+   a:["نعم","لا","دائمًا","لا يمكن أن يكون B"],
+   c:1
+  },
+  {
+   q:"ما الرقم التالي: 2، 4، 8، 16، ؟",
+   a:["20","24","30","32"],
+   c:3
+  }
+ ],
+
+ anime:[
+  {
+   q:"ما الاسم العام للرسوم المتحركة اليابانية؟",
+   a:["مانغا","أنمي","كوميكس","دراما"],
+   c:1
+  },
+  {
+   q:"المانغا ترتبط بشكل أساسي بـ:",
+   a:["اليابان","البرازيل","إسبانيا","الهند"],
+   c:0
+  }
+ ],
+
+ films:[
+  {
+   q:"ما المقصود بـ Oscar في عالم السينما؟",
+   a:["جائزة سينمائية","نوع كاميرا","شركة إنتاج","نوع فيلم"],
+   c:0
+  },
+  {
+   q:"من المسؤول عادةً عن قيادة الرؤية الفنية للفيلم؟",
+   a:["المخرج","المحاسب","المصور فقط","المشاهد"],
+   c:0
+  }
+ ],
+
+ music:[
+  {
+   q:"كم وترًا في الغيتار التقليدي عادةً؟",
+   a:["4","5","6","8"],
+   c:2
+  },
+  {
+   q:"ما الوحدة الشائعة لقياس سرعة الإيقاع الموسيقي؟",
+   a:["BPM","KM","KG","PX"],
+   c:0
+  }
+ ],
+
+ city:[
+  {
+   q:"أي مدينة تُعرف بمدينة الضباب؟",
+   a:["لندن","دبي","القاهرة","مدريد"],
+   c:0
+  }
+ ],
+
+ gulf:[
+  {
+   q:"ما البحر الذي يفصل شبه الجزيرة العربية عن إيران؟",
+   a:["البحر الأحمر","الخليج العربي","بحر العرب","البحر المتوسط"],
+   c:1
+  }
+ ],
+
+ arabicSeries:[],
+ turkish:[],
+ focus:[],
+ memory:[],
+ visual:[],
+ rewrite:[],
+ differences:[]
+
+};
+
+
+function $(id){
+  return document.getElementById(id);
+}
+
+
+function hide(id){
+  $(id)?.classList.add("hidden");
+}
+
+
+function show(id){
+  $(id)?.classList.remove("hidden");
+}
+
+
+function allScreens(){
+
+  [
+    "homeScreen",
+    "challengesScreen",
+    "introScreen",
+    "gameScreen",
+    "resultScreen",
+    "proScreen",
+    "clubsScreen",
+    "friendScreen",
+    "visualScreen"
+  ].forEach(id=>hide(id));
 
 }
 
 
-/* =========================
-   UI LANGUAGE
-========================= */
+function goHome(){
 
-function applyInterfaceLanguage(){
+  clearInterval(state.timer);
 
-  const t = translations[state.interfaceLanguage];
+  allScreens();
 
-  document.documentElement.lang =
-    state.interfaceLanguage === "ar" ? "ar" : "en";
+  show("homeScreen");
 
-  document.documentElement.dir =
-    state.interfaceLanguage === "ar" ? "rtl" : "ltr";
+}
 
-  document.getElementById("welcomeText").textContent=t.welcome;
 
-  document.getElementById("difficultyHeading").textContent=t.difficulty;
-  document.getElementById("difficultyHint").textContent=t.difficultyHint;
+function openChallenges(){
 
-  document.getElementById("categoriesHeading").textContent=t.categories;
-  document.getElementById("categoriesHint").textContent=t.categoriesHint;
+  clearInterval(state.timer);
 
-  document.getElementById("easyDesc").textContent=t.easyDesc;
-  document.getElementById("easyMeta").textContent=t.easyMeta;
+  allScreens();
 
-  document.getElementById("hardDesc").textContent=t.hardDesc;
-  document.getElementById("hardMeta").textContent=t.hardMeta;
+  show("challengesScreen");
 
-  document.getElementById("extremeDesc").textContent=t.extremeDesc;
-  document.getElementById("extremeMeta").textContent=t.extremeMeta;
+  updateLanguageButtons();
 
-  document.getElementById("backBtn").textContent=t.back;
-  document.getElementById("startBtn").textContent=t.start;
-  document.getElementById("resultTitle").textContent=t.result;
+}
 
-  document.getElementById("correctLabel").textContent=t.correct;
-  document.getElementById("wrongLabel").textContent=t.wrong;
-  document.getElementById("timeLabel").textContent=t.time;
-  document.getElementById("resultHome").textContent=t.home;
 
-  document.getElementById("visualTitle").textContent=t.visual;
-  document.getElementById("visualHint").textContent=t.focus;
-  document.getElementById("visualBack").textContent=t.back;
+function openPro(){
 
-  document.getElementById("friendTitle").textContent=t.friend;
-  document.getElementById("friendDescription").textContent=t.friendDescription;
-  document.getElementById("createCodeBtn").textContent=t.create;
-  document.getElementById("copyCodeBtn").textContent=t.copy;
-  document.getElementById("joinBtn").textContent=t.join;
-  document.getElementById("friendBack").textContent=t.back;
-  document.getElementById("joinCode").placeholder=t.codePlaceholder;
+  allScreens();
 
-  document.getElementById("pointsLabel").textContent=t.points;
-  document.getElementById("coinsLabel").textContent=t.coins;
-  document.getElementById("xpLabel").textContent=t.xp;
-  document.getElementById("gamesLabel").textContent=t.games;
-  document.getElementById("bestLabel").textContent=t.best;
-  document.getElementById("loginLabel").textContent=t.loginDays;
-  document.getElementById("subscriptionTitle").textContent=t.subscription;
+  show("proScreen");
 
-  document.getElementById("interfaceBtn").textContent =
-    state.interfaceLanguage === "ar" ? "EN" : "ع";
+}
 
-  renderCategories();
-  updateProfile();
+
+function openClubs(){
+
+  allScreens();
+
+  show("clubsScreen");
+
+}
+
+
+function openFriend(){
+
+  allScreens();
+
+  show("friendScreen");
 
 }
 
@@ -1526,1007 +1552,147 @@ function toggleInterfaceLanguage(){
     state.interfaceLanguage
   );
 
-  applyInterfaceLanguage();
+  document.documentElement.lang =
+    state.interfaceLanguage;
+
+  document.documentElement.dir =
+    state.interfaceLanguage === "ar" ? "rtl" : "ltr";
+
+  toast(
+    state.interfaceLanguage === "ar"
+    ? "تم تغيير لغة الواجهة"
+    : "Interface language changed"
+  );
 
 }
 
-
-/* =========================
-   QUESTION LANGUAGE
-========================= */
 
 function setQuestionLanguage(lang){
 
   state.questionLanguage=lang;
 
-  localStorage.setItem(
-    "questionLanguage",
-    lang
-  );
+  localStorage.setItem("questionLanguage",lang);
 
-  document.querySelectorAll(".lang-btn")
-    .forEach(btn=>btn.classList.remove("active"));
-
-  if(lang==="ar"){
-    document.getElementById("langA").classList.add("active");
-  }
-
-  if(lang==="en"){
-    document.getElementById("langE").classList.add("active");
-  }
-
-  if(lang==="mix"){
-    document.getElementById("langM").classList.add("active");
-  }
-
-  toast(
-    lang==="ar" ? "العربية" :
-    lang==="en" ? "English" :
-    "Mix"
-  );
+  updateLanguageButtons();
 
 }
 
 
-/* =========================
-   DIFFICULTY
-========================= */
+function updateLanguageButtons(){
 
-function setDifficulty(level,button){
+  document.querySelectorAll("[data-q]").forEach(btn=>{
+    btn.classList.toggle(
+      "active",
+      btn.dataset.q===state.questionLanguage
+    );
+  });
+
+}
+
+
+function renderCategories(){
+
+  $("categoryGrid").innerHTML="";
+
+  categories.forEach(item=>{
+
+    const [id,icon,name]=item;
+
+    const btn=document.createElement("button");
+
+    btn.className="category";
+
+    btn.innerHTML=`
+      <span class="cat-icon">${icon}</span>
+      <small>${name}</small>
+    `;
+
+    btn.onclick=()=>selectCategory(id);
+
+    $("categoryGrid").appendChild(btn);
+
+  });
+
+}
+
+
+function chooseDifficulty(level){
 
   state.difficulty=level;
 
   localStorage.setItem("difficulty",level);
 
-  document.querySelectorAll(".diff-card")
-    .forEach(card=>card.classList.remove("active"));
+  if(level==="extreme" && !isPro()){
 
-  button.classList.add("active");
+    openPro();
+
+    return;
+
+  }
+
+  toast(
+    level==="easy"
+    ?"تم اختيار EASY"
+    :level==="medium"
+    ?"تم اختيار MEDIUM"
+    :level==="hard"
+    ?"تم اختيار HARD"
+    :"تم اختيار EXTREME"
+  );
 
 }
 
-
-/* =========================
-   QUESTIONS
-========================= */
-
-const questionBank = {
-
-  general:[
-
-    {
-      ar:"ما هو أكبر محيط على سطح الأرض؟",
-      en:"What is the largest ocean on Earth?",
-      answersAr:["المحيط الهادئ","المحيط الأطلسي","المحيط الهندي","المحيط المتجمد"],
-      answersEn:["Pacific Ocean","Atlantic Ocean","Indian Ocean","Arctic Ocean"],
-      correct:0,
-      icon:"🌊"
-    },
-
-    {
-      ar:"كم عدد قارات العالم؟",
-      en:"How many continents are there?",
-      answersAr:["5","6","7","8"],
-      answersEn:["5","6","7","8"],
-      correct:2,
-      icon:"🌍"
-    },
-
-    {
-      ar:"ما هو الكوكب المعروف بالكوكب الأحمر؟",
-      en:"Which planet is known as the Red Planet?",
-      answersAr:["المريخ","الزهرة","المشتري","عطارد"],
-      answersEn:["Mars","Venus","Jupiter","Mercury"],
-      correct:0,
-      icon:"🪐"
-    }
-
-  ],
-
-  history:[
-
-    {
-      ar:"في أي عام بدأت الحرب العالمية الثانية؟",
-      en:"In which year did World War II begin?",
-      answersAr:["1935","1939","1941","1945"],
-      answersEn:["1935","1939","1941","1945"],
-      correct:1,
-      icon:"🏛️"
-    },
-
-    {
-      ar:"أين بُنيت الأهرامات الشهيرة في الجيزة؟",
-      en:"Where were the famous pyramids of Giza built?",
-      answersAr:["مصر","العراق","اليونان","تركيا"],
-      answersEn:["Egypt","Iraq","Greece","Turkey"],
-      correct:0,
-      icon:"🏺"
-    }
-
-  ],
-
-  sports:[
-
-    {
-      ar:"كم لاعبًا يوجد في فريق كرة القدم داخل الملعب؟",
-      en:"How many players are on a football team on the field?",
-      answersAr:["9","10","11","12"],
-      answersEn:["9","10","11","12"],
-      correct:2,
-      icon:"⚽"
-    },
-
-    {
-      ar:"كم حلقة في الملعب الأولمبي لألعاب القوى؟",
-      en:"How many lanes are commonly found on an Olympic track?",
-      answersAr:["6","8","10","12"],
-      answersEn:["6","8","10","12"],
-      correct:1,
-      icon:"🏃"
-    }
-
-  ],
-
-  geography:[
-
-    {
-      ar:"ما هي أكبر دولة في العالم من حيث المساحة؟",
-      en:"What is the largest country in the world by area?",
-      answersAr:["الصين","روسيا","كندا","الولايات المتحدة"],
-      answersEn:["China","Russia","Canada","United States"],
-      correct:1,
-      icon:"🗺️"
-    }
-
-  ],
-
-  science:[
-
-    {
-      ar:"ما الغاز الذي تحتاجه النباتات لعملية البناء الضوئي؟",
-      en:"Which gas do plants need for photosynthesis?",
-      answersAr:["الأكسجين","النيتروجين","ثاني أكسيد الكربون","الهيدروجين"],
-      answersEn:["Oxygen","Nitrogen","Carbon dioxide","Hydrogen"],
-      correct:2,
-      icon:"🔬"
-    }
-
-  ],
-
-  technology:[
-
-    {
-      ar:"ماذا تعني CPU؟",
-      en:"What does CPU stand for?",
-      answersAr:[
-        "وحدة المعالجة المركزية",
-        "وحدة التحكم الرئيسية",
-        "ذاكرة الحاسب",
-        "معالج الرسوميات"
-      ],
-      answersEn:[
-        "Central Processing Unit",
-        "Control Processing Unit",
-        "Computer Memory",
-        "Graphics Processing Unit"
-      ],
-      correct:0,
-      icon:"💻"
-    }
-
-  ],
-
-  medicine:[
-
-    {
-      ar:"ما العضو الذي يضخ الدم إلى أنحاء الجسم؟",
-      en:"Which organ pumps blood around the body?",
-      answersAr:["الرئة","القلب","الكبد","الكلى"],
-      answersEn:["Lung","Heart","Liver","Kidney"],
-      correct:1,
-      icon:"⚕️"
-    }
-
-  ],
-
-  math:[
-
-    {
-      ar:"ما ناتج 12 × 8؟",
-      en:"What is 12 × 8?",
-      answersAr:["86","96","108","112"],
-      answersEn:["86","96","108","112"],
-      correct:1,
-      icon:"∑"
-    },
-
-    {
-      ar:"إذا كان x + 7 = 15، فما قيمة x؟",
-      en:"If x + 7 = 15, what is x?",
-      answersAr:["6","7","8","9"],
-      answersEn:["6","7","8","9"],
-      correct:2,
-      icon:"➗"
-    }
-
-  ],
-
-  arabicGrammar:[
-
-    {
-      ar:"أي الكلمات التالية اسم مرفوع؟",
-      en:"Which Arabic word is a nominative noun?",
-      answersAr:["الطالبُ","الطالبَ","الطالبِ","بالطالبِ"],
-      answersEn:["الطالبُ","الطالبَ","الطالبِ","بالطالبِ"],
-      correct:0,
-      icon:"ع"
-    }
-
-  ],
-
-  englishGrammar:[
-
-    {
-      ar:"Choose the correct sentence.",
-      en:"Choose the correct sentence.",
-      answersAr:[
-        "He go to school.",
-        "He goes to school.",
-        "He going school.",
-        "He gone school."
-      ],
-      answersEn:[
-        "He go to school.",
-        "He goes to school.",
-        "He going school.",
-        "He gone school."
-      ],
-      correct:1,
-      icon:"A"
-    }
-
-  ],
-
-  puzzles:[
-
-    {
-      ar:"لديك 3 تفاحات وأخذت تفاحتين. كم تفاحة أصبحت معك؟",
-      en:"You have 3 apples and take 2. How many do you have?",
-      answersAr:["1","2","3","5"],
-      answersEn:["1","2","3","5"],
-      correct:1,
-      icon:"🧩"
-    }
-
-  ],
-
-  logic:[
-
-    {
-      ar:"ما الرقم التالي: 2، 4، 8، 16، ؟",
-      en:"What comes next: 2, 4, 8, 16, ?",
-      answersAr:["20","24","32","36"],
-      answersEn:["20","24","32","36"],
-      correct:2,
-      icon:"♟️"
-    }
-
-  ],
-
-  anime:[
-
-    {
-      ar:"أي عمل من التالي ينتمي إلى عالم الأنمي؟",
-      en:"Which of the following belongs to the anime world?",
-      answersAr:["One Piece","The Office","Breaking Bad","Friends"],
-      answersEn:["One Piece","The Office","Breaking Bad","Friends"],
-      correct:0,
-      icon:"🎌"
-    },
-
-    {
-      ar:"أي شخصية مرتبطة بسلسلة One Piece؟",
-      en:"Which character belongs to One Piece?",
-      answersAr:["لوفي","شيرلوك","هاري بوتر","والتر وايت"],
-      answersEn:["Luffy","Sherlock","Harry Potter","Walter White"],
-      correct:0,
-      icon:"🏴‍☠️"
-    }
-
-  ],
-
-  films:[
-
-    {
-      ar:"ما نوع العمل الذي يعرض عادةً على شاشة السينما؟",
-      en:"What type of work is usually shown in a cinema?",
-      answersAr:["فيلم","كتاب","ألبوم","لعبة"],
-      answersEn:["Film","Book","Album","Game"],
-      correct:0,
-      icon:"🎬"
-    }
-
-  ],
-
-  music:[
-
-    {
-      ar:"كم وترًا يوجد عادةً في الجيتار القياسي؟",
-      en:"How many strings does a standard guitar usually have?",
-      answersAr:["4","5","6","8"],
-      answersEn:["4","5","6","8"],
-      correct:2,
-      icon:"🎵"
-    }
-
-  ],
-
-  city:[
-
-    {
-      ar:"أي مدينة تُعرف بأنها عاصمة المملكة العربية السعودية؟",
-      en:"Which city is the capital of Saudi Arabia?",
-      answersAr:["جدة","الرياض","الدمام","مكة"],
-      answersEn:["Jeddah","Riyadh","Dammam","Makkah"],
-      correct:1,
-      icon:"🏙️"
-    }
-
-  ],
-
-  gulf:[],
-  arabicSeries:[],
-  turkish:[],
-  focus:[],
-  memory:[],
-  visual:[],
-  rewrite:[],
-  differences:[]
-
-};
-
-
-/* =========================
-   SELECT CATEGORY
-========================= */
 
 function selectCategory(category){
 
   state.category=category;
 
-  if(
-    ["memory","visual","differences","focus"].includes(category)
-  ){
-    openVisualChallenge(category);
-    return;
-  }
+  if(["memory","visual","differences","focus"].includes(category)){
 
-  const t=translations[state.interfaceLanguage];
-
-  document.getElementById("homeScreen").classList.add("hidden");
-  document.getElementById("introScreen").classList.remove("hidden");
-
-  document.getElementById("introIcon").textContent =
-    categories.find(x=>x[0]===category)?.[1] || "🧠";
-
-  document.getElementById("introTitle").textContent =
-    t.categoriesNames[category];
-
-  document.getElementById("introDescription").textContent =
-    state.interfaceLanguage==="ar"
-    ? "استعد. الأسئلة تصبح أصعب حسب المستوى الذي اخترته."
-    : "Get ready. Questions become harder based on your selected difficulty.";
-
-}
-
-
-/* =========================
-   START GAME
-========================= */
-
-function startGame(){
-
-  if(
-    (state.difficulty==="hard" || state.difficulty==="extreme")
-    && !isPro()
-  ){
-    toast(
-      state.interfaceLanguage==="ar"
-      ? "هذا المستوى متاح لمشتركي PRO"
-      : "This difficulty is available for PRO members"
-    );
-    return;
-  }
-
-  let source = questionBank[state.category] || [];
-
-  if(source.length===0){
-
-    toast(
-      state.interfaceLanguage==="ar"
-      ? "هذا التصنيف سيتم تطويره قريبًا"
-      : "This category is coming soon"
-    );
+    openVisual(category);
 
     return;
-  }
-
-  state.questions =
-    shuffle([...source])
-    .slice(0,Math.min(5,source.length));
-
-  state.questionIndex=0;
-  state.correct=0;
-  state.wrong=0;
-  state.score=0;
-  state.startedAt=Date.now();
-
-  document.getElementById("introScreen").classList.add("hidden");
-  document.getElementById("gameScreen").classList.remove("hidden");
-
-  document.getElementById("gameCategory").textContent =
-    translations[state.interfaceLanguage]
-      .categoriesNames[state.category];
-
-  document.getElementById("gameDifficulty").textContent =
-    state.difficulty.toUpperCase();
-
-  showQuestion();
-
-}
-
-
-/* =========================
-   SHOW QUESTION
-========================= */
-
-function showQuestion(){
-
-  clearInterval(state.timer);
-
-  const q=state.questions[state.questionIndex];
-
-  if(!q){
-    finishGame();
-    return;
-  }
-
-  const useEnglish =
-    state.questionLanguage==="en" ||
-    (
-      state.questionLanguage==="mix" &&
-      Math.random()>.5
-    );
-
-  const text =
-    useEnglish ? q.en : q.ar;
-
-  const answers =
-    useEnglish ? q.answersEn : q.answersAr;
-
-  document.getElementById("questionNumber").textContent =
-    `${translations[state.interfaceLanguage].question} ${state.questionIndex+1}/${state.questions.length}`;
-
-  document.getElementById("questionVisual").textContent=q.icon || "🧠";
-
-  document.getElementById("questionText").textContent=text;
-
-  document.getElementById("progressFill").style.width =
-    `${((state.questionIndex)/state.questions.length)*100}%`;
-
-  const answersBox=document.getElementById("answers");
-
-  answersBox.innerHTML="";
-
-  answers.forEach((answer,index)=>{
-
-    const button=document.createElement("button");
-
-    button.className="answer";
-    button.textContent=answer;
-
-    button.onclick=()=>answerQuestion(index,button);
-
-    answersBox.appendChild(button);
-
-  });
-
-  const time =
-    state.difficulty==="easy" ? 20 :
-    state.difficulty==="hard" ? 12 :
-    8;
-
-  state.timeLeft=time;
-
-  const timer=document.getElementById("timer");
-
-  timer.textContent=time;
-  timer.classList.remove("warning");
-
-  state.timer=setInterval(()=>{
-
-    state.timeLeft--;
-
-    timer.textContent=state.timeLeft;
-
-    if(state.timeLeft<=5){
-      timer.classList.add("warning");
-    }
-
-    if(state.timeLeft<=0){
-
-      clearInterval(state.timer);
-
-      state.wrong++;
-
-      setTimeout(()=>{
-        state.questionIndex++;
-        showQuestion();
-      },300);
-
-    }
-
-  },1000);
-
-}
-
-
-/* =========================
-   ANSWER
-========================= */
-
-function answerQuestion(index,button){
-
-  clearInterval(state.timer);
-
-  const q=state.questions[state.questionIndex];
-
-  const buttons=document.querySelectorAll(".answer");
-
-  buttons.forEach(b=>b.disabled=true);
-
-  if(index===q.correct){
-
-    button.classList.add("correct");
-
-    state.correct++;
-
-    const base =
-      state.difficulty==="easy" ? 100 :
-      state.difficulty==="hard" ? 200 :
-      350;
-
-    const speedBonus =
-      Math.max(0,state.timeLeft*5);
-
-    state.score += base + speedBonus;
-
-  }else{
-
-    button.classList.add("wrong");
-
-    state.wrong++;
-
-    if(buttons[q.correct]){
-      buttons[q.correct].classList.add("correct");
-    }
 
   }
 
-  setTimeout(()=>{
+  const source=questionBank[category] || [];
 
-    state.questionIndex++;
-    showQuestion();
+  if(!source.length){
 
-  },600);
-
-}
-
-
-/* =========================
-   FINISH
-========================= */
-
-function finishGame(){
-
-  clearInterval(state.timer);
-
-  const elapsed=Math.round(
-    (Date.now()-state.startedAt)/1000
-  );
-
-  state.games++;
-
-  state.points += state.score;
-
-  const earnedXP =
-    Math.round(state.score/10);
-
-  const earnedCoins =
-    Math.floor(state.score/100);
-
-  state.xp += earnedXP;
-  state.coins += earnedCoins;
-
-  if(state.score>state.best){
-    state.best=state.score;
-  }
-
-  saveState();
-
-  document.getElementById("gameScreen").classList.add("hidden");
-  document.getElementById("resultScreen").classList.remove("hidden");
-
-  document.getElementById("resultScore").textContent=state.score;
-  document.getElementById("correctStat").textContent=state.correct;
-  document.getElementById("wrongStat").textContent=state.wrong;
-  document.getElementById("timeStat").textContent=elapsed+"s";
-
-}
-
-
-/* =========================
-   VISUAL CHALLENGES
-========================= */
-
-function openVisualChallenge(type){
-
-  document.getElementById("homeScreen").classList.add("hidden");
-  document.getElementById("visualScreen").classList.remove("hidden");
-
-  const stage=document.getElementById("visualStage");
-  const options=document.getElementById("visualOptions");
-
-  stage.innerHTML="";
-  options.innerHTML="";
-
-  if(type==="memory"){
-
-    document.getElementById("visualTitle").textContent =
-      state.interfaceLanguage==="ar"
-      ? "اختبار الذاكرة"
-      : "Memory Test";
-
-    document.getElementById("visualHint").textContent =
-      state.interfaceLanguage==="ar"
-      ? "احفظ الرموز ثم اختر الترتيب الصحيح"
-      : "Remember the symbols and their positions";
-
-    const grid=document.createElement("div");
-
-    grid.className="memory-grid";
-
-    const symbols=shuffle([
-      "★","◆","●","▲",
-      "☘","☾","✦","♦",
-      "♠","♥","♣","☀"
-    ]);
-
-    symbols.forEach(symbol=>{
-
-      const card=document.createElement("button");
-
-      card.className="memory-card revealed";
-      card.textContent=symbol;
-
-      grid.appendChild(card);
-
-    });
-
-    stage.appendChild(grid);
-
-    setTimeout(()=>{
-
-      document.querySelectorAll(".memory-card")
-        .forEach(card=>{
-          card.classList.remove("revealed");
-        });
-
-      toast(
-        state.interfaceLanguage==="ar"
-        ? "اختبار الذاكرة بدأ"
-        : "Memory test started"
-      );
-
-    },2500);
+    toast("هذه الفئة سيتم تجهيز تحدياتها قريبًا.");
 
     return;
+
   }
 
+  const item=categories.find(x=>x[0]===category);
 
-  if(type==="differences"){
+  $("introIcon").textContent=item ? item[1] : "🎯";
 
-    document.getElementById("visualTitle").textContent =
-      state.interfaceLanguage==="ar"
-      ? "اكتشف الاختلاف"
-      : "Spot the Difference";
+  $("introTitle").textContent=item ? item[2] : "التحدي";
 
-    document.getElementById("visualHint").textContent =
-      state.interfaceLanguage==="ar"
-      ? "هناك اختلاف مخفي"
-      : "One detail is different";
+  $("introText").textContent =
+    getIntroText(state.difficulty);
 
-    stage.innerHTML=`
+  allScreens();
 
-      <div style="
-        display:grid;
-        grid-template-columns:1fr 1fr;
-        gap:12px;
-        width:100%;
-      ">
-
-        <div style="
-          height:240px;
-          border-radius:20px;
-          background:var(--surface2);
-          display:flex;
-          align-items:center;
-          justify-content:center;
-          font-size:80px;
-        ">🏠🌳☀️</div>
-
-        <div style="
-          height:240px;
-          border-radius:20px;
-          background:var(--surface2);
-          display:flex;
-          align-items:center;
-          justify-content:center;
-          font-size:80px;
-        ">🏠🌲☀️</div>
-
-      </div>
-    `;
-
-    ["A","B"].forEach(letter=>{
-
-      const btn=document.createElement("button");
-
-      btn.className="secondary-btn";
-      btn.textContent=letter;
-
-      btn.onclick=()=>{
-        toast(
-          letter==="B"
-          ? (
-            state.interfaceLanguage==="ar"
-            ? "صحيح 👏"
-            : "Correct 👏"
-          )
-          : (
-            state.interfaceLanguage==="ar"
-            ? "حاول مرة أخرى"
-            : "Try again"
-          )
-        );
-      };
-
-      options.appendChild(btn);
-
-    });
-
-    return;
-  }
-
-
-  if(type==="visual"){
-
-    document.getElementById("visualTitle").textContent =
-      state.interfaceLanguage==="ar"
-      ? "تحدي الملاحظة"
-      : "Observation Challenge";
-
-    stage.innerHTML=`
-
-      <div style="
-        width:100%;
-        max-width:600px;
-        padding:25px;
-        border-radius:20px;
-        background:var(--surface2);
-        font-size:65px;
-        letter-spacing:15px;
-      ">
-        🔵 🔵 🟢 🔵 🔵
-      </div>
-    `;
-
-    ["1","2","3","4","5"].forEach(x=>{
-
-      const b=document.createElement("button");
-
-      b.className="secondary-btn";
-      b.textContent=x;
-
-      b.onclick=()=>{
-        toast(
-          x==="3"
-          ? "✓"
-          : "✕"
-        );
-      };
-
-      options.appendChild(b);
-
-    });
-
-    return;
-  }
-
-
-  /* focus */
-
-  document.getElementById("visualTitle").textContent =
-    state.interfaceLanguage==="ar"
-    ? "اختبار التركيز"
-    : "Focus Test";
-
-  stage.innerHTML=`
-
-    <div style="
-      text-align:center;
-      width:100%;
-    ">
-
-      <div style="
-        font-size:70px;
-        margin-bottom:20px;
-      ">● ○ ● ○ ●</div>
-
-      <p style="color:var(--muted)">
-        ${
-          state.interfaceLanguage==="ar"
-          ? "اضغط الدائرة المختلفة"
-          : "Tap the different circle"
-        }
-      </p>
-
-    </div>
-  `;
+  show("introScreen");
 
 }
 
 
-/* =========================
-   FRIEND CHALLENGE
-========================= */
+function getIntroText(level){
 
-function showFriend(){
+  if(level==="easy")
+    return "5 أسئلة للتجربة. إذا أردت فتح المزيد من التحديات والمستويات، يمكنك الانتقال إلى PRO.";
 
-  hideAll();
+  if(level==="medium")
+    return "3 أسئلة مجانية للتجربة، ثم يمكنك فتح التحديات الكاملة مع PRO.";
 
-  document.getElementById("friendScreen")
-    .classList.remove("hidden");
+  if(level==="hard")
+    return "سؤالان للتجربة، ثم افتح التحديات الكاملة والمستويات الأصعب مع PRO.";
 
-}
-
-
-function createFriendCode(){
-
-  const code=
-    Math.random()
-      .toString(36)
-      .substring(2,8)
-      .toUpperCase();
-
-  document.getElementById("friendCode").textContent=code;
-
-  document.getElementById("friendCreated")
-    .classList.remove("hidden");
-
-  localStorage.setItem("friendCode",code);
-
-}
-
-
-function copyFriendCode(){
-
-  const code=
-    document.getElementById("friendCode").textContent;
-
-  navigator.clipboard?.writeText(code);
-
-  toast(
-    state.interfaceLanguage==="ar"
-    ? "تم نسخ الكود"
-    : "Code copied"
-  );
-
-}
-
-
-function joinFriendChallenge(){
-
-  const code=
-    document.getElementById("joinCode").value
-      .trim()
-      .toUpperCase();
-
-  if(code.length!==6){
-
-    toast(
-      state.interfaceLanguage==="ar"
-      ? "أدخل كود صحيح"
-      : "Enter a valid code"
-    );
-
-    return;
-  }
-
-  toast(
-    state.interfaceLanguage==="ar"
-    ? "تم قبول التحدي"
-    : "Challenge accepted"
-  );
-
-}
-
-
-/* =========================
-   PROFILE
-========================= */
-
-function openProfile(){
-
-  updateProfile();
-
-  document.getElementById("profileModal")
-    .classList.remove("hidden");
-
-}
-
-
-function closeProfile(){
-
-  document.getElementById("profileModal")
-    .classList.add("hidden");
-
-}
-
-
-function updateProfile(){
-
-  document.getElementById("usernameTop").textContent =
-    state.username;
-
-  document.getElementById("profileName").textContent =
-    state.username;
-
-  document.getElementById("profileLevel").textContent =
-    `Level ${getLevel()}`;
-
-  document.getElementById("profilePoints").textContent =
-    state.points;
-
-  document.getElementById("profileCoins").textContent =
-    state.coins+" 🪙";
-
-  document.getElementById("profileXP").textContent =
-    state.xp;
-
-  document.getElementById("profileGames").textContent =
-    state.games;
-
-  document.getElementById("profileBest").textContent =
-    state.best;
-
-  document.getElementById("profileLoginDays").textContent =
-    state.loginDays;
-
-  document.getElementById("subscriptionText").textContent =
-    isPro()
-    ? "PRO"
-    : translations[state.interfaceLanguage].free;
-
-}
-
-
-function getLevel(){
-
-  return Math.max(
-    1,
-    Math.floor(state.xp/1000)+1
-  );
+  return "تحديات EXTREME متقدمة ومخصصة لمشتركي PRO.";
 
 }
 
@@ -2538,55 +1704,302 @@ function isPro(){
 }
 
 
-/* =========================
-   NAVIGATION
-========================= */
+function getQuestionLimit(){
 
-function hideAll(){
+  if(isPro()) return 10;
 
-  document
-    .querySelectorAll(".screen")
-    .forEach(screen=>{
-      screen.classList.add("hidden");
-    });
+  if(state.difficulty==="easy") return 5;
+
+  if(state.difficulty==="medium") return 3;
+
+  if(state.difficulty==="hard") return 2;
+
+  return 0;
 
 }
 
 
-function goHome(){
+function buildQuestions(source,count){
+
+  const shuffled=shuffle([...source]);
+
+  const result=[];
+
+  for(let i=0;i<count;i++){
+
+    result.push(
+      shuffled[i % shuffled.length]
+    );
+
+  }
+
+  return result;
+
+}
+
+
+function startGame(){
+
+  if(state.difficulty==="extreme" && !isPro()){
+
+    openPro();
+
+    return;
+
+  }
+
+  const source=questionBank[state.category] || [];
+
+  if(!source.length){
+
+    toast("لا توجد أسئلة لهذه الفئة حاليًا.");
+
+    return;
+
+  }
+
+  const limit=getQuestionLimit();
+
+  state.questions=buildQuestions(source,limit);
+
+  state.questionIndex=0;
+  state.correct=0;
+  state.wrong=0;
+  state.score=0;
+  state.selectedAnswer=false;
+
+  allScreens();
+
+  show("gameScreen");
+
+  $("questionTotal").textContent=state.questions.length;
+
+  showQuestion();
+
+}
+
+
+function showQuestion(){
 
   clearInterval(state.timer);
 
-  hideAll();
+  state.selectedAnswer=false;
 
-  document.getElementById("homeScreen")
-    .classList.remove("hidden");
+  const q=state.questions[state.questionIndex];
+
+  if(!q){
+
+    finishGame();
+
+    return;
+
+  }
+
+  $("questionNo").textContent=
+    state.questionIndex+1;
+
+  $("questionNumber").textContent=
+    `السؤال ${state.questionIndex+1}`;
+
+  $("questionText").textContent=
+    q.q;
+
+  $("liveScore").textContent=
+    state.score;
+
+  const percent=
+    (state.questionIndex/state.questions.length)*100;
+
+  $("progressBar").style.width=
+    percent+"%";
+
+  const answers=$("answers");
+
+  answers.innerHTML="";
+
+  q.a.forEach((answer,index)=>{
+
+    const btn=document.createElement("button");
+
+    btn.className="answer";
+
+    btn.textContent=answer;
+
+    btn.onclick=()=>answerQuestion(index,btn);
+
+    answers.appendChild(btn);
+
+  });
+
+  state.timeLeft =
+    state.difficulty==="easy" ? 20 :
+    state.difficulty==="medium" ? 15 :
+    state.difficulty==="hard" ? 12 : 8;
+
+  $("timer").textContent=
+    state.timeLeft;
+
+  state.timer=setInterval(()=>{
+
+    state.timeLeft--;
+
+    $("timer").textContent=
+      state.timeLeft;
+
+    if(state.timeLeft<=0){
+
+      clearInterval(state.timer);
+
+      answerQuestion(-1,null);
+
+    }
+
+  },1000);
 
 }
 
 
-function logout(){
+function answerQuestion(index,button){
 
-  localStorage.removeItem("username");
+  if(state.selectedAnswer) return;
 
-  state.username="Player";
+  state.selectedAnswer=true;
 
-  closeProfile();
+  clearInterval(state.timer);
 
-  updateProfile();
+  const q=state.questions[state.questionIndex];
 
-  toast(
-    state.interfaceLanguage==="ar"
-    ? "تم تسجيل الخروج"
-    : "Logged out"
-  );
+  const buttons=
+    document.querySelectorAll(".answer");
+
+  buttons.forEach((b,i)=>{
+
+    b.disabled=true;
+
+    if(i===q.c)
+      b.classList.add("correct");
+
+  });
+
+  if(index===q.c){
+
+    state.correct++;
+
+    let base=
+      state.difficulty==="easy" ? 100 :
+      state.difficulty==="medium" ? 150 :
+      state.difficulty==="hard" ? 200 : 350;
+
+    const speedBonus=
+      Math.max(0,state.timeLeft*3);
+
+    state.score +=
+      base+speedBonus;
+
+  }else{
+
+    state.wrong++;
+
+    if(button)
+      button.classList.add("wrong");
+
+  }
+
+  $("liveScore").textContent=
+    state.score;
+
+  setTimeout(()=>{
+
+    state.questionIndex++;
+
+    showQuestion();
+
+  },650);
 
 }
 
 
-/* =========================
-   STORAGE
-========================= */
+function finishGame(){
+
+  clearInterval(state.timer);
+
+  state.games++;
+
+  state.points += state.score;
+
+  state.xp +=
+    Math.max(10,state.score);
+
+  const earned=
+    Math.max(1,Math.floor(state.score/100));
+
+  state.coins+=earned;
+
+  if(state.score>state.best)
+    state.best=state.score;
+
+  saveState();
+
+  $("finalScore").textContent=
+    state.score;
+
+  $("correctCount").textContent=
+    state.correct;
+
+  $("wrongCount").textContent=
+    state.wrong;
+
+  $("earnedCoins").textContent=
+    earned;
+
+  $("resultMessage").textContent=
+    state.correct===state.questions.length
+    ? "ممتاز! نتيجة قوية جدًا 🔥"
+    : state.correct >= Math.ceil(state.questions.length/2)
+    ? "نتيجة جيدة، تقدر تتحدى نفسك أكثر."
+    : "جولة جيدة! حاول مرة ثانية وارفع نتيجتك.";
+
+  if(!isPro()){
+
+    $("upsellBox").innerHTML=`
+
+      <div class="upsell">
+
+        <h3>👑 تريد تكمل؟</h3>
+
+        <p style="color:var(--muted)">
+          هذه كانت تجربة المستخدم المجاني.
+          مع CHALLENGE PRO تفتح المزيد من الأسئلة
+          والمستويات والمسابقات والتحديات الخاصة.
+        </p>
+
+        <ul>
+          <li>مستويات وتحديات إضافية</li>
+          <li>مسابقات وجوائز</li>
+          <li>تحديات الأندية</li>
+          <li>محتوى حصري</li>
+        </ul>
+
+        <button class="btn full" onclick="openPro()">
+          افتح CHALLENGE PRO
+        </button>
+
+      </div>
+
+    `;
+
+  }else{
+
+    $("upsellBox").innerHTML="";
+
+  }
+
+  allScreens();
+
+  show("resultScreen");
+
+}
+
 
 function saveState(){
 
@@ -2601,15 +2014,275 @@ function saveState(){
 }
 
 
-/* =========================
-   HELPERS
-========================= */
+function openVisual(type){
+
+  const names={
+    memory:"تحدي الذاكرة",
+    visual:"التحدي البصري",
+    differences:"اعثر على الفروقات",
+    focus:"تحدي التركيز"
+  };
+
+  $("visualTitle").textContent=
+    names[type] || "تحدي بصري";
+
+  $("visualText").textContent=
+    "اختبار بصري سريع يعتمد على التركيز والملاحظة.";
+
+  $("visualContent").innerHTML=`
+    <div class="visual-grid">
+      ${Array.from({length:16},(_,i)=>
+        `<div class="visual-cell" id="v${i}">◆</div>`
+      ).join("")}
+    </div>
+  `;
+
+  allScreens();
+
+  show("visualScreen");
+
+}
+
+
+function startVisualChallenge(){
+
+  const cells=
+    document.querySelectorAll(".visual-cell");
+
+  cells.forEach(c=>{
+    c.textContent="◆";
+  });
+
+  const target=
+    Math.floor(Math.random()*cells.length);
+
+  cells[target].textContent="◇";
+
+  cells.forEach((cell,index)=>{
+
+    cell.onclick=()=>{
+
+      if(index===target){
+
+        cell.style.borderColor=
+          "var(--green)";
+
+        toast("ممتاز! إجابة صحيحة.");
+
+      }else{
+
+        cell.style.borderColor=
+          "var(--red)";
+
+        toast("حاول مرة أخرى.");
+
+      }
+
+    };
+
+  });
+
+}
+
+
+function generateFriendCode(){
+
+  const code=
+    Math.random()
+    .toString(36)
+    .substring(2,8)
+    .toUpperCase();
+
+  $("friendCodeArea").innerHTML=`
+
+    <div class="code">${code}</div>
+
+    <button class="btn secondary" onclick="copyText('${code}')">
+      نسخ الكود
+    </button>
+
+  `;
+
+}
+
+
+function joinFriend(){
+
+  const code=
+    $("joinCode").value.trim().toUpperCase();
+
+  if(code.length<4){
+
+    toast("أدخل كود صحيح.");
+
+    return;
+
+  }
+
+  toast("تم العثور على التحدي. سيتم ربط نظام المنافسة الحقيقي لاحقًا.");
+
+}
+
+
+async function copyText(text){
+
+  try{
+
+    await navigator.clipboard.writeText(text);
+
+    toast("تم نسخ الكود.");
+
+  }catch{
+
+    toast(text);
+
+  }
+
+}
+
+
+function openProfile(){
+
+  $("usernameInput").value=
+    state.username;
+
+  $("profileLevel").textContent=
+    getLevel();
+
+  $("profilePoints").textContent=
+    state.points;
+
+  $("profileCoins").textContent=
+    state.coins;
+
+  $("profileXP").textContent=
+    state.xp;
+
+  $("profileGames").textContent=
+    state.games;
+
+  $("profileBest").textContent=
+    state.best;
+
+  $("profileSubscription").textContent=
+    isPro() ? "CHALLENGE PRO 👑" : "FREE";
+
+  show("profileModal");
+
+}
+
+
+function saveUsername(){
+
+  const name=
+    $("usernameInput").value.trim();
+
+  if(!name){
+
+    toast("اكتب اسمك أولاً.");
+
+    return;
+
+  }
+
+  state.username=name;
+
+  saveState();
+
+  hide("profileModal");
+
+  toast("تم حفظ اسم اللاعب.");
+
+}
+
+
+function getLevel(){
+
+  return Math.max(
+    1,
+    Math.floor(state.xp/500)+1
+  );
+
+}
+
+
+function subscribe(){
+
+  toast("سيتم ربط الدفع والاشتراك الإلكتروني في المرحلة القادمة.");
+
+}
+
+
+function clubLocked(){
+
+  if(!isPro()){
+
+    openPro();
+
+    return;
+
+  }
+
+  toast("سيتم إطلاق تحديات الأندية قريبًا.");
+
+}
+
+
+function social(name){
+
+  toast(`سيتم ربط حساب ${name} الرسمي قريبًا.`);
+
+}
+
+
+function openContact(){
+
+  show("contactModal");
+
+}
+
+
+function contactType(type){
+
+  hide("contactModal");
+
+  toast(`تم اختيار: ${type}`);
+
+}
+
+
+function closeModal(event,id){
+
+  if(event.target.id===id)
+    hide(id);
+
+}
+
+
+function toast(message){
+
+  const t=$("toast");
+
+  t.textContent=message;
+
+  t.classList.add("show");
+
+  clearTimeout(window.__toast);
+
+  window.__toast=
+    setTimeout(()=>{
+      t.classList.remove("show");
+    },2200);
+
+}
+
 
 function shuffle(array){
 
   for(let i=array.length-1;i>0;i--){
 
-    const j=Math.floor(Math.random()*(i+1));
+    const j=
+      Math.floor(Math.random()*(i+1));
 
     [array[i],array[j]]=
       [array[j],array[i]];
@@ -2621,45 +2294,24 @@ function shuffle(array){
 }
 
 
-function toast(message){
+function init(){
 
-  const box=document.getElementById("toast");
+  renderCategories();
 
-  box.textContent=message;
+  updateLanguageButtons();
 
-  box.classList.add("show");
+  document.documentElement.lang=
+    state.interfaceLanguage;
 
-  clearTimeout(window.toastTimer);
-
-  window.toastTimer=setTimeout(()=>{
-    box.classList.remove("show");
-  },1800);
+  document.documentElement.dir=
+    state.interfaceLanguage==="ar"
+    ? "rtl"
+    : "ltr";
 
 }
 
 
-/* =========================
-   INITIALIZE
-========================= */
-
-renderCategories();
-
-applyInterfaceLanguage();
-
-setQuestionLanguage(state.questionLanguage);
-
-document.querySelectorAll(".diff-card")
-  .forEach(card=>card.classList.remove("active"));
-
-const savedDiff=document.querySelector(
-  `.diff-card.${state.difficulty}`
-);
-
-if(savedDiff){
-  savedDiff.classList.add("active");
-}
-
-updateProfile();
+init();
 
 </script>
 

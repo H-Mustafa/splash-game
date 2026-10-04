@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CHALLENGE</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#0d0d0f;color:#fff;min-height:100vh}
+.container{max-width:850px;margin:auto;padding:25px}
+.card{background:#19191d;border-radius:20px;padding:25px;box-shadow:0 10px 35px #0008}
+h1{text-align:center;font-size:38px;margin:10px}
+.sub{text-align:center;color:#aaa;margin-bottom:30px}
+button{border:0;border-radius:12px;padding:14px 22px;font-size:17px;font-weight:bold;cursor:pointer}
+.primary{background:#fff;color:#111;width:100%}
+.stats{display:flex;gap:10px;margin-bottom:20px}
+.stat{flex:1;background:#242429;border-radius:12px;padding:12px;text-align:center}
+.question{font-size:28px;text-align:center;margin:35px 0}
+.answers{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.answer{background:#29292e;color:#fff;width:100%}
+.correct{background:#168044!important}
+.wrong{background:#9b2929!important}
+.message{text-align:center;height:30px;margin:18px}
+.hidden{display:none}
+.result{text-align:center}
+.big{font-size:45px;font-weight:bold}
+@media(max-width:600px){.answers{grid-template-columns:1fr}.stats{flex-direction:column}}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<div id="home" class="card">
+<h1>🎮 CHALLENGE</h1>
+<div class="sub">اختبر سرعتك ومعرفتك واربح النقاط</div>
+<button class="primary" onclick="startGame()">ابدأ التحدي</button>
+</div>
+
+<div id="game" class="card hidden">
+<div class="stats">
+<div class="stat">السؤال<br><b id="number">1</b>/10</div>
+<div class="stat">النقاط<br><b id="score">0</b></div>
+<div class="stat">الوقت<br><b id="timer">15</b></div>
+</div>
+
+<div id="question" class="question"></div>
+<div id="answers" class="answers"></div>
+<div id="message" class="message"></div>
+</div>
+
+<div id="result" class="card result hidden">
+<h1>🏆 انتهى التحدي</h1>
+<p>نتيجتك</p>
+<div id="finalScore" class="big">0</div>
+<p>XP: <b id="xp">0</b></p>
+<p>Coins: 🪙 <b id="coins">0</b></p>
+<button class="primary" onclick="startGame()">إعادة التحدي</button>
+</div>
+
+</div>
+
+<script>
+const questions=[
+{q:"ما عاصمة المملكة العربية السعودية؟",a:["الرياض","جدة","الدمام","مكة"],c:0},
+{q:"كم عدد أيام الأسبوع؟",a:["5","6","7","8"],c:2},
+{q:"كم يساوي 9 × 9؟",a:["72","81","90","99"],c:1},
+{q:"ما أكبر كوكب في المجموعة الشمسية؟",a:["الأرض","المريخ","المشتري","زحل"],c:2},
+{q:"كم عدد أشهر السنة؟",a:["10","11","12","13"],c:2},
+{q:"ما الحيوان المعروف بسفينة الصحراء؟",a:["الحصان","الجمل","الأسد","الفيل"],c:1},
+{q:"كم يساوي 100 ÷ 10؟",a:["5","10","20","50"],c:1},
+{q:"ما لون الموز غالبًا عند النضج؟",a:["أحمر","أزرق","أصفر","أسود"],c:2},
+{q:"كم عدد حروف اللغة العربية؟",a:["26","28","30","32"],c:1},
+{q:"أي بحر يقع غرب المملكة العربية السعودية؟",a:["الخليج العربي","البحر الأحمر","بحر العرب","المتوسط"],c:1}
+];
+
+let current=0,score=0,time=15,interval,locked=false;
+
+function startGame(){
+ current=0;
+ score=0;
+ document.getElementById("home").classList.add("hidden");
+ document.getElementById("result").classList.add("hidden");
+ document.getElementById("game").classList.remove("hidden");
+ loadQuestion();
+}
+
+function loadQuestion(){
+ clearInterval(interval);
+ locked=false;
+ let q=questions[current];
+
+ document.getElementById("number").textContent=current+1;
+ document.getElementById("score").textContent=score;
+ document.getElementById("question").textContent=q.q;
+ document.getElementById("message").textContent="";
+
+ let box=document.getElementById("answers");
+ box.innerHTML="";
+
+ q.a.forEach((answer,index)=>{
+   let btn=document.createElement("button");
+   btn.className="answer";
+   btn.textContent=answer;
+   btn.onclick=()=>answerQuestion(index,btn);
+   box.appendChild(btn);
+ });
+
+ time=15;
+ document.getElementById("timer").textContent=time;
+
+ interval=setInterval(()=>{
+   time--;
+   document.getElementById("timer").textContent=time;
+   if(time<=0) answerQuestion(-1,null);
+ },1000);
+}
+
+function answerQuestion(choice,button){
+ if(locked)return;
+ locked=true;
+ clearInterval(interval);
+
+ let q=questions[current];
+ let buttons=document.querySelectorAll(".answer");
+
+ buttons.forEach((b,i)=>{
+   b.disabled=true;
+   if(i===q.c)b.classList.add("correct");
+ });
+
+ if(choice===q.c){
+   score+=100+(time*5);
+   document.getElementById("message").textContent="✅ إجابة صحيحة";
+ }else{
+   if(button)button.classList.add("wrong");
+   document.getElementById("message").textContent="❌ إجابة خاطئة";
+ }
+
+ document.getElementById("score").textContent=score;
+
+ setTimeout(()=>{
+   current++;
+   if(current>=questions.length){
+     finishGame();
+   }else{
+     loadQuestion();
+   }
+ },700);
+}
+
+function finishGame(){
+ document.getElementById("game").classList.add("hidden");
+ document.getElementById("result").classList.remove("hidden");
+
+ document.getElementById("finalScore").textContent=score;
+ document.getElementById("xp").textContent=score;
+ document.getElementById("coins").textContent=Math.floor(score/100);
+}
+</script>
+</body>
+</html>

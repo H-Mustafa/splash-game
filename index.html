@@ -2,822 +2,961 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>CHALLENGE</title>
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 *{box-sizing:border-box}
+
+:root{
+ --bg:#080a11;
+ --panel:#10131d;
+ --panel2:#151925;
+ --line:#252b3a;
+ --text:#f5f6fa;
+ --muted:#858da1;
+ --accent:#8b7cff;
+}
+
 body{
-  margin:0;
-  font-family:Arial,Tahoma,sans-serif;
-  background:linear-gradient(135deg,#080b16,#11182d,#090d19);
-  color:#fff;
-  min-height:100vh;
-}
-button,input,select{font:inherit}
-button{cursor:pointer}
-
-.container{
-  width:min(1100px,94%);
-  margin:auto;
-  padding:20px 0 50px;
+ margin:0;
+ background:
+ radial-gradient(circle at 50% -10%,#1a1d32 0,#0b0d15 42%,#07080d 100%);
+ color:var(--text);
+ font-family:Arial,Tahoma,sans-serif;
+ min-height:100vh;
 }
 
-.top{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  margin-bottom:20px;
+button,input{
+ font:inherit;
 }
 
-.logo{
-  font-size:27px;
-  font-weight:900;
-  letter-spacing:1px;
+button{
+ cursor:pointer;
 }
 
-.top-actions{
-  display:flex;
-  align-items:center;
-  gap:8px;
+.hidden{
+ display:none!important;
 }
 
-.icon-btn{
-  width:42px;
-  height:42px;
-  border:1px solid #303955;
-  background:#171e35;
-  color:#fff;
-  border-radius:13px;
-  font-size:19px;
+.app{
+ width:min(980px,94%);
+ margin:auto;
+ padding:18px 0 45px;
 }
 
-.user-btn{
-  border:1px solid #303955;
-  background:#171e35;
-  color:#fff;
-  border-radius:13px;
-  padding:10px 14px;
-  font-weight:bold;
+/* TOP */
+
+.topbar{
+ height:58px;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ margin-bottom:18px;
 }
 
-.card{
-  background:rgba(20,27,48,.94);
-  border:1px solid #303955;
-  border-radius:24px;
-  padding:24px;
-  box-shadow:0 15px 45px rgba(0,0,0,.25);
+.brand{
+ font-size:20px;
+ font-weight:900;
+ letter-spacing:.8px;
 }
 
-.center{text-align:center}
-
-h1{
-  font-size:42px;
-  margin:10px 0;
+.actions{
+ display:flex;
+ gap:7px;
+ align-items:center;
 }
 
-h2{
-  margin-top:0;
+.icon{
+ width:38px;
+ height:38px;
+ border-radius:12px;
+ border:1px solid var(--line);
+ background:#111520;
+ color:#dfe3ed;
+ display:grid;
+ place-items:center;
+ font-size:16px;
 }
 
-.muted{
-  color:#aeb8d1;
+.profileBtn{
+ border:1px solid var(--line);
+ background:#111520;
+ color:#e9ebf2;
+ padding:9px 12px;
+ border-radius:12px;
+ font-size:13px;
+ font-weight:bold;
 }
 
-.primary{
-  width:100%;
-  border:0;
-  border-radius:15px;
-  padding:15px;
-  background:#6c5ce7;
-  color:white;
-  font-weight:900;
-  margin-top:12px;
+/* AUTH */
+
+.auth{
+ max-width:410px;
+ margin:9vh auto;
+ background:rgba(16,19,29,.96);
+ border:1px solid var(--line);
+ border-radius:22px;
+ padding:28px;
 }
 
-.primary:hover{opacity:.9}
-
-.secondary{
-  border:1px solid #39435f;
-  border-radius:13px;
-  padding:12px 15px;
-  background:#1a223b;
-  color:#fff;
+.authLogo{
+ text-align:center;
+ font-size:34px;
+ font-weight:900;
+ margin-bottom:7px;
 }
 
-.danger{
-  border:0;
-  border-radius:13px;
-  padding:12px 15px;
-  background:#c0392b;
-  color:white;
+.auth h1{
+ text-align:center;
+ font-size:27px;
+ margin:0 0 22px;
 }
 
 input{
-  width:100%;
-  padding:14px;
-  margin:7px 0;
-  border-radius:13px;
-  border:1px solid #39435f;
-  background:#0e1425;
-  color:white;
-  outline:none;
+ width:100%;
+ background:#0b0e16;
+ color:white;
+ border:1px solid var(--line);
+ border-radius:12px;
+ padding:13px;
+ margin:5px 0;
+ outline:none;
 }
 
-input:focus{border-color:#6c5ce7}
-
-.hidden{display:none!important}
-
-.auth{
-  max-width:480px;
-  margin:8vh auto;
+input:focus{
+ border-color:#5e56a9;
 }
 
-.auth-logo{
-  font-size:48px;
-  font-weight:900;
-  text-align:center;
-  margin-bottom:8px;
+.mainBtn{
+ width:100%;
+ border:0;
+ background:#7668e8;
+ color:white;
+ padding:13px;
+ border-radius:12px;
+ font-weight:bold;
+ margin-top:9px;
 }
 
-.auth-switch{
-  text-align:center;
-  margin-top:15px;
-  color:#aeb8d1;
+.switch{
+ text-align:center;
+ color:var(--muted);
+ margin-top:14px;
+ font-size:13px;
 }
 
 .link{
-  color:#8f83ff;
-  cursor:pointer;
-  font-weight:bold;
-}
-
-.hero{
-  text-align:center;
-  padding:35px 10px;
-}
-
-.hero h2{
-  font-size:34px;
-  margin-bottom:8px;
-}
-
-.stats{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:12px;
-  margin:20px 0;
-}
-
-.stat{
-  background:#11182c;
-  border:1px solid #303955;
-  padding:16px;
-  border-radius:17px;
-  text-align:center;
-}
-
-.stat b{
-  display:block;
-  font-size:24px;
-  margin-bottom:5px;
-}
-
-.section-title{
-  margin:28px 0 12px;
-  font-size:22px;
-}
-
-.categories{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:12px;
-}
-
-.category{
-  border:1px solid #303955;
-  background:#151d34;
-  color:#fff;
-  border-radius:18px;
-  padding:18px 10px;
-  min-height:105px;
-  text-align:center;
-}
-
-.category .emoji{
-  display:block;
-  font-size:30px;
-  margin-bottom:8px;
-}
-
-.category.active{
-  border-color:#7c6cff;
-  background:#211d46;
-}
-
-.modes{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:14px;
-}
-
-.mode{
-  border-radius:20px;
-  padding:20px;
-  border:1px solid #39435f;
-  background:#141c32;
-}
-
-.mode h3{margin-top:0;font-size:22px}
-.mode p{color:#aeb8d1;min-height:42px}
-
-.easy{border-color:#2ecc71}
-.hard{border-color:#f39c12}
-.extreme{border-color:#e74c3c}
-
-.badge{
-  display:inline-block;
-  padding:5px 10px;
-  border-radius:20px;
-  background:#252d47;
-  font-size:12px;
-}
-
-.game{
-  max-width:850px;
-  margin:auto;
-}
-
-.game-top{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  margin-bottom:15px;
-}
-
-.timer{
-  font-size:25px;
-  font-weight:900;
-}
-
-.progress{
-  height:8px;
-  background:#252d47;
-  border-radius:10px;
-  overflow:hidden;
-  margin:15px 0 25px;
-}
-
-.progress-bar{
-  height:100%;
-  width:0%;
-  background:#7c6cff;
-  transition:.2s;
-}
-
-.question-image{
-  height:130px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:75px;
-  background:#11182c;
-  border-radius:20px;
-  margin-bottom:20px;
-}
-
-.question{
-  font-size:26px;
-  font-weight:900;
-  line-height:1.6;
-  margin-bottom:20px;
-}
-
-.answers{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-}
-
-.answer{
-  background:#151d34;
-  border:1px solid #39435f;
-  color:white;
-  padding:17px;
-  border-radius:15px;
-  text-align:right;
-}
-
-.answer:hover{
-  border-color:#7c6cff;
-  background:#20294a;
-}
-
-.answer.correct{
-  background:#164f36;
-  border-color:#2ecc71;
-}
-
-.answer.wrong{
-  background:#541f29;
-  border-color:#e74c3c;
-}
-
-.result-score{
-  font-size:60px;
-  font-weight:900;
-}
-
-.profile-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:12px;
-}
-
-.profile-item{
-  background:#11182c;
-  border:1px solid #303955;
-  border-radius:15px;
-  padding:15px;
-}
-
-.modal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.75);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:20px;
-  z-index:10;
-}
-
-.modal-box{
-  width:min(600px,100%);
-  max-height:90vh;
-  overflow:auto;
+ color:#a69dff;
+ cursor:pointer;
+ font-weight:bold;
 }
 
 .notice{
-  padding:12px;
-  border-radius:12px;
-  background:#222b45;
-  color:#dce2f5;
-  margin-top:10px;
+ margin-top:10px;
+ padding:10px;
+ border-radius:10px;
+ background:#171c29;
+ color:#b9c0d0;
+ font-size:13px;
 }
 
-.pro{
-  background:linear-gradient(135deg,#7c5cff,#a64dff);
-  border:0;
+/* HOME */
+
+.welcome{
+ padding:10px 2px 17px;
 }
 
-.friend-code{
-  font-size:30px;
-  font-weight:900;
-  letter-spacing:4px;
-  text-align:center;
-  padding:20px;
-  background:#0d1323;
-  border-radius:15px;
-  margin:15px 0;
+.welcome h2{
+ margin:0;
+ font-size:25px;
+ letter-spacing:-.3px;
 }
 
-@media(max-width:800px){
-  .stats{grid-template-columns:1fr 1fr}
-  .categories{grid-template-columns:1fr 1fr}
-  .modes{grid-template-columns:1fr}
+.welcome p{
+ display:none;
 }
 
-@media(max-width:550px){
-  h1{font-size:34px}
-  .answers{grid-template-columns:1fr}
-  .card{padding:17px}
-  .question{font-size:22px}
+.stats{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:8px;
+ margin-bottom:20px;
+}
+
+.stat{
+ background:#10131d;
+ border:1px solid var(--line);
+ border-radius:14px;
+ padding:12px 8px;
+ text-align:center;
+}
+
+.stat b{
+ display:block;
+ font-size:18px;
+ margin-bottom:4px;
+}
+
+.stat span{
+ color:var(--muted);
+ font-size:11px;
+}
+
+.title{
+ font-size:15px;
+ font-weight:bold;
+ margin:19px 2px 9px;
+}
+
+/* CATEGORIES */
+
+.categories{
+ display:grid;
+ grid-template-columns:repeat(5,1fr);
+ gap:8px;
+}
+
+.category{
+ min-height:75px;
+ background:#10131d;
+ border:1px solid var(--line);
+ color:#e9ebf2;
+ border-radius:15px;
+ padding:11px 7px;
+ transition:.15s;
+}
+
+.category:hover{
+ background:#161a27;
+ border-color:#3a4051;
+ transform:translateY(-1px);
+}
+
+.category .ico{
+ display:block;
+ font-size:22px;
+ margin-bottom:7px;
+ line-height:1;
+}
+
+.category .name{
+ font-size:11px;
+ font-weight:bold;
+}
+
+.category.anime{
+ border-color:#303448;
+}
+
+/* QUESTION LANGUAGE */
+
+.langRow{
+ display:flex;
+ gap:7px;
+}
+
+.lang{
+ flex:1;
+ padding:10px;
+ border-radius:11px;
+ border:1px solid var(--line);
+ background:#10131d;
+ color:#cbd0db;
+ font-size:12px;
+}
+
+.lang.active{
+ border-color:#655bb6;
+ color:white;
+ background:#17172a;
+}
+
+/* GAME */
+
+.game{
+ max-width:700px;
+ margin:15px auto 0;
+}
+
+.gameHeader{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ margin-bottom:12px;
+}
+
+.small{
+ color:var(--muted);
+ font-size:11px;
+}
+
+.timer{
+ color:#dfe2ea;
+ font-size:15px;
+ font-weight:bold;
+}
+
+.timer.low{
+ color:#ffb0b0;
+}
+
+.progress{
+ height:4px;
+ background:#191e2b;
+ border-radius:20px;
+ overflow:hidden;
+ margin-bottom:25px;
+}
+
+.progressBar{
+ height:100%;
+ width:0;
+ background:#7165d5;
+ transition:.2s;
+}
+
+.questionBox{
+ background:#10131d;
+ border:1px solid var(--line);
+ border-radius:20px;
+ padding:22px;
+}
+
+.questionIcon{
+ width:42px;
+ height:42px;
+ border-radius:12px;
+ background:#171b27;
+ display:grid;
+ place-items:center;
+ font-size:20px;
+ margin:0 auto 18px;
+}
+
+.question{
+ font-size:21px;
+ font-weight:bold;
+ line-height:1.55;
+ text-align:center;
+ margin-bottom:20px;
+}
+
+.answers{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:8px;
+}
+
+.answer{
+ border:1px solid var(--line);
+ background:#141823;
+ color:#e8eaf0;
+ padding:13px 12px;
+ border-radius:12px;
+ text-align:right;
+ font-size:13px;
+ min-height:48px;
+}
+
+.answer:hover{
+ background:#191e2c;
+}
+
+.answer.correct{
+ background:#142a22;
+ border-color:#376a56;
+}
+
+.answer.wrong{
+ background:#2a171b;
+ border-color:#694047;
+}
+
+/* RESULT */
+
+.result{
+ max-width:500px;
+ margin:50px auto;
+ text-align:center;
+ background:#10131d;
+ border:1px solid var(--line);
+ border-radius:22px;
+ padding:28px;
+}
+
+.result h2{
+ margin:0 0 15px;
+}
+
+.finalScore{
+ font-size:48px;
+ font-weight:900;
+ margin:8px;
+}
+
+.resultStats{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:7px;
+ margin:20px 0;
+}
+
+.resultStats div{
+ background:#151925;
+ border-radius:12px;
+ padding:11px;
+}
+
+.resultStats b{
+ display:block;
+ font-size:18px;
+}
+
+.resultStats span{
+ color:var(--muted);
+ font-size:10px;
+}
+
+/* PROFILE */
+
+.modal{
+ position:fixed;
+ inset:0;
+ background:rgba(0,0,0,.72);
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ padding:18px;
+ z-index:20;
+}
+
+.modalBox{
+ width:min(500px,100%);
+ background:#10131d;
+ border:1px solid var(--line);
+ border-radius:20px;
+ padding:20px;
+}
+
+.modalHead{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ margin-bottom:18px;
+}
+
+.modalHead h2{
+ margin:0;
+ font-size:19px;
+}
+
+.close{
+ width:34px;
+ height:34px;
+ border-radius:10px;
+ border:1px solid var(--line);
+ background:#151925;
+ color:white;
+}
+
+.profileName{
+ font-size:23px;
+ font-weight:bold;
+ margin-bottom:15px;
+}
+
+.profileGrid{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:7px;
+}
+
+.profileItem{
+ background:#151925;
+ border-radius:12px;
+ padding:12px;
+}
+
+.profileItem b{
+ display:block;
+ font-size:15px;
+ margin-top:3px;
+}
+
+.profileItem span{
+ color:var(--muted);
+ font-size:10px;
+}
+
+.subscription{
+ margin-top:15px;
+ padding:14px;
+ border:1px solid var(--line);
+ border-radius:13px;
+}
+
+.proBtn{
+ width:100%;
+ margin-top:9px;
+ border:1px solid #48406f;
+ background:#1b1830;
+ color:#d8d2ff;
+ border-radius:12px;
+ padding:12px;
+}
+
+/* FRIEND */
+
+.friendCode{
+ font-size:27px;
+ letter-spacing:5px;
+ text-align:center;
+ background:#0a0d14;
+ border:1px solid var(--line);
+ border-radius:13px;
+ padding:17px;
+ margin:15px 0;
+}
+
+/* MOBILE */
+
+@media(max-width:760px){
+ .categories{
+  grid-template-columns:repeat(4,1fr);
+ }
+}
+
+@media(max-width:540px){
+ .app{
+  width:92%;
+ }
+ .brand{
+  font-size:18px;
+ }
+ .profileBtn{
+  max-width:100px;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+ }
+ .stats{
+  grid-template-columns:repeat(2,1fr);
+ }
+ .categories{
+  grid-template-columns:repeat(3,1fr);
+ }
+ .category{
+  min-height:72px;
+ }
+ .question{
+  font-size:19px;
+ }
+ .answers{
+  grid-template-columns:1fr;
+ }
+ .questionBox{
+  padding:17px;
+ }
+}
+
+/* ENGLISH */
+
+html.en .arabicOnly{
+ display:none;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="app">
 
-  <!-- TOP -->
-  <div class="top" id="topBar">
-    <div class="logo">🎮 CHALLENGE</div>
+<!-- TOP -->
 
-    <div class="top-actions">
-      <button class="icon-btn" onclick="toggleLanguage()" id="langBtn">🇸🇦</button>
-      <button class="user-btn" onclick="openProfile()" id="usernameBtn">👤</button>
-      <button class="icon-btn" onclick="logout()" title="Logout">↪</button>
-    </div>
-  </div>
+<div id="topbar" class="topbar hidden">
 
-  <!-- AUTH -->
-  <div id="authScreen" class="auth card">
+ <div class="brand">CHALLENGE</div>
 
-    <div class="auth-logo">🎮</div>
-    <h1 class="center">CHALLENGE</h1>
-    <p class="center muted" id="authSubtitle">
-      اختبر ذكاءك وتحدى نفسك وأصدقاءك
-    </p>
+ <div class="actions">
 
-    <div id="loginForm">
-      <h2>تسجيل الدخول</h2>
+  <button class="icon" id="languageBtn" onclick="toggleLanguage()">ع</button>
 
-      <input id="loginEmail" type="email" placeholder="البريد الإلكتروني">
-      <input id="loginPassword" type="password" placeholder="كلمة المرور">
+  <button class="profileBtn" id="profileBtn" onclick="openProfile()">
+   ملفي
+  </button>
 
-      <button class="primary" onclick="login()">دخول</button>
+  <button class="icon" onclick="logout()" title="خروج">
+   ⎋
+  </button>
 
-      <div class="auth-switch">
-        ليس لديك حساب؟
-        <span class="link" onclick="showRegister()">إنشاء حساب</span>
-      </div>
-    </div>
-
-    <div id="registerForm" class="hidden">
-      <h2>إنشاء حساب</h2>
-
-      <input id="registerUsername" placeholder="اسم المستخدم">
-      <input id="registerEmail" type="email" placeholder="البريد الإلكتروني">
-      <input id="registerPassword" type="password" placeholder="كلمة المرور">
-
-      <button class="primary" onclick="register()">إنشاء الحساب</button>
-
-      <div class="auth-switch">
-        لديك حساب؟
-        <span class="link" onclick="showLogin()">تسجيل الدخول</span>
-      </div>
-    </div>
-
-    <div id="authMessage"></div>
-  </div>
-
-  <!-- HOME -->
-  <div id="homeScreen" class="hidden">
-
-    <div class="card hero">
-      <h2 id="welcomeText">أهلاً بك في CHALLENGE 🔥</h2>
-      <p class="muted">
-        اختر تصنيفك ومستوى التحدي وابدأ
-      </p>
-    </div>
-
-    <div class="stats">
-      <div class="stat">
-        <b id="homePoints">0</b>
-        النقاط
-      </div>
-
-      <div class="stat">
-        <b id="homeXP">0</b>
-        XP
-      </div>
-
-      <div class="stat">
-        <b id="homeCoins">0</b>
-        العملات
-      </div>
-
-      <div class="stat">
-        <b id="homeGames">0</b>
-        التحديات
-      </div>
-    </div>
-
-    <div class="section-title">🧠 اختر التصنيف</div>
-
-    <div class="categories">
-
-      <button class="category active" onclick="selectCategory(this,'general')">
-        <span class="emoji">🧠</span>
-        معلومات عامة
-      </button>
-
-      <button class="category" onclick="selectCategory(this,'history')">
-        <span class="emoji">🏛️</span>
-        تاريخ
-      </button>
-
-      <button class="category" onclick="selectCategory(this,'sports')">
-        <span class="emoji">⚽</span>
-        رياضة
-      </button>
-
-      <button class="category" onclick="selectCategory(this,'geography')">
-        <span class="emoji">🌍</span>
-        جغرافيا
-      </button>
-
-      <button class="category" onclick="selectCategory(this,'medicine')">
-        <span class="emoji">🩺</span>
-        طب وصحة
-      </button>
-
-      <button class="category" onclick="selectCategory(this,'science')">
-        <span class="emoji">🔬</span>
-        علوم
-      </button>
-
-      <button class="category" onclick="selectCategory(this,'technology')">
-        <span class="emoji">💻</span>
-        تقنية
-      </button>
-
-      <button class="category" onclick="selectCategory(this,'anime')">
-        <span class="emoji">🍥</span>
-        أنمي
-      </button>
-
-      <button class="category" onclick="selectCategory(this,'series')">
-        <span class="emoji">📺</span>
-        مسلسلات
-      </button>
-
-      <button class="category" onclick="selectCategory(this,'movies')">
-        <span class="emoji">🎬</span>
-        أفلام
-      </button>
-
-      <button class="category" onclick="selectCategory(this,'music')">
-        <span class="emoji">🎵</span>
-        موسيقى
-      </button>
-
-      <button class="category" onclick="selectCategory(this,'puzzles')">
-        <span class="emoji">🧩</span>
-        ألغاز
-      </button>
-
-      <button class="category" onclick="selectCategory(this,'focus')">
-        <span class="emoji">👁️</span>
-        تركيز
-      </button>
-
-      <button class="category" onclick="selectCategory(this,'memory')">
-        <span class="emoji">🧠</span>
-        ذاكرة
-      </button>
-
-      <button class="category" onclick="selectCategory(this,'logic')">
-        <span class="emoji">♟️</span>
-        منطق واستنتاج
-      </button>
-
-      <button class="category" onclick="selectCategory(this,'math')">
-        <span class="emoji">➗</span>
-        رياضيات
-      </button>
-
-      <button class="category" onclick="selectCategory(this,'arabic')">
-        <span class="emoji">🇸🇦</span>
-        قواعد عربية
-      </button>
-
-      <button class="category" onclick="selectCategory(this,'english')">
-        <span class="emoji">🇬🇧</span>
-        قواعد إنجليزية
-      </button>
-
-      <button class="category" onclick="selectCategory(this,'city')">
-        <span class="emoji">🏙️</span>
-        مدن ووقت
-      </button>
-
-      <button class="category" onclick="selectCategory(this,'visual')">
-        <span class="emoji">🖼️</span>
-        تحديات بصرية
-      </button>
-
-    </div>
-
-    <div class="section-title">🌐 لغة الأسئلة</div>
-
-    <div class="card">
-      <button class="secondary" onclick="setQuestionLanguage('ar')" id="qLangAr">
-        🇸🇦 عربي
-      </button>
-
-      <button class="secondary" onclick="setQuestionLanguage('en')" id="qLangEn">
-        🇬🇧 English
-      </button>
-
-      <button class="secondary" onclick="setQuestionLanguage('mix')" id="qLangMix">
-        🔀 Mix
-      </button>
-    </div>
-
-    <div class="section-title">🔥 مستوى التحدي</div>
-
-    <div class="modes">
-
-      <div class="mode easy">
-        <span class="badge">FREE</span>
-        <h3>🟢 EASY</h3>
-        <p>مناسب للمبتدئين.</p>
-        <button class="primary" onclick="startGame('easy')">ابدأ</button>
-      </div>
-
-      <div class="mode hard">
-        <span class="badge">PRO</span>
-        <h3>🟠 HARD</h3>
-        <p>أسئلة أصعب ووقت أقل ومكافآت أكبر.</p>
-        <button class="primary" onclick="startGame('hard')">ابدأ</button>
-      </div>
-
-      <div class="mode extreme">
-        <span class="badge">EXTREME</span>
-        <h3>🔴 EXTREME</h3>
-        <p>لأقوى اللاعبين. تحديات ديناميكية.</p>
-        <button class="primary" onclick="startGame('extreme')">ابدأ</button>
-      </div>
-
-    </div>
-
-    <div class="section-title">👥 تحدي صديق</div>
-
-    <div class="card">
-      <p class="muted">
-        تحدى صديقك بنفس السؤال وشوف من الأسرع والأدق.
-      </p>
-
-      <button class="primary" onclick="createFriendChallenge()">
-        ⚔️ إنشاء تحدي
-      </button>
-    </div>
-
-  </div>
-
-  <!-- GAME -->
-  <div id="gameScreen" class="hidden game">
-
-    <div class="card">
-
-      <div class="game-top">
-        <div>
-          <span class="badge" id="gameModeBadge">EASY</span>
-          <span class="badge" id="gameCategoryBadge">عام</span>
-        </div>
-
-        <div class="timer">
-          ⏱️ <span id="timer">15</span>
-        </div>
-      </div>
-
-      <div class="progress">
-        <div class="progress-bar" id="progressBar"></div>
-      </div>
-
-      <div class="question-image" id="questionIcon">
-        🧠
-      </div>
-
-      <div class="question" id="questionText">
-        السؤال
-      </div>
-
-      <div class="answers" id="answers"></div>
-
-    </div>
-
-  </div>
-
-  <!-- RESULT -->
-  <div id="resultScreen" class="hidden">
-
-    <div class="card center">
-
-      <h1>🏆</h1>
-      <h2>انتهى التحدي!</h2>
-
-      <div class="result-score" id="finalScore">0</div>
-      <p class="muted">نقاطك</p>
-
-      <div class="stats">
-        <div class="stat">
-          <b id="resultCorrect">0</b>
-          صحيح
-        </div>
-
-        <div class="stat">
-          <b id="resultWrong">0</b>
-          خطأ
-        </div>
-
-        <div class="stat">
-          <b id="resultXP">0</b>
-          XP
-        </div>
-
-        <div class="stat">
-          <b id="resultCoins">0</b>
-          🪙
-        </div>
-      </div>
-
-      <button class="primary" onclick="backHome()">العودة للتحديات</button>
-
-    </div>
-
-  </div>
+ </div>
 
 </div>
 
-<!-- PROFILE MODAL -->
+
+<!-- AUTH -->
+
+<div id="auth" class="auth">
+
+ <div class="authLogo">C</div>
+
+ <h1>CHALLENGE</h1>
+
+ <div id="loginForm">
+
+  <input id="loginEmail" type="email" placeholder="البريد الإلكتروني">
+
+  <input id="loginPassword" type="password" placeholder="كلمة المرور">
+
+  <button class="mainBtn" onclick="login()">دخول</button>
+
+  <div class="switch">
+   ما عندك حساب؟
+   <span class="link" onclick="showRegister()">إنشاء حساب</span>
+  </div>
+
+ </div>
+
+
+ <div id="registerForm" class="hidden">
+
+  <input id="registerUsername" placeholder="اسم المستخدم">
+
+  <input id="registerEmail" type="email" placeholder="البريد الإلكتروني">
+
+  <input id="registerPassword" type="password" placeholder="كلمة المرور">
+
+  <button class="mainBtn" onclick="register()">إنشاء حساب</button>
+
+  <div class="switch">
+   عندك حساب؟
+   <span class="link" onclick="showLogin()">دخول</span>
+  </div>
+
+ </div>
+
+ <div id="authMessage"></div>
+
+</div>
+
+
+<!-- HOME -->
+
+<div id="home" class="hidden">
+
+ <div class="welcome">
+  <h2 id="welcome">جاهز؟</h2>
+ </div>
+
+
+ <div class="stats">
+
+  <div class="stat">
+   <b id="points">0</b>
+   <span>النقاط</span>
+  </div>
+
+  <div class="stat">
+   <b id="xp">0</b>
+   <span>XP</span>
+  </div>
+
+  <div class="stat">
+   <b id="coins">0</b>
+   <span>عملات</span>
+  </div>
+
+  <div class="stat">
+   <b id="games">0</b>
+   <span>تحديات</span>
+  </div>
+
+ </div>
+
+
+ <div class="title">التصنيفات</div>
+
+ <div class="categories">
+
+  <button class="category" onclick="enterGame('general')">
+   <span class="ico">◈</span>
+   <span class="name">معلومات عامة</span>
+  </button>
+
+  <button class="category" onclick="enterGame('history')">
+   <span class="ico">⌂</span>
+   <span class="name">تاريخ</span>
+  </button>
+
+  <button class="category" onclick="enterGame('sports')">
+   <span class="ico">◉</span>
+   <span class="name">رياضة</span>
+  </button>
+
+  <button class="category" onclick="enterGame('geography')">
+   <span class="ico">◎</span>
+   <span class="name">جغرافيا</span>
+  </button>
+
+  <button class="category" onclick="enterGame('medicine')">
+   <span class="ico">✚</span>
+   <span class="name">طب وصحة</span>
+  </button>
+
+  <button class="category" onclick="enterGame('science')">
+   <span class="ico">△</span>
+   <span class="name">علوم</span>
+  </button>
+
+  <button class="category" onclick="enterGame('technology')">
+   <span class="ico">⌘</span>
+   <span class="name">تقنية</span>
+  </button>
+
+  <button class="category anime" onclick="enterGame('anime')">
+   <span class="ico">✦</span>
+   <span class="name">أنمي</span>
+  </button>
+
+  <button class="category" onclick="enterGame('series')">
+   <span class="ico">▣</span>
+   <span class="name">مسلسلات</span>
+  </button>
+
+  <button class="category" onclick="enterGame('movies')">
+   <span class="ico">▰</span>
+   <span class="name">أفلام</span>
+  </button>
+
+  <button class="category" onclick="enterGame('music')">
+   <span class="ico">♪</span>
+   <span class="name">موسيقى</span>
+  </button>
+
+  <button class="category" onclick="enterGame('puzzles')">
+   <span class="ico">◇</span>
+   <span class="name">ألغاز</span>
+  </button>
+
+  <button class="category" onclick="enterGame('focus')">
+   <span class="ico">⊙</span>
+   <span class="name">تركيز</span>
+  </button>
+
+  <button class="category" onclick="enterGame('memory')">
+   <span class="ico">◌</span>
+   <span class="name">ذاكرة</span>
+  </button>
+
+  <button class="category" onclick="enterGame('logic')">
+   <span class="ico">◇</span>
+   <span class="name">منطق</span>
+  </button>
+
+  <button class="category" onclick="enterGame('math')">
+   <span class="ico">÷</span>
+   <span class="name">رياضيات</span>
+  </button>
+
+  <button class="category" onclick="enterGame('arabic')">
+   <span class="ico">ع</span>
+   <span class="name">قواعد عربية</span>
+  </button>
+
+  <button class="category" onclick="enterGame('english')">
+   <span class="ico">A</span>
+   <span class="name">English</span>
+  </button>
+
+  <button class="category" onclick="enterGame('city')">
+   <span class="ico">⌖</span>
+   <span class="name">مدن ووقت</span>
+  </button>
+
+  <button class="category" onclick="enterGame('visual')">
+   <span class="ico">⊛</span>
+   <span class="name">بصري</span>
+  </button>
+
+ </div>
+
+
+ <div class="title">لغة الأسئلة</div>
+
+ <div class="langRow">
+
+  <button class="lang active" id="arLang" onclick="setQlang('ar')">
+   عربي
+  </button>
+
+  <button class="lang" id="enLang" onclick="setQlang('en')">
+   English
+  </button>
+
+  <button class="lang" id="mixLang" onclick="setQlang('mix')">
+   Mix
+  </button>
+
+ </div>
+
+</div>
+
+
+<!-- GAME -->
+
+<div id="game" class="game hidden">
+
+ <div class="gameHeader">
+
+  <div>
+   <span class="small" id="gameCategory">عام</span>
+   <span class="small"> · </span>
+   <span class="small" id="gameNumber">1 / 10</span>
+  </div>
+
+  <div class="timer" id="timer">
+   15
+  </div>
+
+ </div>
+
+
+ <div class="progress">
+  <div class="progressBar" id="progressBar"></div>
+ </div>
+
+
+ <div class="questionBox">
+
+  <div class="questionIcon" id="questionIcon">
+   ◈
+  </div>
+
+  <div class="question" id="question">
+   السؤال
+  </div>
+
+  <div class="answers" id="answers"></div>
+
+ </div>
+
+</div>
+
+
+<!-- RESULT -->
+
+<div id="result" class="result hidden">
+
+ <h2>انتهى التحدي</h2>
+
+ <div class="finalScore" id="finalScore">
+  0
+ </div>
+
+ <div class="resultStats">
+
+  <div>
+   <b id="correct">0</b>
+   <span>صحيح</span>
+  </div>
+
+  <div>
+   <b id="wrong">0</b>
+   <span>خطأ</span>
+  </div>
+
+  <div>
+   <b id="earnedXP">0</b>
+   <span>XP</span>
+  </div>
+
+ </div>
+
+ <button class="mainBtn" onclick="goHome()">
+  رجوع
+ </button>
+
+</div>
+
+</div>
+
+
+<!-- PROFILE -->
+
 <div id="profileModal" class="modal hidden">
 
-  <div class="modal-box card">
+ <div class="modalBox">
 
-    <div class="top">
-      <h2>👤 الملف الشخصي</h2>
-      <button class="icon-btn" onclick="closeProfile()">✕</button>
-    </div>
+  <div class="modalHead">
 
-    <h2 id="profileUsername">User</h2>
+   <h2>ملفي</h2>
 
-    <div class="profile-grid">
-
-      <div class="profile-item">
-        <b>النقاط</b>
-        <div id="profilePoints">0</div>
-      </div>
-
-      <div class="profile-item">
-        <b>XP</b>
-        <div id="profileXP">0</div>
-      </div>
-
-      <div class="profile-item">
-        <b>المستوى</b>
-        <div id="profileLevel">1</div>
-      </div>
-
-      <div class="profile-item">
-        <b>العملات</b>
-        <div id="profileCoins">0</div>
-      </div>
-
-      <div class="profile-item">
-        <b>أفضل نتيجة</b>
-        <div id="profileBest">0</div>
-      </div>
-
-      <div class="profile-item">
-        <b>عدد التحديات</b>
-        <div id="profileGames">0</div>
-      </div>
-
-    </div>
-
-    <div class="section-title">⭐ الاشتراك</div>
-
-    <div id="subscriptionBox" class="notice">
-      الحساب المجاني
-    </div>
-
-    <button class="primary pro" onclick="showPro()">
-      ⭐ CHALLENGE PRO — 10 ريال / شهر
-    </button>
+   <button class="close" onclick="closeProfile()">×</button>
 
   </div>
 
-</div>
-
-<!-- FRIEND MODAL -->
-<div id="friendModal" class="modal hidden">
-
-  <div class="modal-box card center">
-
-    <button class="icon-btn" onclick="closeFriend()" style="float:left">✕</button>
-
-    <h2>⚔️ تحدي صديقك</h2>
-
-    <p class="muted">
-      شارك الكود مع صديقك
-    </p>
-
-    <div class="friend-code" id="friendCode">------</div>
-
-    <button class="primary" onclick="copyFriendCode()">
-      📋 نسخ الكود
-    </button>
-
-    <button class="primary" onclick="shareFriendChallenge()">
-      📤 مشاركة
-    </button>
-
+  <div class="profileName" id="profileName">
+   —
   </div>
 
+  <div class="profileGrid">
+
+   <div class="profileItem">
+    <span>النقاط</span>
+    <b id="pPoints">0</b>
+   </div>
+
+   <div class="profileItem">
+    <span>XP</span>
+    <b id="pXP">0</b>
+   </div>
+
+   <div class="profileItem">
+    <span>المستوى</span>
+    <b id="pLevel">1</b>
+   </div>
+
+   <div class="profileItem">
+    <span>العملات</span>
+    <b id="pCoins">0</b>
+   </div>
+
+   <div class="profileItem">
+    <span>أفضل نتيجة</span>
+    <b id="pBest">0</b>
+   </div>
+
+   <div class="profileItem">
+    <span>التحديات</span>
+    <b id="pGames">0</b>
+   </div>
+
+ </div>
+
+ <div class="subscription">
+
+  <span class="small">الاشتراك</span>
+
+  <div id="subscriptionText">
+   الحساب المجاني
+  </div>
+
+  <button class="proBtn" onclick="showPro()">
+   CHALLENGE PRO · 10 ريال
+  </button>
+
+ </div>
+
+ </div>
+
 </div>
+
 
 <script>
 
-/* =========================
-   SUPABASE
-========================= */
+/* SUPABASE */
 
 const SUPABASE_URL =
 "https://avjawmakdpzbdswusqqz.supabase.co";
@@ -825,1344 +964,896 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
 "sb_publishable_EmDD96CXmQb_S_xhtaS1Kw_YaIBApwt";
 
-const supabaseClient =
+const db =
 window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
+ SUPABASE_URL,
+ SUPABASE_KEY
 );
 
 
-/* =========================
-   GLOBAL VARIABLES
-========================= */
+/* STATE */
 
-let currentUser = null;
-let profile = null;
+let user=null;
+let profile=null;
 
-let selectedCategory = "general";
-let questionLanguage = "ar";
+let category="general";
+let qlang="ar";
 
-let currentMode = "easy";
-let currentQuestions = [];
-let currentQuestionIndex = 0;
+let questions=[];
+let index=0;
 
-let score = 0;
-let correct = 0;
-let wrong = 0;
-let totalTime = 0;
+let mode="easy";
 
-let timerInterval = null;
-let timeLeft = 15;
+let score=0;
+let correctCount=0;
+let wrongCount=0;
+
+let timer=null;
+let timeLeft=15;
 
 
-/* =========================
-   QUESTION BANK
-========================= */
+/* QUESTION BANK */
 
-const questions = {
+const bank={
 
 general:[
-{
-icon:"🧠",
-q:"أي دولة تمتلك أكبر عدد من المناطق الزمنية الرسمية؟",
-a:["روسيا","فرنسا","الصين","الولايات المتحدة"],
-c:1
-},
-{
-icon:"🌍",
-q:"ما الدولة التي لا تملك عاصمة رسمية محددة في دستورها؟",
-a:["سويسرا","اليابان","أستراليا","البرازيل"],
-c:0
-},
-{
-icon:"🧠",
-q:"أي عنصر كيميائي رمزه W؟",
-a:["التنغستن","التيتانيوم","القصدير","الفضة"],
-c:0
-},
-{
-icon:"🧠",
-q:"ما اللغة الأكثر انتشاراً من حيث عدد المتحدثين الأصليين؟",
-a:["الإنجليزية","الإسبانية","الصينية المندرينية","الهندية"],
-c:2
-}
+["◈","أي دولة تمتلك أكبر عدد من المناطق الزمنية الرسمية؟",["روسيا","فرنسا","الصين","الهند"],1],
+["◈","ما العنصر الكيميائي الذي رمزه W؟",["الفضة","التنغستن","القصدير","النيكل"],1],
+["◈","أي كوكب يدور حول نفسه في الاتجاه المعاكس لمعظم الكواكب؟",["المريخ","الزهرة","المشتري","عطارد"],1]
 ],
 
 history:[
-{
-icon:"🏛️",
-q:"أي معركة أنهت فعلياً حكم نابليون الأول؟",
-a:["واترلو","ترافلغار","أوسترليتز","مارينغو"],
-c:0
-},
-{
-icon:"🏛️",
-q:"في أي عام سقطت القسطنطينية؟",
-a:["1453","1492","1517","1402"],
-c:0
-},
-{
-icon:"🏛️",
-q:"من هو أول إمبراطور روماني؟",
-a:["يوليوس قيصر","أغسطس","نيرون","تراجان"],
-c:1
-}
+["⌂","في أي عام سقطت القسطنطينية؟",["1453","1492","1517","1402"],0],
+["⌂","من كان أول إمبراطور روماني؟",["نيرون","أغسطس","تراجان","قيصر"],1],
+["⌂","أي معركة ارتبطت بنهاية حكم نابليون؟",["واترلو","أوسترليتز","ماراثون","سوم"],0]
 ],
 
 sports:[
-{
-icon:"⚽",
-q:"أي منتخب فاز بأول كأس عالم لكرة القدم عام 1930؟",
-a:["البرازيل","الأرجنتين","الأوروغواي","إيطاليا"],
-c:2
-},
-{
-icon:"🏀",
-q:"كم لاعباً من الفريق الواحد يكون داخل الملعب في كرة السلة؟",
-a:["4","5","6","7"],
-c:1
-},
-{
-icon:"🎾",
-q:"في التنس، ماذا يسمى الفوز بنتيجة صفر في شوط واحد؟",
-a:["Love","Ace","Deuce","Break"],
-c:0
-}
+["◉","من فاز بأول كأس عالم لكرة القدم عام 1930؟",["البرازيل","الأرجنتين","الأوروغواي","إيطاليا"],2],
+["◉","كم لاعباً من الفريق الواحد داخل ملعب كرة السلة؟",["4","5","6","7"],1],
+["◉","في التنس، ماذا تعني Love؟",["نقطة","صفر","تعادل","إرسال"],1]
 ],
 
 geography:[
-{
-icon:"🌍",
-q:"ما أعمق بحيرة في العالم؟",
-a:["فيكتوريا","بايكال","طبريا","سوبيريور"],
-c:1
-},
-{
-icon:"🌍",
-q:"أي دولة تمتلك أطول خط ساحلي في العالم؟",
-a:["روسيا","كندا","أستراليا","الولايات المتحدة"],
-c:1
-}
+["◎","ما أعمق بحيرة في العالم؟",["فيكتوريا","بايكال","طبريا","سوبيريور"],1],
+["◎","ما الدولة صاحبة أطول خط ساحلي؟",["روسيا","كندا","أستراليا","أمريكا"],1],
+["◎","ما أكبر محيط على الأرض؟",["الأطلسي","الهندي","الهادئ","المتجمد"],2]
 ],
 
 medicine:[
-{
-icon:"🩺",
-q:"أي عضو ينتج معظم عوامل تخثر الدم؟",
-a:["الكبد","القلب","الكلى","الطحال"],
-c:0
-},
-{
-icon:"🧬",
-q:"ما الجزء المسؤول عن إنتاج معظم طاقة الخلية؟",
-a:["النواة","الميتوكوندريا","الريبوسوم","الغشاء"],
-c:1
-},
-{
-icon:"🩺",
-q:"أي هرمون يخفض مستوى الجلوكوز في الدم؟",
-a:["الأنسولين","الكورتيزول","الأدرينالين","الجلوكاجون"],
-c:0
-}
+["✚","أي عضو ينتج معظم عوامل تخثر الدم؟",["الكبد","القلب","الكلى","الطحال"],0],
+["✚","أي عضو مسؤول عن ضخ الدم؟",["الكبد","القلب","الرئة","الطحال"],1],
+["✚","أي هرمون يخفض سكر الدم؟",["الأنسولين","الأدرينالين","الكورتيزول","الجلوكاجون"],0]
 ],
 
 science:[
-{
-icon:"🔬",
-q:"ما سرعة الضوء تقريباً في الفراغ؟",
-a:["300 ألف كم/ث","30 ألف كم/ث","3 ملايين كم/ث","3000 كم/ث"],
-c:0
-},
-{
-icon:"⚛️",
-q:"ما أصغر وحدة تحتفظ بالخصائص الكيميائية للعنصر؟",
-a:["الجزيء","الذرة","الإلكترون","النواة"],
-c:1
-}
+["△","ما سرعة الضوء تقريباً؟",["30 ألف كم/ث","300 ألف كم/ث","3 ملايين كم/ث","3000 كم/ث"],1],
+["△","ما أصغر وحدة تحتفظ بخصائص العنصر؟",["الذرة","النواة","الإلكترون","الجزيء"],0],
+["△","أي غاز يشكل النسبة الأكبر من الغلاف الجوي؟",["الأكسجين","النيتروجين","الهيدروجين","ثاني أكسيد الكربون"],1]
 ],
 
 technology:[
-{
-icon:"💻",
-q:"ماذا تعني CPU؟",
-a:[
-"Central Processing Unit",
-"Computer Personal Unit",
-"Central Program Utility",
-"Core Processing User"
-],
-c:0
-},
-{
-icon:"🌐",
-q:"ما البروتوكول المستخدم عادة لتأمين تصفح المواقع؟",
-a:["HTTP","FTP","HTTPS","SMTP"],
-c:2
-}
+["⌘","ماذا تعني CPU؟",["Central Processing Unit","Computer Personal Unit","Core Program Unit","Central Program User"],0],
+["⌘","أي بروتوكول يستخدم عادة لتأمين المواقع؟",["HTTP","FTP","HTTPS","SMTP"],2],
+["⌘","ما الشركة التي طورت نظام Android أساساً؟",["Microsoft","Google","Apple","IBM"],1]
 ],
 
 anime:[
-{
-icon:"🍥",
-q:"في One Piece، ما اسم الجزيرة التي بدأت فيها أحداث القصة الرئيسية؟",
-a:["فوشا","ووتر 7","دريسروزا","ساباودي"],
-c:0
-},
-{
-icon:"🍥",
-q:"في Hunter × Hunter، ما اسم نظام الطاقة المستخدم؟",
-a:["Nen","Ki","Chakra","Haki"],
-c:0
-},
-{
-icon:"🍥",
-q:"في Detective Conan، ما الاسم الحقيقي لكونان؟",
-a:["شينيتشي كودو","كايتو كيد","هيجي هاتوري","توغو موري"],
-c:0
-}
+["✦","في One Piece، ما اسم قرية لوفي؟",["فوشا","ووتر 7","دريسروزا","ساباودي"],0],
+["✦","في One Piece، ما اسم السيف الذي يحمله زورو؟",["وَادو إيتشيمونجي","ساميهَدا","زانتِتسو","تسوباكي"],0],
+["✦","في Hunter × Hunter، ما اسم نظام الطاقة؟",["Nen","Ki","Chakra","Haki"],0],
+["✦","في Detective Conan، ما الاسم الحقيقي لكونان؟",["شينيتشي كودو","هيجي هاتوري","كايتو كيد","توغو موري"],0]
 ],
 
 series:[
-{
-icon:"📺",
-q:"أي عنصر يعتبر مهماً جداً في تحليل بنية المسلسل؟",
-a:["ترتيب الأحداث","لون الملابس فقط","عدد الإعلانات","اسم القناة فقط"],
-c:0
-},
-{
-icon:"🎬",
-q:"ماذا يسمى الشخص المسؤول فنياً عن رؤية العمل الدرامية؟",
-a:["المخرج","المحاسب","المنتج التنفيذي فقط","المصور فقط"],
-c:0
-}
+["▣","ما العنصر الأساسي الذي يحدد ترتيب الأحداث في المسلسل؟",["الخط الزمني","الإعلانات","الملابس","الموسيقى فقط"],0],
+["▣","من المسؤول عادة عن الرؤية الإخراجية للعمل؟",["المخرج","المحاسب","المعلن","الممثل فقط"],0]
 ],
 
 movies:[
-{
-icon:"🎬",
-q:"ما المصطلح الذي يطلق على الفيلم الذي يسبق أحداث فيلم آخر زمنياً؟",
-a:["Prequel","Sequel","Remake","Spin-off"],
-c:0
-},
-{
-icon:"🎬",
-q:"ما المصطلح الذي يصف إعادة إنتاج فيلم سابق؟",
-a:["Remake","Prequel","Finale","Trailer"],
-c:0
-}
+["▰","ماذا يسمى الفيلم الذي تقع أحداثه قبل فيلم آخر؟",["Prequel","Sequel","Remake","Trailer"],0],
+["▰","ماذا يسمى إعادة إنتاج فيلم سابق؟",["Remake","Prequel","Finale","Trailer"],0]
 ],
 
 music:[
-{
-icon:"🎵",
-q:"كم نغمة أساسية يحتوي عليها السلم الموسيقي الغربي التقليدي؟",
-a:["5","7","8","12"],
-c:1
-},
-{
-icon:"🎵",
-q:"ما الوحدة التي تقيس تردد الصوت؟",
-a:["واط","هرتز","فولت","أمبير"],
-c:1
-}
+["♪","كم نغمة أساسية في السلم الموسيقي الغربي التقليدي؟",["5","7","8","12"],1],
+["♪","ما الوحدة التي تقيس تردد الصوت؟",["واط","هرتز","فولت","أمبير"],1]
 ],
 
 puzzles:[
-{
-icon:"🧩",
-q:"لديك 3 مفاتيح خارج غرفة و3 مصابيح داخلها. يمكنك دخول الغرفة مرة واحدة فقط. كيف تعرف كل مفتاح لأي مصباح؟",
-a:[
-"بتشغيل مفتاحين والدخول",
-"تشغيل الأول فترة ثم إطفاؤه وتشغيل الثاني ثم الدخول",
-"تشغيل الثالث فقط",
-"لا يمكن"
-],
-c:1
-},
-{
-icon:"🧩",
-q:"ما الرقم التالي: 2، 6، 12، 20، 30، ؟",
-a:["36","40","42","44"],
-c:2
-}
+["◇","ما الرقم التالي: 2، 6، 12، 20، 30، ؟",["36","40","42","44"],2],
+["◇","لديك ثلاثة مفاتيح وثلاثة مصابيح داخل غرفة. ما أفضل طريقة للتمييز بينها؟",["تشغيل مفتاحين","تشغيل الأول ثم إطفاؤه وتشغيل الثاني","الثالث فقط","مستحيل"],1]
 ],
 
 focus:[
-{
-icon:"👁️",
-q:"ركز: أي رقم مختلف؟ 88998899889988998898",
-a:["8","9","لا يوجد","النمط متطابق"],
-c:1
-},
-{
-icon:"👁️",
-q:"إذا تحرك سهم للأعلى ثم دار 90° لليمين، إلى أي اتجاه يشير؟",
-a:["أعلى","أسفل","يمين","يسار"],
-c:2
-}
+["⊙","أي رقم مختلف في السلسلة؟ 88998899889988998898",["8","9","لا يوجد","كلها متطابقة"],1],
+["⊙","إذا اتجه السهم للأعلى ثم دار 90 درجة لليمين، أين يتجه؟",["أعلى","أسفل","يمين","يسار"],2]
 ],
 
 memory:[
-{
-icon:"🧠",
-q:"تذكر التسلسل: 🔴 🟦 🟢 ⭐ 🟡. ما الرمز الثالث؟",
-a:["🔴","🟦","🟢","⭐"],
-c:2
-},
-{
-icon:"🧠",
-q:"أي عنصر لم يظهر في التسلسل السابق؟",
-a:["🔴","🟦","🟣","🟡"],
-c:2
-}
+["◌","تذكر: ◆ ○ ▲ ★ ■. ما الرمز الثالث؟",["◆","○","▲","★"],2],
+["◌","أي رمز لم يظهر في التسلسل السابق؟",["◆","○","●","■"],2]
 ],
 
 logic:[
-{
-icon:"♟️",
-q:"كل القطط حيوانات. بعض الحيوانات سوداء. هل نستطيع الجزم أن بعض القطط سوداء؟",
-a:["نعم","لا","دائماً","فقط ليلاً"],
-c:1
-},
-{
-icon:"♟️",
-q:"إذا كان A أكبر من B، وB أكبر من C، فمن الأكبر؟",
-a:["A","B","C","لا يمكن معرفة"],
-c:0
-}
+["◇","كل القطط حيوانات. بعض الحيوانات سوداء. هل نستطيع الجزم بأن بعض القطط سوداء؟",["نعم","لا","دائماً","فقط ليلاً"],1],
+["◇","إذا كان A أكبر من B وB أكبر من C، فمن الأكبر؟",["A","B","C","لا يمكن"],0]
 ],
 
 math:[
-{
-icon:"➗",
-q:"إذا كان 7 × 8 = 56، فما 56 ÷ 7؟",
-a:["6","7","8","9"],
-c:2
-},
-{
-icon:"➗",
-q:"ما ناتج 17²؟",
-a:["279","289","299","309"],
-c:1
-},
-{
-icon:"➗",
-q:"إذا كان x + 7 = 19، فما قيمة x؟",
-a:["10","11","12","13"],
-c:2
-}
+["÷","ما ناتج 17²؟",["279","289","299","309"],1],
+["÷","إذا كان x + 7 = 19، فما قيمة x؟",["10","11","12","13"],2],
+["÷","ما ناتج 144 ÷ 12؟",["10","11","12","14"],2]
 ],
 
 arabic:[
-{
-icon:"🇸🇦",
-q:"أي الجمل صحيحة إعرابياً؟",
-a:[
-"إنَّ الطالبُ مجتهدٌ",
-"إنَّ الطالبَ مجتهدٌ",
-"إنَّ الطالبَ مجتهداً",
-"إنَّ الطالبُ مجتهداً"
-],
-c:1
-},
-{
-icon:"🇸🇦",
-q:"ما علامة رفع المثنى؟",
-a:["الضمة","الألف","الواو","الياء"],
-c:1
-}
+["ع","أي جملة صحيحة إعرابياً؟",["إن الطالبُ مجتهد","إن الطالبَ مجتهد","إن الطالبَ مجتهداً","إن الطالبُ مجتهداً"],1],
+["ع","ما علامة رفع المثنى؟",["الضمة","الألف","الواو","الياء"],1]
 ],
 
 english:[
-{
-icon:"🇬🇧",
-q:"Choose the correct sentence:",
-a:[
-"She go to school.",
-"She goes to school.",
-"She going school.",
-"She gone school."
-],
-c:1
-},
-{
-icon:"🇬🇧",
-q:"Choose the correct past tense of 'go':",
-a:["goed","gone","went","going"],
-c:2
-}
+["A","Choose the correct sentence:",["She go to school.","She goes to school.","She going school.","She gone school."],1],
+["A","Choose the correct past tense of 'go':",["goed","gone","went","going"],2]
 ],
 
 city:[
-{
-icon:"🏙️",
-q:"إذا كانت الساعة 12:00 ظهراً في الرياض، فما الوقت التقريبي في لندن خلال التوقيت الشتوي؟",
-a:["9:00 صباحاً","10:00 صباحاً","12:00 ظهراً","3:00 عصراً"],
-c:1
-},
-{
-icon:"🏙️",
-q:"أي مدينة تعرف بلقب مدينة الضباب تاريخياً؟",
-a:["لندن","باريس","روما","مدريد"],
-c:0
-}
+["⌖","إذا كانت الساعة 12 ظهراً في الرياض خلال الشتاء، كم تكون تقريباً في لندن؟",["9 صباحاً","10 صباحاً","12 ظهراً","2 ظهراً"],1],
+["⌖","أي مدينة ارتبطت تاريخياً بلقب مدينة الضباب؟",["لندن","روما","مدريد","باريس"],0]
 ],
 
 visual:[
-{
-icon:"🔍",
-q:"أي شكل مختلف عن البقية؟",
-a:["⬛","⬛","⬜","⬛"],
-c:2
-},
-{
-icon:"🔎",
-q:"أي رمز لا ينتمي للمجموعة؟",
-a:["▲","△","▲","▲"],
-c:1
-}
+["⊛","أي شكل مختلف؟",["■","■","□","■"],2],
+["⊛","أي رمز لا ينتمي للمجموعة؟",["▲","△","▲","▲"],1]
 ]
 
 };
 
 
-/* =========================
-   AUTH
-========================= */
+/* AUTH */
 
-async function checkSession(){
+async function init(){
 
-  const {data} =
-    await supabaseClient.auth.getSession();
+ const {data}=await db.auth.getSession();
 
-  if(data.session){
+ if(data.session){
 
-    currentUser = data.session.user;
+  user=data.session.user;
 
-    await loadProfile();
+  await loadProfile();
 
-    showHome();
+  showHome();
 
-  }else{
+ }else{
 
-    showAuth();
+  showAuth();
 
-  }
+ }
 
 }
 
 
 async function register(){
 
-  const username =
-    document.getElementById("registerUsername").value.trim();
+ const username=
+ document.getElementById("registerUsername").value.trim();
 
-  const email =
-    document.getElementById("registerEmail").value.trim();
+ const email=
+ document.getElementById("registerEmail").value.trim();
 
-  const password =
-    document.getElementById("registerPassword").value;
+ const password=
+ document.getElementById("registerPassword").value;
 
-  if(!username || !email || !password){
+ if(!username||!email||!password){
 
-    showAuthMessage("اكتب جميع البيانات");
+  message("أكمل البيانات");
 
-    return;
-  }
+  return;
 
-  if(password.length < 6){
+ }
 
-    showAuthMessage("كلمة المرور يجب أن تكون 6 أحرف على الأقل");
+ const {data,error}=
+ await db.auth.signUp({
+  email,
+  password
+ });
 
-    return;
-  }
+ if(error){
 
-  const {data,error} =
-    await supabaseClient.auth.signUp({
-      email,
-      password
-    });
+  message(error.message);
 
-  if(error){
+  return;
 
-    showAuthMessage(error.message);
+ }
 
-    return;
-  }
+ user=data.user;
 
-  currentUser = data.user;
+ if(user){
 
-  if(currentUser){
+  await db.from("profiles").upsert({
+   id:user.id,
+   username:username,
+   level:1,
+   xp:0,
+   coins:0,
+   total_score:0,
+   best_score:0,
+   games_played:0,
+   login_days:0,
+   is_pro:false
+  });
 
-    const {error:profileError} =
-      await supabaseClient
-      .from("profiles")
-      .insert({
-        id:currentUser.id,
-        username:username,
-        level:1,
-        xp:0,
-        coins:0,
-        total_score:0,
-        best_score:0,
-        games_played:0,
-        login_days:0,
-        is_pro:false
-      });
+ }
 
-    if(profileError){
+ message("تم إنشاء الحساب");
 
-      console.log(profileError);
-
-    }
-
-  }
-
-  showAuthMessage("تم إنشاء الحساب بنجاح");
-
-  setTimeout(async()=>{
-    await loadProfile();
-    showHome();
-  },700);
+ setTimeout(async()=>{
+  await loadProfile();
+  showHome();
+ },500);
 
 }
 
 
 async function login(){
 
-  const email =
-    document.getElementById("loginEmail").value.trim();
+ const email=
+ document.getElementById("loginEmail").value.trim();
 
-  const password =
-    document.getElementById("loginPassword").value;
+ const password=
+ document.getElementById("loginPassword").value;
 
-  if(!email || !password){
+ if(!email||!password){
 
-    showAuthMessage("اكتب البريد وكلمة المرور");
+  message("أدخل البريد وكلمة المرور");
 
-    return;
-  }
+  return;
 
-  const {data,error} =
-    await supabaseClient.auth.signInWithPassword({
-      email,
-      password
-    });
+ }
 
-  if(error){
+ const {data,error}=
+ await db.auth.signInWithPassword({
+  email,
+  password
+ });
 
-    showAuthMessage("البريد أو كلمة المرور غير صحيحة");
+ if(error){
 
-    return;
-  }
+  message("البريد أو كلمة المرور غير صحيحة");
 
-  currentUser = data.user;
+  return;
 
-  await loadProfile();
+ }
 
-  showHome();
+ user=data.user;
+
+ await loadProfile();
+
+ showHome();
 
 }
 
 
-async function logout(){
+async function loadProfile(){
 
-  await supabaseClient.auth.signOut();
+ if(!user)return;
 
-  currentUser = null;
-  profile = null;
+ let {data}=await db
+ .from("profiles")
+ .select("*")
+ .eq("id",user.id)
+ .single();
 
-  location.reload();
+ if(!data){
+
+  const username=
+   user.email
+   ?user.email.split("@")[0]
+   :"User";
+
+  const result=
+   await db.from("profiles")
+   .upsert({
+    id:user.id,
+    username:username
+   })
+   .select()
+   .single();
+
+  data=result.data;
+
+ }
+
+ profile=data;
 
 }
 
 
 function showAuth(){
 
-  document.getElementById("authScreen")
-    .classList.remove("hidden");
+ document.getElementById("auth")
+ .classList.remove("hidden");
 
-  document.getElementById("homeScreen")
-    .classList.add("hidden");
+ document.getElementById("topbar")
+ .classList.add("hidden");
 
-  document.getElementById("gameScreen")
-    .classList.add("hidden");
+ document.getElementById("home")
+ .classList.add("hidden");
 
-  document.getElementById("resultScreen")
-    .classList.add("hidden");
+ document.getElementById("game")
+ .classList.add("hidden");
 
-  document.getElementById("topBar")
-    .classList.add("hidden");
+ document.getElementById("result")
+ .classList.add("hidden");
 
 }
 
 
 function showLogin(){
 
-  document.getElementById("loginForm")
-    .classList.remove("hidden");
+ document.getElementById("loginForm")
+ .classList.remove("hidden");
 
-  document.getElementById("registerForm")
-    .classList.add("hidden");
+ document.getElementById("registerForm")
+ .classList.add("hidden");
 
 }
 
 
 function showRegister(){
 
-  document.getElementById("loginForm")
-    .classList.add("hidden");
+ document.getElementById("loginForm")
+ .classList.add("hidden");
 
-  document.getElementById("registerForm")
-    .classList.remove("hidden");
-
-}
-
-
-function showAuthMessage(message){
-
-  document.getElementById("authMessage").innerHTML =
-    `<div class="notice">${message}</div>`;
+ document.getElementById("registerForm")
+ .classList.remove("hidden");
 
 }
 
 
-/* =========================
-   PROFILE
-========================= */
+function message(text){
 
-async function loadProfile(){
+ document.getElementById("authMessage").innerHTML=
+ `<div class="notice">${text}</div>`;
 
-  if(!currentUser)return;
+}
 
-  let {data,error} =
-    await supabaseClient
-    .from("profiles")
-    .select("*")
-    .eq("id",currentUser.id)
-    .single();
 
-  if(error || !data){
+/* HOME */
 
-    const username =
-      currentUser.email
-      ? currentUser.email.split("@")[0]
-      : "Player";
+function showHome(){
 
-    const result =
-      await supabaseClient
-      .from("profiles")
-      .insert({
-        id:currentUser.id,
-        username:username
-      })
-      .select()
-      .single();
+ document.getElementById("auth")
+ .classList.add("hidden");
 
-    data = result.data;
+ document.getElementById("topbar")
+ .classList.remove("hidden");
 
-  }
+ document.getElementById("home")
+ .classList.remove("hidden");
 
-  profile = data;
+ document.getElementById("game")
+ .classList.add("hidden");
+
+ document.getElementById("result")
+ .classList.add("hidden");
+
+ updateHome();
 
 }
 
 
 function updateHome(){
 
-  if(!profile)return;
+ if(!profile)return;
 
-  document.getElementById("usernameBtn")
-    .textContent =
-    "👤 " + profile.username;
+ document.getElementById("profileBtn")
+ .textContent=
+ "ملفي";
 
-  document.getElementById("welcomeText")
-    .textContent =
-    "أهلاً " + profile.username + " 🔥";
+ document.getElementById("welcome")
+ .textContent=
+ "جاهز؟ " + profile.username;
 
-  document.getElementById("homePoints")
-    .textContent =
-    profile.total_score || 0;
+ document.getElementById("points")
+ .textContent=
+ profile.total_score||0;
 
-  document.getElementById("homeXP")
-    .textContent =
-    profile.xp || 0;
+ document.getElementById("xp")
+ .textContent=
+ profile.xp||0;
 
-  document.getElementById("homeCoins")
-    .textContent =
-    profile.coins || 0;
+ document.getElementById("coins")
+ .textContent=
+ profile.coins||0;
 
-  document.getElementById("homeGames")
-    .textContent =
-    profile.games_played || 0;
-
-}
-
-
-function openProfile(){
-
-  if(!profile)return;
-
-  document.getElementById("profileUsername")
-    .textContent =
-    profile.username;
-
-  document.getElementById("profilePoints")
-    .textContent =
-    profile.total_score || 0;
-
-  document.getElementById("profileXP")
-    .textContent =
-    profile.xp || 0;
-
-  document.getElementById("profileLevel")
-    .textContent =
-    profile.level || 1;
-
-  document.getElementById("profileCoins")
-    .textContent =
-    profile.coins || 0;
-
-  document.getElementById("profileBest")
-    .textContent =
-    profile.best_score || 0;
-
-  document.getElementById("profileGames")
-    .textContent =
-    profile.games_played || 0;
-
-  const sub =
-    document.getElementById("subscriptionBox");
-
-  if(profile.is_pro){
-
-    sub.innerHTML =
-      "⭐ أنت مشترك في CHALLENGE PRO";
-
-  }else{
-
-    sub.innerHTML =
-      "الحساب المجاني — يمكنك لعب EASY";
-
-  }
-
-  document.getElementById("profileModal")
-    .classList.remove("hidden");
+ document.getElementById("games")
+ .textContent=
+ profile.games_played||0;
 
 }
 
 
-function closeProfile(){
+/* CATEGORY */
 
-  document.getElementById("profileModal")
-    .classList.add("hidden");
+function enterGame(cat){
 
-}
+ category=cat;
 
+ /*
+  المستخدم يدخل التحدي مباشرة.
+  لا توجد شاشة اختيار إضافية.
+ */
 
-function showPro(){
+ mode="easy";
 
-  alert(
-    "⭐ CHALLENGE PRO\n\n" +
-    "السعر: 10 ريال شهرياً\n\n" +
-    "يشمل:\n" +
-    "• HARD\n" +
-    "• تحديات أصعب\n" +
-    "• مكافآت أكبر\n" +
-    "• محتوى إضافي"
-  );
+ startGame();
 
 }
 
 
-/* =========================
-   HOME
-========================= */
+/* LANGUAGE */
 
-function showHome(){
+function setQlang(lang){
 
-  document.getElementById("authScreen")
-    .classList.add("hidden");
+ qlang=lang;
 
-  document.getElementById("homeScreen")
-    .classList.remove("hidden");
+ document
+ .querySelectorAll(".lang")
+ .forEach(x=>x.classList.remove("active"));
 
-  document.getElementById("gameScreen")
-    .classList.add("hidden");
+ if(lang==="ar")
+  document.getElementById("arLang")
+  .classList.add("active");
 
-  document.getElementById("resultScreen")
-    .classList.add("hidden");
+ if(lang==="en")
+  document.getElementById("enLang")
+  .classList.add("active");
 
-  document.getElementById("topBar")
-    .classList.remove("hidden");
-
-  updateHome();
-
-}
-
-
-/* =========================
-   CATEGORY
-========================= */
-
-function selectCategory(button,category){
-
-  selectedCategory = category;
-
-  document
-    .querySelectorAll(".category")
-    .forEach(b=>b.classList.remove("active"));
-
-  button.classList.add("active");
+ if(lang==="mix")
+  document.getElementById("mixLang")
+  .classList.add("active");
 
 }
 
 
-function setQuestionLanguage(lang){
+let englishUI=false;
 
-  questionLanguage = lang;
+function toggleLanguage(){
 
-  document
-    .querySelectorAll("#qLangAr,#qLangEn,#qLangMix")
-    .forEach(b=>{
+ englishUI=!englishUI;
 
-      b.style.borderColor =
-        "#39435f";
+ document.documentElement.lang=
+ englishUI?"en":"ar";
 
-    });
+ document.documentElement.dir=
+ englishUI?"ltr":"rtl";
 
-  const id =
-    lang==="ar"
-    ? "qLangAr"
-    : lang==="en"
-    ? "qLangEn"
-    : "qLangMix";
+ document.getElementById("languageBtn")
+ .textContent=
+ englishUI?"ع":"EN";
 
-  document.getElementById(id)
-    .style.borderColor =
-    "#7c6cff";
+ if(englishUI){
 
-}
+  document.getElementById("welcome")
+  .textContent=
+  "Ready? "+(profile?.username||"");
 
+ }else{
 
-/* =========================
-   GAME
-========================= */
+  document.getElementById("welcome")
+  .textContent=
+  "جاهز؟ "+(profile?.username||"");
 
-function startGame(mode){
-
-  if((mode==="hard" || mode==="extreme") &&
-     !profile?.is_pro){
-
-    showPro();
-
-    return;
-
-  }
-
-  currentMode = mode;
-
-  currentQuestionIndex = 0;
-  score = 0;
-  correct = 0;
-  wrong = 0;
-  totalTime = 0;
-
-  let bank =
-    questions[selectedCategory] ||
-    questions.general;
-
-  currentQuestions =
-    [...bank]
-    .sort(()=>Math.random()-.5)
-    .slice(0,Math.min(10,bank.length));
-
-  document.getElementById("homeScreen")
-    .classList.add("hidden");
-
-  document.getElementById("resultScreen")
-    .classList.add("hidden");
-
-  document.getElementById("gameScreen")
-    .classList.remove("hidden");
-
-  document.getElementById("gameModeBadge")
-    .textContent =
-    mode.toUpperCase();
-
-  document.getElementById("gameCategoryBadge")
-    .textContent =
-    getCategoryName(selectedCategory);
-
-  loadQuestion();
+ }
 
 }
 
 
-function getCategoryName(category){
+/* GAME */
 
-  const names = {
+function startGame(){
 
-    general:"معلومات عامة",
-    history:"تاريخ",
-    sports:"رياضة",
-    geography:"جغرافيا",
-    medicine:"طب وصحة",
-    science:"علوم",
-    technology:"تقنية",
-    anime:"أنمي",
-    series:"مسلسلات",
-    movies:"أفلام",
-    music:"موسيقى",
-    puzzles:"ألغاز",
-    focus:"تركيز",
-    memory:"ذاكرة",
-    logic:"منطق",
-    math:"رياضيات",
-    arabic:"قواعد عربية",
-    english:"قواعد إنجليزية",
-    city:"مدن ووقت",
-    visual:"تحديات بصرية"
+ clearInterval(timer);
 
-  };
+ questions=
+ [...(bank[category]||bank.general)]
+ .sort(()=>Math.random()-.5)
+ .slice(0,10);
 
-  return names[category] || category;
+ index=0;
+ score=0;
+ correctCount=0;
+ wrongCount=0;
+
+ document.getElementById("home")
+ .classList.add("hidden");
+
+ document.getElementById("result")
+ .classList.add("hidden");
+
+ document.getElementById("game")
+ .classList.remove("hidden");
+
+ loadQuestion();
 
 }
 
 
-function getTimeForMode(){
+function getLimit(){
 
-  if(currentMode==="easy")return 20;
+ if(mode==="easy")return 20;
 
-  if(currentMode==="hard")return 12;
+ if(mode==="hard")return 12;
 
-  return 8;
+ return 8;
 
 }
 
 
 function loadQuestion(){
 
-  clearInterval(timerInterval);
+ clearInterval(timer);
 
-  if(currentQuestionIndex >= currentQuestions.length){
+ if(index>=questions.length){
 
-    finishGame();
+  finish();
 
-    return;
+  return;
+
+ }
+
+ const q=questions[index];
+
+ document.getElementById("gameCategory")
+ .textContent=
+ categoryName(category);
+
+ document.getElementById("gameNumber")
+ .textContent=
+ `${index+1} / ${questions.length}`;
+
+ document.getElementById("questionIcon")
+ .textContent=q[0];
+
+ document.getElementById("question")
+ .textContent=q[1];
+
+ const answers=
+ document.getElementById("answers");
+
+ answers.innerHTML="";
+
+ q[2].forEach((answer,i)=>{
+
+  const btn=
+  document.createElement("button");
+
+  btn.className="answer";
+
+  btn.textContent=answer;
+
+  btn.onclick=()=>{
+   answerQuestion(i,btn);
+  };
+
+  answers.appendChild(btn);
+
+ });
+
+ document.getElementById("progressBar")
+ .style.width=
+ ((index/questions.length)*100)+"%";
+
+ timeLeft=getLimit();
+
+ updateTimer();
+
+ timer=setInterval(()=>{
+
+  timeLeft--;
+
+  updateTimer();
+
+  if(timeLeft<=0){
+
+   clearInterval(timer);
+
+   wrongCount++;
+
+   index++;
+
+   loadQuestion();
 
   }
 
-  const q =
-    currentQuestions[currentQuestionIndex];
-
-  document.getElementById("questionIcon")
-    .textContent =
-    q.icon || "🧠";
-
-  document.getElementById("questionText")
-    .textContent =
-    q.q;
-
-  const answers =
-    document.getElementById("answers");
-
-  answers.innerHTML="";
-
-  q.a.forEach((answer,index)=>{
-
-    const btn =
-      document.createElement("button");
-
-    btn.className="answer";
-
-    btn.textContent=answer;
-
-    btn.onclick=()=>answerQuestion(index,btn);
-
-    answers.appendChild(btn);
-
-  });
-
-  const progress =
-    (currentQuestionIndex /
-    currentQuestions.length)*100;
-
-  document.getElementById("progressBar")
-    .style.width =
-    progress+"%";
-
-  timeLeft =
-    getTimeForMode();
-
-  document.getElementById("timer")
-    .textContent =
-    timeLeft;
-
-  timerInterval =
-    setInterval(()=>{
-
-      timeLeft--;
-
-      document.getElementById("timer")
-        .textContent =
-        timeLeft;
-
-      if(timeLeft<=0){
-
-        clearInterval(timerInterval);
-
-        wrong++;
-
-        nextQuestion();
-
-      }
-
-    },1000);
+ },1000);
 
 }
 
 
-function answerQuestion(index,button){
+function updateTimer(){
 
-  clearInterval(timerInterval);
+ const el=
+ document.getElementById("timer");
 
-  const q =
-    currentQuestions[currentQuestionIndex];
+ el.textContent=
+ "00:"+String(timeLeft).padStart(2,"0");
 
-  const all =
-    document.querySelectorAll(".answer");
-
-  all.forEach(b=>b.disabled=true);
-
-  if(index===q.c){
-
-    button.classList.add("correct");
-
-    correct++;
-
-    let points =
-      currentMode==="easy"
-      ? 100
-      : currentMode==="hard"
-      ? 250
-      : 500;
-
-    score +=
-      points +
-      Math.max(0,timeLeft*5);
-
-  }else{
-
-    button.classList.add("wrong");
-
-    if(all[q.c])
-      all[q.c].classList.add("correct");
-
-    wrong++;
-
-  }
-
-  totalTime +=
-    getTimeForMode()-timeLeft;
-
-  setTimeout(nextQuestion,650);
+ el.classList.toggle(
+  "low",
+  timeLeft<=5
+ );
 
 }
 
 
-function nextQuestion(){
+function answerQuestion(choice,button){
 
-  currentQuestionIndex++;
+ clearInterval(timer);
+
+ const q=questions[index];
+
+ const buttons=
+ document.querySelectorAll(".answer");
+
+ buttons.forEach(x=>x.disabled=true);
+
+ if(choice===q[3]){
+
+  button.classList.add("correct");
+
+  correctCount++;
+
+  score+=
+   100+
+   Math.max(0,timeLeft*5);
+
+ }else{
+
+  button.classList.add("wrong");
+
+  if(buttons[q[3]])
+   buttons[q[3]].classList.add("correct");
+
+  wrongCount++;
+
+ }
+
+ setTimeout(()=>{
+
+  index++;
 
   loadQuestion();
 
+ },500);
+
 }
 
 
-/* =========================
-   FINISH
-========================= */
+/* RESULT */
 
-async function finishGame(){
+async function finish(){
 
-  clearInterval(timerInterval);
+ clearInterval(timer);
 
-  document.getElementById("gameScreen")
-    .classList.add("hidden");
+ const earnedXP=
+ Math.floor(score/10);
 
-  document.getElementById("resultScreen")
-    .classList.remove("hidden");
+ const coins=
+ Math.floor(score/100);
 
-  const xp =
-    Math.floor(score/10);
+ document.getElementById("game")
+ .classList.add("hidden");
 
-  const coins =
-    Math.floor(score/100);
+ document.getElementById("result")
+ .classList.remove("hidden");
 
-  document.getElementById("finalScore")
-    .textContent =
-    score;
+ document.getElementById("finalScore")
+ .textContent=score;
 
-  document.getElementById("resultCorrect")
-    .textContent =
-    correct;
+ document.getElementById("correct")
+ .textContent=correctCount;
 
-  document.getElementById("resultWrong")
-    .textContent =
-    wrong;
+ document.getElementById("wrong")
+ .textContent=wrongCount;
 
-  document.getElementById("resultXP")
-    .textContent =
-    xp;
+ document.getElementById("earnedXP")
+ .textContent=earnedXP;
 
-  document.getElementById("resultCoins")
-    .textContent =
-    coins;
+ if(!user||!profile)return;
 
-  if(!currentUser || !profile)return;
+ const total=
+ (profile.total_score||0)+score;
 
-  const newTotal =
-    (profile.total_score || 0) + score;
+ const xp=
+ (profile.xp||0)+earnedXP;
 
-  const newXP =
-    (profile.xp || 0) + xp;
+ const coin=
+ (profile.coins||0)+coins;
 
-  const newCoins =
-    (profile.coins || 0) + coins;
+ const games=
+ (profile.games_played||0)+1;
 
-  const newGames =
-    (profile.games_played || 0) + 1;
+ const best=
+ Math.max(profile.best_score||0,score);
 
-  const newBest =
-    Math.max(
-      profile.best_score || 0,
-      score
-    );
+ const level=
+ Math.floor(xp/1000)+1;
 
-  const newLevel =
-    Math.floor(newXP/1000)+1;
+ const {error}=
+ await db.from("profiles")
+ .update({
+  total_score:total,
+  xp:xp,
+  coins:coin,
+  games_played:games,
+  best_score:best,
+  level:level
+ })
+ .eq("id",user.id);
 
-  const {error} =
-    await supabaseClient
-    .from("profiles")
-    .update({
+ if(!error){
 
-      total_score:newTotal,
-      xp:newXP,
-      coins:newCoins,
-      games_played:newGames,
-      best_score:newBest,
-      level:newLevel
+  profile.total_score=total;
+  profile.xp=xp;
+  profile.coins=coin;
+  profile.games_played=games;
+  profile.best_score=best;
+  profile.level=level;
 
-    })
-    .eq("id",currentUser.id);
+ }
 
-  if(!error){
+ await db.from("game_results").insert({
 
-    profile.total_score=newTotal;
-    profile.xp=newXP;
-    profile.coins=newCoins;
-    profile.games_played=newGames;
-    profile.best_score=newBest;
-    profile.level=newLevel;
+  player_id:user.id,
+  score:score,
+  xp_earned:earnedXP,
+  coins_earned:coins,
+  correct_answers:correctCount,
+  wrong_answers:wrongCount
+
+ });
+
+}
+
+
+function goHome(){
+
+ showHome();
+
+}
+
+
+/* PROFILE */
+
+function openProfile(){
+
+ if(!profile)return;
+
+ document.getElementById("profileName")
+ .textContent=
+ profile.username;
+
+ document.getElementById("pPoints")
+ .textContent=
+ profile.total_score||0;
+
+ document.getElementById("pXP")
+ .textContent=
+ profile.xp||0;
+
+ document.getElementById("pLevel")
+ .textContent=
+ profile.level||1;
+
+ document.getElementById("pCoins")
+ .textContent=
+ profile.coins||0;
+
+ document.getElementById("pBest")
+ .textContent=
+ profile.best_score||0;
+
+ document.getElementById("pGames")
+ .textContent=
+ profile.games_played||0;
+
+ document.getElementById("subscriptionText")
+ .textContent=
+ profile.is_pro
+ ?"CHALLENGE PRO"
+ :"الحساب المجاني";
+
+ document.getElementById("profileModal")
+ .classList.remove("hidden");
+
+}
+
+
+function closeProfile(){
+
+ document.getElementById("profileModal")
+ .classList.add("hidden");
+
+}
+
+
+function showPro(){
+
+ alert(
+  "CHALLENGE PRO\n\n"+
+  "10 ريال شهرياً\n\n"+
+  "محتوى أصعب ومكافآت أكبر."
+ );
+
+}
+
+
+/* CATEGORY NAMES */
+
+function categoryName(x){
+
+ const names={
+  general:"معلومات عامة",
+  history:"تاريخ",
+  sports:"رياضة",
+  geography:"جغرافيا",
+  medicine:"طب وصحة",
+  science:"علوم",
+  technology:"تقنية",
+  anime:"أنمي",
+  series:"مسلسلات",
+  movies:"أفلام",
+  music:"موسيقى",
+  puzzles:"ألغاز",
+  focus:"تركيز",
+  memory:"ذاكرة",
+  logic:"منطق",
+  math:"رياضيات",
+  arabic:"قواعد عربية",
+  english:"English",
+  city:"مدن ووقت",
+  visual:"بصري"
+ };
+
+ return names[x]||"تحدي";
+
+}
+
+
+/* LOGOUT */
+
+async function logout(){
+
+ clearInterval(timer);
+
+ await db.auth.signOut();
+
+ location.reload();
+
+}
+
+
+/* SESSION */
+
+db.auth.onAuthStateChange(
+ async(event,session)=>{
+
+  if(session && !user){
+
+   user=session.user;
+
+   await loadProfile();
+
+   showHome();
 
   }
 
-  await supabaseClient
-    .from("game_results")
-    .insert({
-
-      player_id:currentUser.id,
-      score:score,
-      xp_earned:xp,
-      coins_earned:coins,
-      correct_answers:correct,
-      wrong_answers:wrong,
-      time_used:totalTime
-
-    });
-
-}
-
-
-function backHome(){
-
-  showHome();
-
-}
-
-
-/* =========================
-   FRIEND CHALLENGE
-========================= */
-
-async function createFriendChallenge(){
-
-  if(!currentUser){
-
-    alert("سجل الدخول أولاً");
-
-    return;
-
-  }
-
-  const code =
-    Math.random()
-    .toString(36)
-    .substring(2,8)
-    .toUpperCase();
-
-  const {error} =
-    await supabaseClient
-    .from("friend_challenges")
-    .insert({
-
-      challenge_code:code,
-      creator_id:currentUser.id,
-      status:"waiting",
-      expires_at:
-        new Date(
-          Date.now()+24*60*60*1000
-        ).toISOString()
-
-    });
-
-  if(error){
-
-    console.log(error);
-
-    alert("تعذر إنشاء التحدي حالياً");
-
-    return;
-
-  }
-
-  document.getElementById("friendCode")
-    .textContent =
-    code;
-
-  document.getElementById("friendModal")
-    .classList.remove("hidden");
-
-}
-
-
-function closeFriend(){
-
-  document.getElementById("friendModal")
-    .classList.add("hidden");
-
-}
-
-
-function copyFriendCode(){
-
-  const code =
-    document.getElementById("friendCode")
-      .textContent;
-
-  navigator.clipboard
-    .writeText(code);
-
-  alert("تم نسخ الكود");
-
-}
-
-
-function shareFriendChallenge(){
-
-  const code =
-    document.getElementById("friendCode")
-      .textContent;
-
-  const text =
-    "🔥 تحداني في CHALLENGE!\n" +
-    "كود التحدي: " +
-    code;
-
-  if(navigator.share){
-
-    navigator.share({
-      title:"CHALLENGE",
-      text:text
-    });
-
-  }else{
-
-    navigator.clipboard
-      .writeText(text);
-
-    alert("تم نسخ رسالة المشاركة");
-
-  }
-
-}
-
-
-/* =========================
-   LANGUAGE INTERFACE
-========================= */
-
-let interfaceArabic=true;
-
-function toggleLanguage(){
-
-  interfaceArabic =
-    !interfaceArabic;
-
-  document.getElementById("langBtn")
-    .textContent =
-    interfaceArabic
-    ? "🇸🇦"
-    : "🇬🇧";
-
-  document.documentElement.lang =
-    interfaceArabic
-    ? "ar"
-    : "en";
-
-  document.documentElement.dir =
-    interfaceArabic
-    ? "rtl"
-    : "ltr";
-
-  if(interfaceArabic){
-
-    alert("تم اختيار الواجهة العربية");
-
-  }else{
-
-    alert("English interface selected");
-
-  }
-
-}
-
-
-/* =========================
-   START
-========================= */
-
-supabaseClient.auth
-.onAuthStateChange(
-  async(event,session)=>{
-
-    if(session){
-
-      currentUser=session.user;
-
-      await loadProfile();
-
-      showHome();
-
-    }
-
-  }
+ }
 );
 
-checkSession();
+
+init();
 
 </script>
 
